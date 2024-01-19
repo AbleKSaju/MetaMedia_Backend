@@ -4,6 +4,7 @@ export const dbconnect=async ()=>{
     try {
       
         await mongoose.connect(process.env.MONGOURL!)
+       console.log('db connected ..!');
        
         
     } catch (error) {
