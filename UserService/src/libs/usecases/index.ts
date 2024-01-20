@@ -1,5 +1,6 @@
-import {createUser_Usecases} from './Authentication'
+import {createUser_Usecases,verifyOtp_Usecase} from './Authentication'
 
 export  {
- createUser_Usecases
+ createUser_Usecases,
+ verifyOtp_Usecase
 }

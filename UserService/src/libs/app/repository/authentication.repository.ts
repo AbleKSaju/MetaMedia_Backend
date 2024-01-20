@@ -1,8 +1,4 @@
-
-
 import schema from "../database/schema"
-
-
 export default 
 {
 
