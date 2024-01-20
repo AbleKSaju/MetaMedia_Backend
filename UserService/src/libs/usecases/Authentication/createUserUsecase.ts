@@ -1,4 +1,5 @@
-import sentOtp from "../../../nodemailer/nodemailer";
+import { sentOtp } from "../../../helper";
+
 interface UserData {
   name: string;
   email: string;
