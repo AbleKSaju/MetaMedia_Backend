@@ -8,12 +8,10 @@ export default
 
  userEmailExist:async(email:string)=>{
     try {
-        
         const  responce=await schema.User.findOne({email})
         return responce
     } catch (error) {
         console.log('error in repositery authencation repo in userEmailexist',error);
-        
     }
  },
 
@@ -23,8 +21,6 @@ export default
         email:data.email,
         password:data.password
     }
-
-
     const response=await schema.User.create(userData)
     console.log(response, "User created successfully");
 
