@@ -22,9 +22,7 @@ export default
         password:data.password
     }
     const response=await schema.User.create(userData)
-    console.log(response, "User created successfully");
-
-    return {status:true,message:"user creted sucessful"}
+    return {status:true,message:"user created sucessfull"}
  }
 
 }
