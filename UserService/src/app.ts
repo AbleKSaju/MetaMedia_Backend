@@ -1,8 +1,16 @@
+import http from 'http'
+import serverConfig from './server'
+import getDb from './config/db'
+import {routes} from './Router'
+import config from './config/config'
+import expresscofig from './express'
 import express from 'express'
-import bodyparser from 'body-parser'
+import dependencies from './config/dependencies'
 
 const app=express()
-app.use(bodyparser.json())
-app.use(bodyparser.urlencoded({ extended: true }));
+const server=http.createServer(app)
+getDb(config)
 
-export {app}
+expresscofig(app)
+app.use('/api',routes(dependencies))
+serverConfig(server,config).startServer()

@@ -7,4 +7,4 @@ declare global {
         // add more environment variables and their types here
       }
     }
-  }
+  } 

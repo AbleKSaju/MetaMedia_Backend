@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "type": "commonjs",
   "description": "",
-  "main": "src/index.ts",
+  "main": "src/app.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/index.ts --exec ts-node"
+    "start": "nodemon src/app.ts --exec ts-node"
   },
   "keywords": [],
   "author": "",
