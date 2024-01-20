@@ -12,6 +12,7 @@ export default () => {
         const hashedPassword=await hashPassword(data.password)
         data.password=hashedPassword
         const userData=await authenticationRepository.createUser(data)
+        
         if(userData.status){
             res.status(201).json(userData.message);
         }else{
