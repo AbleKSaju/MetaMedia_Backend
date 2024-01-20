@@ -43,4 +43,4 @@ const sentOtp = async (email:string) => {
     return {status:false}
   }
 };
-export default sentOtp;
+export {sentOtp};
