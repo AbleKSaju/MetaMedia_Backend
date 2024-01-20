@@ -10,6 +10,8 @@ export default (dependencies:any)=>{
          const {data,otp}=response
         req.session.userData=data
         req.session.Otp=otp
+        console.log(req.session.userData,"USERDATA");
+        
         res.status(201).json({message:"Otp sent success"})
     }
 
