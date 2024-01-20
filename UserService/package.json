@@ -16,7 +16,11 @@
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "express": "^4.18.2",
+<<<<<<< HEAD
     "express-validator": "^7.0.1",
+=======
+    "express-session": "^1.17.3",
+>>>>>>> 905cd05124ebba25bc2bab59d33ea5ec25781d74
     "mongoose": "^8.1.0",
     "nodemailer": "^6.9.8",
     "nodemon": "^3.0.3",
@@ -26,6 +30,7 @@
     "@types/bcrypt": "^5.0.2",
     "@types/body-parser": "^1.19.5",
     "@types/express": "^4.17.21",
+    "@types/express-session": "^1.17.10",
     "@types/node": "^20.11.5",
     "@types/nodemailer": "^6.4.14",
     "dotenv": "^16.3.2",
