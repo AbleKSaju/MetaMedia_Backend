@@ -12,10 +12,17 @@ export default (dependencies:any)=>{
           return res.status(400).json({ errors: errors.array() });
         }
          const response=await createUser_Usecases(dependencies).executeFunction(req.body)
-         const {data,otp}=response
-        req.session.userData=data
-        req.session.Otp=otp        
-        res.status(201).json({message:"Otp sent success"})
+         if(response.status){
+            const {status,data,otp}=response
+            req.session.userData=data
+            req.session.Otp=otp        
+            res.status(201).json({message:"Otp sent success"})
+         }else{
+            res.status(400).json(response.message)
+         }
+         
+
+        
     }
 
     return createUserController

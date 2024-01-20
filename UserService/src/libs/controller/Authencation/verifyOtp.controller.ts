@@ -15,8 +15,8 @@ export default () => {
             res.status(201).json(userData.message);
         }else{
             res.status(400).json({message:"UserData error"})
-        }    
-        res.status(201).json({ message: "Otp is Correct" });
+        }
+
       } else {
         res.status(400).json({message:"Wrong otp"})
       }
