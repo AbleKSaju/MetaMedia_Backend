@@ -6,9 +6,11 @@ export default (dependencies:any)=>{
     }=dependencies
 
     const createUserController=async(req:Request,res:Response)=>{
-         const responce=await createUser_Usecases(dependencies).executeFunction(req.body)
-         console.log('responce from createUser_Usecases ',responce)
-         res.status(201).json(responce)
+         const response=await createUser_Usecases(dependencies).executeFunction(req.body)
+         const {data,otp}=response
+        req.session.userData=data
+        req.session.Otp=otp
+        res.status(201).json({message:"Otp sent success"})
     }
 
     return createUserController
