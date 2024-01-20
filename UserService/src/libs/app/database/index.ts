@@ -1,0 +1,1 @@
+import authenticationSchema from './schema'
