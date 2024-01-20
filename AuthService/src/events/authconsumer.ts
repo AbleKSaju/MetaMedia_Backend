@@ -1,5 +1,5 @@
 import {kafka} from '../config/kafkaClient'
-
+import {addUser} from './consumerhandler'
 
 const consumer=kafka.consumer({
     groupId:"auth-service"
@@ -23,8 +23,14 @@ export const authconsumer = async()=>{
                 const messagetype=jsondata?.type
 
 
-                //funrther funtion are handle in here 
+              
+                
 
+
+                //funrther funtion are handle in here 
+                if(messagetype=='add-user'){
+                    await addUser(jsondata?.data)
+                }
 
             }
         })

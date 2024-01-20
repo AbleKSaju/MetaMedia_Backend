@@ -2,7 +2,7 @@ import {kafka} from '../config/kafkaClient'
 
 
 const consumer=kafka.consumer({
-    groupId:"auth-service"
+    groupId:"user-service"
 })
 
 
