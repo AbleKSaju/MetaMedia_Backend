@@ -7,6 +7,7 @@ export default () => {
     const { otp } = req.body;
     if (otp) {
       if (otp === req.session.Otp) {
+
         const data=req.session.userData
         const hashedPassword=await hashPassword(data.password)
         data.password=hashedPassword
@@ -16,6 +17,7 @@ export default () => {
         }else{
             res.status(400).json({message:"UserData error"})
         }
+
       } else {
         res.status(400).json({message:"Wrong otp"})
       }
