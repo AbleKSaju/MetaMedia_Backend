@@ -5,6 +5,7 @@ export default () => {
     const { otp } = req.body;
     if (otp) {
       if (otp === req.session.Otp) {
+        
         res.status(201).json({ message: "Otp is Correct" });
       } else {
         res.status(400).json({message:"Wrong otp"})
