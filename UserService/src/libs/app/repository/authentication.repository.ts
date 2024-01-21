@@ -21,4 +21,14 @@ export default
     return {status:true,message:"user created sucessfull"}
  }
 
+//  verifyPassword:async(email,password:string)=>{
+//     try {
+//         const userData=await schema.User.findOne({email})
+//         if(userData)
+//     } catch (error) {
+//         console.log('error in repositery authencation repo in userEmailexist',error);
+//     }
+
+//  }
+
 }
