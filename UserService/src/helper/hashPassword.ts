@@ -10,7 +10,7 @@ import bcrypt from 'bcrypt';
     }
   };
 
-  export const verifyPassword = async (password: string, hashedPassword: string): Promise<boolean> => {
+  export const verifyHashPassword = async (password: string, hashedPassword: string): Promise<boolean> => {
     try {
       const match = await bcrypt.compare(password, hashedPassword);
       return match;
