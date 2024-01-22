@@ -22,6 +22,21 @@ export default {
             console.log('Error in the cretae user in the auth service / repositery ',error);
             
         }
-    }
+    },
+    finduser:async(email:string)=>{
+        try {
+            const  finduser=await schema.authUser.findOne({email})
+            if(finduser){
+
+                return ({status:true,finduser})
+            }else{
+                return {status:false}
+            }
+        } catch (error) {
+            console.log('error in repositery authencation repo in userEmailexist',error);
+        }
+     },
+
+   
    
 }
