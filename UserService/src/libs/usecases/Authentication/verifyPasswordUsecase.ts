@@ -13,9 +13,9 @@ const executeFunction=async(email: string, password: string)=> {
     if (userData) {
       let verified = await verifyHashPassword(password, userData.password);
       if (verified) {
-        return { status: true, message: "password is Correct" };
+        return { status: true, message: "Otp is Correct" };
       }
-      return { status: false, message: "password is wrong" };
+      return { status: false, message: "Otp is wrong" };
     } else {
       return { status: false, message: "User not exist" };
     }

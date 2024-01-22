@@ -6,7 +6,7 @@ export default (dependencies:any)=> {
     const router=express()
     const {createUserController,verifyOtpController,verifyPasswordController}=AuthencationController(dependencies)
 
-    router.post('/createUser',validateSignup,createUserController)
+    router.post('/signup',createUserController)
     router.post('/verifyOtp',validateOtp,verifyOtpController)
     router.post('/oldPassword',verifyPasswordController)
 
