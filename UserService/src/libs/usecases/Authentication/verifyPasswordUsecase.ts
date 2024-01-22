@@ -1,16 +1,12 @@
 import { verifyHashPassword } from "../../../helper";
 
-export const verifyPassword_Usecase = async (dependencies: any)=> {
-    console.log("Enter to vaidate");
-    
+export const verifyPassword_Usecase = async (dependencies: any)=> {    
   const {
     repository: { authenticationRepository },
   } = dependencies;
-const executeFunction=async(email: string, password: string)=> {
-    console.log("Enter to execute");
-    
+const executeFunction=async(email: string, password: string)=> {    
     const userData = await authenticationRepository.userEmailExist(email);
-    if (userData) {
+    if (userData) {      
       let verified = await verifyHashPassword(password, userData.password);
       if (verified) {
         return { status: true, message: "Otp is Correct" };

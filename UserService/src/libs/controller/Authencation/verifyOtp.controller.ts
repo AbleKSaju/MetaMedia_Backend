@@ -9,12 +9,13 @@ export default (dependencies:any) => {
 
   const verifyOtpController = async (req: Request, res: Response) => {
     const { otp } = req.body;
-    if (otp) {
-      if (otp === req.session.Otp) {
-        const data=req.session.userData
-        const hashedPassword=await hashPassword(data.password)
+    if (otp) {      
+      if (otp == req.session.Otp) {        
+        const data=req.session.userData        
+        const hashedPassword=await hashPassword(data.password)        
         data.password=hashedPassword
-        const userData=await verifyOtp_Usecase(dependencies).executeFunction(data)
+        
+        const userData=await verifyOtp_Usecase(dependencies).executeFunction(data)        
         if(userData.status){
             res.status(201).json(userData.addUserData.message);
         }else{

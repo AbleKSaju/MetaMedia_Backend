@@ -8,6 +8,7 @@ import express from 'express'
 import dependencies from './config/dependencies'
 import session, { SessionOptions,MemoryStore,SessionData } from "express-session";
 import dotenv from 'dotenv'
+import cors from 'cors'
 
 const app=express()
 const server=http.createServer(app)
@@ -24,6 +25,16 @@ declare module 'express-session' {
       Otp:string
     }
   }
+
+  // app.use(cookieParser(process.env.COOKIEPARSERSECRET));
+  app.use(
+     cors({
+       origin: "http://localhost:5173",
+       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+       credentials: true,
+     })
+   );
+ 
   
   
 app.use(

@@ -7,26 +7,19 @@ export default (dependencies:any)=>{
     }=dependencies
  
 
-    const createUserController=async(req:Request,res:Response)=>{
-        console.log("Controller");
-        
-        // const errors = validationResult(req);
-        // if (!errors.isEmpty()) {
-        //     console.log("Emtere to errr");
-            
-        //   return res.status(400).json({ errors: errors.array() });
-        // }
-         const response=await createUser_Usecases(dependencies).executeFunction(req.body)
-         console.log("yo");
+    const createUserController=async(req:Request,res:Response)=>{        
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {            
+          return res.status(400).json({ errors: errors.array() });
+        }
+         const response=await createUser_Usecases(dependencies).executeFunction(req.body)         
          
          if(response.status){
-            console.log("ENter to res");
-            
-            const {status,data,otp}=response
+            const {data,otp}=response            
             req.session.userData=data
-            req.session.Otp=otp        
+            req.session.Otp=otp    
             res.status(201).json({message:"Otp sent success"})
-         }else{
+         }else{            
             res.status(400).json(response.message)
          }
          

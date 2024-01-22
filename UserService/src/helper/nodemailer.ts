@@ -9,7 +9,7 @@ function generateotp() {
   }
   return otp;
 }
-const sentOtp = async (email:string) => {
+const sentOtp = async (email:string) => {  
   const transporter = nodemailer.createTransport({
     service: "gmail",
     port: 587,
@@ -21,8 +21,6 @@ const sentOtp = async (email:string) => {
     },
   });
   const otp = generateotp();
-  console.log(otp);
-
   const info = await transporter.sendMail({
     from: process.env.AUTH_EMAIL,
     to: email,
