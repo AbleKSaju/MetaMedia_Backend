@@ -1,4 +1,4 @@
-
+import {userProducer} from '../../../events/userproducer'
 
 export const verifyOtp_Usecase = (dependencies: any) => {
     const {
@@ -6,8 +6,20 @@ export const verifyOtp_Usecase = (dependencies: any) => {
       } = dependencies;
     const executeFunction=async(data:any)=>{
         const addUserData=await authenticationRepository.createUser(data)
+
+
         if(addUserData.status){
-            return({status:true,addUserData})
+
+
+          const res=await  userProducer(addUserData.response,"auth",'add-user')
+         
+          if(res){
+
+              return({status:true,addUserData})
+          }else{
+            return ({status:false})
+          }
+          
         }else{
             return ({status:false})
         }

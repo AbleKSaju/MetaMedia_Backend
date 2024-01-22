@@ -1,0 +1,13 @@
+import {authuserRepositery} from '../libs/app/repository'
+
+export const addUser=async(data:any)=>{
+
+const {createUser}=authuserRepositery
+
+await createUser(data)
+
+
+
+
+
+}
