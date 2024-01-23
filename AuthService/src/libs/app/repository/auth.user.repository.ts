@@ -7,8 +7,11 @@ export default {
             const userData={
                 userId:data._id,
                 name:data.name,
+                profile:data.profile,
                 email:data.email,
-                password:data.password
+                password:data.password,
+                isGoogle:data.isGoogle,
+                isFacebook:data.isFacebook
             }
 
 

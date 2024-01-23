@@ -10,6 +10,6 @@ export default (dependencies:any)=>{
 
 
     router.post('/login',validateLogin,loginUserController)
-
+   
     return router
 }

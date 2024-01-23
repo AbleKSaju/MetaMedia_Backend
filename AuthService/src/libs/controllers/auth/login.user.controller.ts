@@ -26,7 +26,8 @@ const loginusercontroller=async(req:Request,res:Response)=>{
         const data={
             email,
             name,
-            userId
+            userId,
+           
 
         }
         const secure=process.env.SECURE

@@ -3,7 +3,8 @@ import {authuserRepositery} from '../libs/app/repository'
 
 
 const useCase:any={
-    loginUser_usecases
+    loginUser_usecases,
+    
 }
 
 const repository:any={
