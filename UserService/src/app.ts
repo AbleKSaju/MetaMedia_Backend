@@ -9,34 +9,37 @@ import dependencies from './config/dependencies'
 import session, { SessionOptions,MemoryStore,SessionData } from "express-session";
 import dotenv from 'dotenv'
 import cors from 'cors'
-
+const cookieParser = require('cookie-parser');
 const app=express()
 const server=http.createServer(app)
 dotenv.config()
 getDb(config)
 const store = new MemoryStore();
 declare module 'express-session' {
-    interface Session {
-      userData:{
-        name:string,
-        email:string,
-        password:string
-      } ;
-      Otp:string
-    }
+  interface Session {
+    userData:{
+      name:string,
+      email:string,
+      password:string,
+      isGoogle:boolean,
+      isFacebook:boolean,
+      profile:string
+    } ;
+    Otp:string
   }
+}
 
-  // app.use(cookieParser(process.env.COOKIEPARSERSECRET));
-  app.use(
-     cors({
-       origin: "http://localhost:5173",
-       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-       credentials: true,
-     })
-   );
- 
-  
-  
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser(process.env.COOKIEPARSERSECRET));
+app.use(
+   cors({
+     origin: "http://localhost:5173",
+     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+     credentials: true,
+   })
+ );
+
 app.use(
     session({
       secret: process.env.SESSION_SECRET_KEY,
@@ -49,7 +52,6 @@ app.use(
       store: store,
     } as SessionOptions)
   );
-  
 expresscofig(app)
 
 app.use('/api',routes(dependencies))

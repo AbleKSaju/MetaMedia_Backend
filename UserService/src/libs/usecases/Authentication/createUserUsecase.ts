@@ -3,7 +3,10 @@ import { sentOtp } from "../../../helper";
 interface UserData {
   name: string;
   email: string;
+  profile:string;
   password: string;
+  isGoogle:boolean,
+  isFacebook:boolean
 }
 
 export const createUser_Usecases = (dependencies: any) => {

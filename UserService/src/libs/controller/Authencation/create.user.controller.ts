@@ -9,7 +9,9 @@ export default (dependencies:any)=>{
 
     const createUserController=async(req:Request,res:Response)=>{        
         const errors = validationResult(req);
-        if (!errors.isEmpty()) {            
+        if (!errors.isEmpty()) {     
+            console.log('hi');
+                   
           return res.status(400).json({ errors: errors.array() });
         }
          const response=await createUser_Usecases(dependencies).executeFunction(req.body)         
