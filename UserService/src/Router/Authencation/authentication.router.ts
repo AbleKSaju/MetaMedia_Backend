@@ -4,12 +4,19 @@ import {validateSignup,validateOtp} from '../../input_validation'
 
 export default (dependencies:any)=> {
     const router=express()
-    const {createUserController,verifyOtpController,verifyPasswordController,loginWithGoogleController}=AuthencationController(dependencies)
 
-    router.post('/signup',createUserController)
+    const {createUserController,verifyOtpController,verifyPasswordController,loginWithGoogleController,addProfileController}=AuthencationController(dependencies)
+
+
+
+    router.post('/signup',validateSignup,createUserController)
     router.post('/verifyOtp',validateOtp,verifyOtpController)
     router.post('/oldPassword',verifyPasswordController)
-    router.post('/loginWithGoogle',loginWithGoogleController)
-    return router
 
+    router.post('/loginWithGoogle',loginWithGoogleController)
+
+    router.post('/addProfile',addProfileController)
+    
+
+    return router
 }
