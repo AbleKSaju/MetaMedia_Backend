@@ -36,9 +36,9 @@ const sentOtp = async (email:string) => {
         `,
   });
   if (info) {
-    return {status:true,otp};
+    return {status:true,otp:otp};
   } else {
-    return {status:false}
+    return {status:false,message:"Internal error"}
   }
 };
 export {sentOtp};
