@@ -22,11 +22,13 @@ const loginusercontroller=async(req:Request,res:Response)=>{
         
     }else{
        
-        const {email,name,userId}=responce.finduser
+        const {email,name,userId,profile,isGoogle,isFacebook}=responce.finduser
         const data={
             email,
             name,
-            userId,
+            profile,
+            isGoogle,
+            isFacebook
            
 
         }
