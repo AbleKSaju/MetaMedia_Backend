@@ -17,9 +17,17 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+<<<<<<< HEAD
     "express-session": "^1.17.3",
     "express-validator": "^7.0.1",
     "kafkajs": "^2.2.4",
+=======
+<<<<<<< HEAD
+    "express-validator": "^7.0.1",
+=======
+    "express-session": "^1.17.3",
+>>>>>>> 905cd05124ebba25bc2bab59d33ea5ec25781d74
+>>>>>>> test
     "mongoose": "^8.1.0",
     "nodemailer": "^6.9.8",
     "nodemon": "^3.0.3",
