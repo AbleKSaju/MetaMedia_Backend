@@ -14,7 +14,6 @@ export default {
                 isFacebook:data.isFacebook
             }
 
-
             const responce =await schema.authUser.create(userData)
             if(responce){
                 return ({status:true,responce})
