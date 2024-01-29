@@ -8,5 +8,6 @@ export default (dependencies:any)=>{
         verifyOtpController:verifyOtpController(dependencies),
         verifyPasswordController:verifyPassword_Controller(dependencies),
         loginWithGoogleController:loginWithGoogleController(dependencies)
+
     }
 }
