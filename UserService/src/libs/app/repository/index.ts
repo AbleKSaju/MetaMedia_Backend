@@ -1,5 +1,7 @@
-import authenticationRepository from "./]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
+import authenticationRepository from "./authentication.repository"
+import profileRepository from "./profile.repository"
 
 export {
-    authenticationRepository
+    authenticationRepository,
+    profileRepository
 }

@@ -1,16 +1,20 @@
-import  {authenticationRepository} from '../libs/app/repository/index'
-import {createUser_Usecases,verifyOtp_Usecase,verifyPassword_Usecase,loginWithGoogle_Usecase} from '../libs/usecases'
+import  {authenticationRepository,profileRepository} from '../libs/app/repository/index'
+import {createUser_Usecases,changePassword_Usecase,verifyOtp_Usecase,verifyEmail_Usecases,verifyPassword_Usecase,loginWithGoogle_Usecase, addProfile_Usecase} from '../libs/usecases'
 
 
 const useCase:any={
   createUser_Usecases,
   verifyOtp_Usecase,
   verifyPassword_Usecase,
-  loginWithGoogle_Usecase
+  loginWithGoogle_Usecase,
+  addProfile_Usecase,
+  verifyEmail_Usecases,
+  changePassword_Usecase
 }
 
 const repository:any={
-    authenticationRepository
+    authenticationRepository,
+    profileRepository
 }
 export default {
     useCase,repository
