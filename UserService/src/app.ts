@@ -18,6 +18,7 @@ const store = new MemoryStore();
 declare module 'express-session' {
   interface Session {
     userData:{
+      _id:string,
       name:string,
       email:string,
       password:string,
