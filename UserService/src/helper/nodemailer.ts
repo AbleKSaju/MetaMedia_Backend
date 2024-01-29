@@ -10,6 +10,8 @@ function generateotp() {
   return otp;
 }
 const sentOtp = async (email:string) => {  
+  console.log("otp sending");
+  
   const transporter = nodemailer.createTransport({
     service: "gmail",
     port: 587,

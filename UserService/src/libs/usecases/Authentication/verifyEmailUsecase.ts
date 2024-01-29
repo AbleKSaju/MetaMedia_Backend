@@ -1,0 +1,16 @@
+import { sentOtp } from "../../../helper";
+
+export const verifyEmail_Usecases = (dependecies: any) => {
+  const {
+    repository: { authenticationRepository },
+  } = dependecies;
+  const executeFunction = async (email: string) => {
+    const response = await authenticationRepository.userEmailExist(email);
+    if (response) {
+      return { status: true, message: "Email verified" };
+    } else {
+      return { status: false, message: "user not exist" };
+    }
+  };
+  return { executeFunction };
+};

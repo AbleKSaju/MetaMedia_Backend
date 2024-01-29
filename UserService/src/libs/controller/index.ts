@@ -1,5 +1,7 @@
-import AuthencationController from "./Authencation";
+import AuthencationController from "./Authencation"
+import AddProfileController from "./Profile"
 
 export {
- AuthencationController
+ AuthencationController,
+ AddProfileController
 }

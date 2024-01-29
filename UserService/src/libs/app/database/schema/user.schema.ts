@@ -2,11 +2,12 @@ import mongoose, { Types } from "mongoose";
 
 const userSChema = new mongoose.Schema({
    basicInformation:{
-    username:String,
+    userName:String,
     fullName:String,
     email:String,
+    password:String,
     phoneNumber:Number,
-    DateOfBirth:Date,
+    dateOfBirth:Date,
     gender: {
         type: String,
         enum: ['male', 'female'],
@@ -16,8 +17,8 @@ const userSChema = new mongoose.Schema({
         enum:['login','logout','banned']
     },
     lastLogin:Date
-
    },
+
    profile:{
       profileUrl:String,
       bio:String,
@@ -43,6 +44,7 @@ const userSChema = new mongoose.Schema({
         enum:['online','offline']
       }
 },
+
 socialConections:{
     following: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -60,8 +62,8 @@ socialConections:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Group', 
      }],
-
 },
+
 acivity:{
     posts: {
         type: mongoose.Schema.Types.ObjectId,
@@ -86,11 +88,8 @@ acivity:{
      saved: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post', 
-     }],
-    
+     }],   
 }
-
-   
    
 });
 const groupSchema = new mongoose.Schema({
@@ -109,7 +108,6 @@ const groupSchema = new mongoose.Schema({
         enum:['admin','user']
      }]
  });
-
 
 const User = mongoose.model("User", userSChema);
 
