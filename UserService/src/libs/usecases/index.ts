@@ -1,4 +1,4 @@
-import {createUser_Usecases,changePassword_Usecase,verifyOtp_Usecase,verifyPassword_Usecase,verifyEmail_Usecases,loginWithGoogle_Usecase} from './Authentication'
+import {createUser_Usecases,changePassword_Usecase,verifyOtp_Usecase,verifyPassword_Usecase,verifyEmail_Usecases,loginWithGoogle_Usecase,loginUser_usecases} from './Authentication'
 import { addProfile_Usecase } from './Profile'
 
 export  {
@@ -8,5 +8,6 @@ export  {
  loginWithGoogle_Usecase,
  addProfile_Usecase,
  verifyEmail_Usecases,
- changePassword_Usecase
+ changePassword_Usecase,
+ loginUser_usecases 
 }

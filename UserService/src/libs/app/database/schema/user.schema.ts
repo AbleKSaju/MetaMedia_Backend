@@ -16,7 +16,9 @@ const userSChema = new mongoose.Schema({
         type:String,
         enum:['login','logout','banned']
     },
-    lastLogin:Date
+    lastLogin:Date,
+    isGoogle:Boolean,
+    isFacebook:Boolean
    },
 
    profile:{

@@ -40,7 +40,7 @@ const sentOtp = async (email:string) => {
   if (info) {
     return {status:true,otp:otp};
   } else {
-    return {status:false,message:"Internal error"}
+    return {status:false,message:"Nodemailer fail error"}
   }
 };
 export {sentOtp};

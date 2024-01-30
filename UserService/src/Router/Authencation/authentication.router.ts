@@ -1,12 +1,14 @@
 import express from 'express'
 import {AuthencationController,AddProfileController} from '../../libs/controller'
-import {validateSignup,validateOtp} from '../../input_validation'
+import {validateSignup,validateOtp,validateLogin} from '../../input_validation'
 
 export default (dependencies:any)=> {
     const router=express()
 
-    const {createUserController,verifyOtpController,verifyPasswordController,loginWithGoogleController,changePasswordController,forgotPasswordController}=AuthencationController(dependencies)
-    // const {addProfileController} =AddProfileController(dependencies)
+
+    const {createUserController,verifyOtpController,verifyPasswordController,loginWithGoogleController,changePasswordController,forgotPasswordController,loginUserController}=AuthencationController(dependencies)
+    const {addProfileController} =AddProfileController(dependencies)
+
 
 
 
@@ -16,7 +18,10 @@ export default (dependencies:any)=> {
     router.post('/forgotPassword',forgotPasswordController)
     router.post('/changePassword',changePasswordController)
     router.post('/loginWithGoogle',loginWithGoogleController)
-    // router.post('/addProfile',addProfileController)
+
+    router.post('/addProfile',addProfileController)
+    router.post('/login',validateLogin,loginUserController)
+    router.post('/loginWithfaceBook',)
 
     return router
 }
