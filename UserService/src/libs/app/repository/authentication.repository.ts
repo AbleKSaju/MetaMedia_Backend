@@ -17,11 +17,11 @@ export default {
   createUser: async (data: any) => {
     const userData = {
       "basicInformation.fullName": data.name,
-      // profile:data.profile,
+      "profile.profileUrl":data.profile,
       "basicInformation.email": data.email,
       "basicInformation.password": data.password,
-      isGoogle: data.isGoogle,
-      isFacebook: data.isFacebook,
+      "basicInformation.isGoogle": data.isGoogle,
+      "basicInformation.isFacebook": data.isFacebook,
     };
     const response = await schema.User.create(userData);
     if (response) {

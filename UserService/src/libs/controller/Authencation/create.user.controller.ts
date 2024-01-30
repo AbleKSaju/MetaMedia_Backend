@@ -7,23 +7,31 @@ export default (dependencies: any) => {
   } = dependencies;
 
   const createUserController = async (req: Request, res: Response) => {
-    console.log("SIGN UP CONTROLLER", req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log("hi");
       return res.status(400).json({ errors: errors.array() });
     }
-    const response = await createUser_Usecases(dependencies).executeFunction(
-      req.body
-    );
-    console.log(response, "RESS");
+ 
+    const body =req.body
+    const data={
+        name:body.name,
+        email:body.email,
+        password:body.password,
+        isGoogle:false,
+        isFacebook:false,
+        profileUrl:"",
+    }
+
+    const response = await createUser_Usecases(dependencies).executeFunction(data);
 
     if (response.status) {
       const { data, otp } = response;
       req.session.userData = data;
       req.session.Otp = otp;
+      res.json({ status: response?.status});
+    }else{
+        res.json({ status: response?.status, message: response?.message });
     }
-    res.json({ status: response?.status, message: response?.message });
   };
 
   return createUserController;
