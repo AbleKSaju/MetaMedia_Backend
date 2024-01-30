@@ -4,7 +4,7 @@ import { Request, Response } from "express"
 
 export default (dependecies:any)=>{
     
-    const {addProfile_Usecases}=dependecies
+    const {repositery:{addProfile_Usecases}}=dependecies
 
     const addProfileController=async(req:Request,res:Response)=>{
         console.log("CONTROLLER");
