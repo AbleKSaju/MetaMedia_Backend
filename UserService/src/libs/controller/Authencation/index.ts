@@ -5,6 +5,9 @@ import loginWithGoogleController from './loginWithGoogleController'
 import forgotPassword_Controller from './forgotPassword.controller'
 import changePasswordController from './changePassword.controller'
 import loginUserController from './loginUserController'
+import loginWithFacebookController from './loginWithFacebookController'
+import chooseInterestController from './chooseInterestController'
+
 export default (dependencies:any)=>{
     return {
         createUserController:create_user_controller(dependencies),
@@ -12,8 +15,10 @@ export default (dependencies:any)=>{
         verifyPasswordController:verifyPassword_Controller(dependencies),
 
         loginWithGoogleController:loginWithGoogleController(dependencies),
+        loginWithFacebookController:loginWithFacebookController(dependencies),
         loginUserController:loginUserController(dependencies),
     
+        chooseInterestController:chooseInterestController(dependencies),
 
       
         forgotPasswordController:forgotPassword_Controller(dependencies),

@@ -28,7 +28,6 @@ dotenv.config()
     })
   );
 
-
  app.use('/api',routes(dependencies))
 
 serverConfig(server,config).startServer()
