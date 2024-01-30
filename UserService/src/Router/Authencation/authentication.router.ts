@@ -6,7 +6,7 @@ export default (dependencies:any)=> {
     const router=express()
 
     const {createUserController,verifyOtpController,verifyPasswordController,loginWithGoogleController,changePasswordController,forgotPasswordController}=AuthencationController(dependencies)
-    const {addProfileController} =AddProfileController(dependencies)
+    // const {addProfileController} =AddProfileController(dependencies)
 
 
 
@@ -16,7 +16,7 @@ export default (dependencies:any)=> {
     router.post('/forgotPassword',forgotPasswordController)
     router.post('/changePassword',changePasswordController)
     router.post('/loginWithGoogle',loginWithGoogleController)
-    router.post('/addProfile',addProfileController)
+    // router.post('/addProfile',addProfileController)
 
     return router
 }
