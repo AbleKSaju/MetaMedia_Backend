@@ -6,11 +6,11 @@ export const createAccessToken = (
   AccessTokensecretkey: string,
   Expiration: string
 ) => {
+
+  console.log("acess token creating");
   const token = jwt.sign({ user }, AccessTokensecretkey, {
     expiresIn: Expiration,
   });
- 
-  
   return token;
 };
 
