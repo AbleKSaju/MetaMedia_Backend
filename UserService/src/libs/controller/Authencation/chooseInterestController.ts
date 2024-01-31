@@ -10,7 +10,9 @@ export default (dependencies: any) => {
     console.log(req.body, "Body");
     const email: string = "ableksaju3gmail.com"; // req.session.userData.email
     const response = await chooseInterest_Usecase(dependencies).executeFunction(req.body,email);
-    console.log(response, "resss in controller");
+    if(response){
+      res.json({status:response.status , message:response.message})
+    }
   };
   return ChooseInterestController;
 };
