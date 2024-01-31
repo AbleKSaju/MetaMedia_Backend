@@ -1,0 +1,27 @@
+
+apiVersion: skaffold/v2beta12
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: raziiik/meta-user-service
+      context: ./UserService
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .  
+    - image: raziiik/meta-auth-service
+      context: ./Authservice
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.ts"
+            dest: .
