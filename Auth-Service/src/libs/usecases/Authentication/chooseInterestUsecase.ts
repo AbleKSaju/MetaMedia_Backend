@@ -6,8 +6,10 @@ export const chooseInterest_Usecase = (dependecies: any) => {
   } = dependecies;
   const executeFunction = async (data: any, email: string) => {
     console.log(data, "Data from usecase");
+    console.log(email, "Data from usecase");
 
     const response = await authenticationRepository.createInterest(data, email);
+    console.log(response,"RESSSS");
     if (response) {
       return { status: response.status, message: response.message };
     }

@@ -62,9 +62,13 @@ export default {
 
   createInterest: async (data: any, email: string) => {
     try {
+      console.log(email,"email");
+      console.log(data,"data");
+      
       const createInterest = await schema.User.findOneAndUpdate(
         { "basicInformation.email": email },
-        { $set: { "profile.interests": data } }
+        { $push: { "profile.interests": { $each: data } } },
+        { new: true }
       );
       console.log(createInterest,"BBBB");
       
