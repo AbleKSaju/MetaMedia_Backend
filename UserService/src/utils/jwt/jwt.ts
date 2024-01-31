@@ -1,19 +1,18 @@
-import jwt from 'jsonwebtoken'
-import {Response} from 'express'
+import jwt from "jsonwebtoken";
+import { Response } from "express";
 
-export const createAccessToken  =  (
-    user: Object,
-  AccessTokensecretkey:string,
-  Expiration:string
+export const createAccessToken = (
+  user: Object,
+  AccessTokensecretkey: string,
+  Expiration: string
 ) => {
- console.log('in cretainf=g acess token');
- 
-    
- const token = jwt.sign({ user }, AccessTokensecretkey, { expiresIn: Expiration });
-   
-    
-
-    return token
+  console.log("in cretainf=g acess token");
+  const token = jwt.sign({ user }, AccessTokensecretkey, {
+    expiresIn: Expiration,
+  });
+  console.log(token);
+  
+  return token;
 };
 
 export const createRefreshToken = (
@@ -21,16 +20,19 @@ export const createRefreshToken = (
   RefreshTokenscretkey: string,
   Expiration: string
 ) => {
-  console.log('enter into create refresh');
+  console.log("enter into create refresh");
   return jwt.sign({ user }, RefreshTokenscretkey, { expiresIn: Expiration });
 };
 
-export const clearRefreshTokenFromCookie = (cookieName:string,res:Response)=>{
-  console.log('attachAccesTokenToCookie - not http only ','development');
-    res.cookie(cookieName,{
-      httpOnly:false,
-      secure:false,
-      signed:false,
-      maxAge:0
-    })
-}
+export const clearRefreshTokenFromCookie = (
+  cookieName: string,
+  res: Response
+) => {
+  console.log("attachAccesTokenToCookie - not http only ", "development");
+  res.cookie(cookieName, {
+    httpOnly: false,
+    secure: false,
+    signed: false,
+    maxAge: 0,
+  });
+};

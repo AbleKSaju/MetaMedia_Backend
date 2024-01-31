@@ -1,2 +1,2 @@
-import {validateSignup,validateOtp,validateLogin} from './user.Validation'
-export {validateSignup,validateOtp,validateLogin}
+import {validateSignup,validateOtp,validateLogin,validateGoogleLogin} from './user.Validation'
+export {validateSignup,validateOtp,validateLogin,validateGoogleLogin}

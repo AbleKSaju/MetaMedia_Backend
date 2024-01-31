@@ -47,12 +47,13 @@ app.use(
       resave: false,
       saveUninitialized: false,
       cookie: {
-        maxAge: 72 * 60 * 60 * 1000,
+        maxAge: 30 * 60 * 60 * 1000,
         httpOnly: true,
       },
       store: store,
     } as SessionOptions)
   );
+  
 expresscofig(app)
 
 app.use('/api',routes(dependencies))

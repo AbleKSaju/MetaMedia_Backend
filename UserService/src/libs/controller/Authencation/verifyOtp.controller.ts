@@ -1,13 +1,14 @@
 import { Request, Response } from "express";
-import { authenticationRepository } from "../../app/repository";
+
 import { hashPassword } from "../../../helper";
-import {createAccessToken,createRefreshToken} from '../../../utils/jwt'
+
 export default (dependencies:any) => {
     const {
         useCase:{verifyOtp_Usecase}
     }=dependencies
 
   const verifyOtpController = async (req: Request, res: Response) => {
+   
     const { otp } = req.body;
     if (otp) {      
       if (otp == req.session.Otp) {        
@@ -15,16 +16,10 @@ export default (dependencies:any) => {
         const hashedPassword=await hashPassword(data.password)        
         data.password=hashedPassword
         console.log(data,"DATA");
-        
         const userData=await verifyOtp_Usecase(dependencies).executeFunction(data)        
         if(userData.status){
-          console.log('USER VERIFIED SUCESSS',userData);
-
-
-
-          
-          
-            res.status(201).json(userData.addUserData.message);
+          console.log('USER VERIFIED SUCESSS',userData);          
+            res.status(201).json(userData);
         }else{
             res.status(400).json({message:"UserData error"})
         }

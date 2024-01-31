@@ -1,5 +1,6 @@
 import {Request,Response} from 'express'
 import { createAccessToken } from '../../../utils/jwt';
+import { validationResult } from 'express-validator';
 
 export default (dependencies:any)=>{
 
@@ -7,6 +8,12 @@ export default (dependencies:any)=>{
 
     const loginWithGoogle=async(req:Request,res:Response)=>{
         const { useCase:{loginWithGoogle_Usecase} }=dependencies
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+          return res.status(400).json({ errors: errors.array() });
+        }
+
 
         const {profile,email,name,isGoogle,isFacebook}=req.body
         const data={

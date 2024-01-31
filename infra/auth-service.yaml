@@ -1,0 +1,37 @@
+# auth-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+  labels:
+    app: auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth
+  template:
+    metadata:
+      labels:
+        app: auth
+    spec:
+      containers:
+        - name: meta-user-service
+          image: raziiik/meta-auth-service:latest
+        
+
+---
+# auth-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name:  meta-auth-service
+spec:
+  selector:
+    app: auth
+  ports:
+    - name: auth
+      protocol: TCP
+      port: 3001
+      targetPort: 3001
+

@@ -5,6 +5,9 @@ const consumer=kafka.consumer({
     groupId:"auth-service"
 })
 
+ 
+
+
 
 
 export const authconsumer = async()=>{
