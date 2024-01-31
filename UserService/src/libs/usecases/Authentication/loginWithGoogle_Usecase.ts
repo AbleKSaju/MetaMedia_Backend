@@ -3,73 +3,57 @@ import { uploadImageToS3 } from "../../../utils/S3/s3UploadImage";
 import { UserData } from "../../../utils/interfaces/userInterface";
 
 export const loginWithGoogle_Usecase = async (dependencies: any) => {
-   
-  const {repository: { authenticationRepository }} = dependencies;
-
-
-
+  const { repository: { authenticationRepository }} = dependencies;
   const executeFunction = async (data: UserData) => {
-
-    const { profile, email, name, isGoogle, isFacebook } = data;
-    const responce = await authenticationRepository.finduser(email);
+    const { email } = data;
+    const response = await authenticationRepository.finduser(email);
 
     //user already exist
-    if (responce.status == true) {
-      console.log("status is true", responce);
-
+    if (response.status == true) {
+      console.log(response, "userr");
       //user is exist
-      if (responce.finduser.isGoogle == true) {
+      if (response.isGoogle == true) {
         //this user cretaed with gooogle aleady
         //login the user
-        const { finduser } = responce;
-        console.log(finduser, "HHHHHHH");
+        const { user } = response;
+        console.log(user, "HHHHHHH");
 
+        //create acces token and refresh toekn here
 
-          //create acces token and refresh toekn here
-
-
-
-
-
-        return { status: true, message: "login", user: finduser };
+        return { status: true, message: "Login success", user: user };
       } else {
-        //user is not from the google so retrun a exist message
         return { status: false, message: "user is already exist" };
       }
     } else {
-      //store the user image in to the s3
-
+      const { profile, email, name, isGoogle, isFacebook } = data;
       const imageName = `${email}_${Date.now()}.jpg`;
       const s3ImageUrl = await uploadImageToS3(profile, imageName);
-
-      const data = {
+      const datas = {
         email,
         name,
         profile: s3ImageUrl,
-        password:'',
+        password: "",
         isGoogle,
         isFacebook,
       };
-      console.log(data, "LLLL");
-
-      const createUser = await authenticationRepository.createUser(data);
+      const createUser = await authenticationRepository.createUser(datas);
+      console.log(createUser,"uuuu");
+      
       //and send to user service
-      const { status, message } = createUser;
+      const { status } = createUser;
       if (status) {
+        console.log(status, "stat");
         //produce a message to the auth service and save that
-
-
-
-//create refresh token and acces token 
-
-
-
+        //create refresh token and acces token
         const res = await userProducer(createUser.response, "auth", "add-user");
-        if (res) {
-          return { status: true, message: "login", user: createUser.response };
-        }
+
+        return {
+          status: true,
+          message: "Signup success",
+          user: createUser.response,
+        };
       } else {
-        return { status: false, message: message };
+        return { status: false, message: "Signup failed" };
       }
     }
   };

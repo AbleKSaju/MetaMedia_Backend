@@ -1,49 +1,26 @@
-import {Request,Response} from 'express'
-import { createAccessToken } from '../../../utils/jwt';
-import { validationResult } from 'express-validator';
 
-export default (dependencies:any)=>{
+import { Request, Response } from "express";
+import { createAccessToken } from "../../../utils/jwt";
 
+export default (dependencies: any) => {
+    const { useCase: { loginWithGoogle_Usecase }} = dependencies;
+  const loginWithGoogle = async (req: Request, res: Response) => {
+    const { profile, email, name, isGoogle, isFacebook } = req.body;
+    const data = {profile,email,password: "",name,isGoogle,isFacebook};
+    const loginreff= await loginWithGoogle_Usecase(dependencies)
+    const {executeFunction}=loginreff
+    const response=await executeFunction(data)
+    // const login = await loginWithGoogle_Usecase(dependencies)
+    // const response = login.executeFunction(data)
+    console.log(response,"resss");
     
+    if (response.status) {
+        res.json({status: true,message: response.message,data:response.user});
+      } else {
+        res.json({ status: response.status, message: response.message });
+      }
+  };
 
-    const loginWithGoogle=async(req:Request,res:Response)=>{
-        const { useCase:{loginWithGoogle_Usecase} }=dependencies
+  return loginWithGoogle;
+};
 
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-          return res.status(400).json({ errors: errors.array() });
-        }
-
-
-        const {profile,email,name,isGoogle,isFacebook}=req.body
-        const data={
-            profile,
-            email,
-            password:"",
-            name,
-            isGoogle,
-            isFacebook
-        }
-
-        const loginreff= await loginWithGoogle_Usecase(dependencies)
-        const {executeFunction}=loginreff
-        const responce=await executeFunction(data)
-     
-     if(responce.status){
-        if(responce.message=='login'){
-           //send userdata ,accestoken
-            return  res.json({status:true,responce,message:"sucesss..!"})
-        }
-
-        return  res.json({status:false,message:"the user is not able to login "})
-     }else{
-        return res.json({status:false,message:responce.message})
-     }
-
-
-    }
-
-    return loginWithGoogle
-
-
-}

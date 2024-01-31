@@ -17,7 +17,7 @@ export default {
   createUser: async (data: any) => {
     const userData = {
       "basicInformation.fullName": data.name,
-      "profile.profileUrl":data.profile,
+      "profile.profileUrl": data.profile,
       "basicInformation.email": data.email,
       "basicInformation.password": data.password,
       "basicInformation.isGoogle": data.isGoogle,
@@ -36,7 +36,7 @@ export default {
         "basicInformation.email": email,
       });
       if (finduser) {
-        return { status: true, finduser };
+        return { status: true, user: finduser };
       } else {
         return { status: false };
       }
@@ -48,17 +48,32 @@ export default {
     }
   },
   changePassword: async (email: string, hashedPassword: string) => {
-    
     const passwordChange = await schema.User.findOneAndUpdate(
       { "basicInformation.email": email },
       { $set: { "basicInformation.password": hashedPassword } },
       { new: true }
     );
-    if(passwordChange){
-        return {status:true,message:"Password Changed"}
-    }else{
-        return {status:false,message:"Not changed"}
+    if (passwordChange) {
+      return { status: true, message: "Password Changed" };
+    } else {
+      return { status: false, message: "Not changed" };
+    }
+  },
 
+  createInterest: async (data: any, email: string) => {
+    try {
+      const createInterest = await schema.User.findOneAndUpdate(
+        { "basicInformation.email": email },
+        { $set: { "profile.interests": data } }
+      );
+      console.log(createInterest,"BBBB");
+      
+      if (createInterest) {
+        return { status: true, message: "Interest added" };
+      }
+      return { status: false, message: "Internal error" };
+    } catch (error) {
+      return error;
     }
   },
 
