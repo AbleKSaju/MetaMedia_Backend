@@ -6,12 +6,11 @@ export const createAccessToken = (
   AccessTokensecretkey: string,
   Expiration: string
 ) => {
-  console.log("in cretainf=g acess token");
+  console.log("acess token creating");
   const token = jwt.sign({ user }, AccessTokensecretkey, {
     expiresIn: Expiration,
   });
-  console.log(token);
-  
+  console.log(token,"Access token");
   return token;
 };
 

@@ -30,7 +30,8 @@ const loginusercontroller=async(req:Request,res:Response)=>{
         email:user.basicInformation.email,
         isGoogle:user.basicInformation.isGoogle,
         isFacebook:user.basicInformation.isFacebook,
-        profile:user.profile.profileUrl || ''
+        profile:user.profile.profileUrl || '',
+        interest:user.profile.interest || []
       }
       req.session.refreshToken=refreshtoken
       const expirationDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
