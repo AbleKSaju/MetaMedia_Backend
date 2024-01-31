@@ -11,13 +11,13 @@ export const loginWithGoogle_Usecase = async (dependencies: any) => {
 
     //user already exist
     if (response.status == true) {
-      console.log(response, "userr");
+      
       //user is exist
       if (response?.user?.basicInformation?.isGoogle == true) {
         //this user cretaed with gooogle aleady
         //login the user
         const { user } = response;
-        console.log(user, "HHHHHHH");
+       
 
         //create acces token and refresh toekn here
         const accesstoken=createAccessToken(user,process.env.ACCESS_SECRET_KEY!,process.env.ACCESS_EXPIRY!)
@@ -41,12 +41,12 @@ export const loginWithGoogle_Usecase = async (dependencies: any) => {
         isFacebook,
       };
       const createUser = await authenticationRepository.createUser(datas);
-      console.log(createUser,"uuuu");
+     
       
       //and send to user service
       const { status } = createUser;
       if (status) {
-        console.log(status, "stat");
+       
         //produce a message to the auth service and save that
         //create refresh token and acces token
         const accesstoken=createAccessToken(createUser.response,process.env.ACCESS_SECRET_KEY!,process.env.ACCESS_EXPIRY!)

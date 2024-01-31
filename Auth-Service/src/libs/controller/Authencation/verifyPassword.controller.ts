@@ -6,8 +6,7 @@ export default (dependencies:any)=>{
     const verifyPasswordController=async(req:Request,res:Response)=>{
         const email:string=req.session.userData.email
         const password:string=req.body.password
-        console.log(email,"Email");
-        console.log(password,"Email");
+       
         const {executeFunction}=await verifyPassword_Usecase(dependencies)
         let responce=await executeFunction(email,password)
         if(responce.status){

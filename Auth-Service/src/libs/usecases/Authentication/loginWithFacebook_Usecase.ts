@@ -7,16 +7,16 @@ export const loginWithFacebook_Usecase=(dependencies:any)=>{
 
     const executeFunction = async(data:any)=>{        
         const {email} = data;        
-        console.log("Email",email);
+      
         const response = await authenticationRepository.finduser(email);
-        console.log(response,"RESSS");
+        
         
         if (response.status == true) {
-            console.log(response.user,"userr");
+            
             
             if (response.user.basicInformation.isFacebook == true) {
               const { user } = response;
-              console.log(user,"USER");
+             
                 //create acces token and refresh toekn here
                 const accesstoken=createAccessToken(user,process.env.ACCESS_SECRET_KEY!,process.env.ACCESS_EXPIRY!)
                 const refreshtoken=createRefreshToken(user,process.env.REFRESH_SECRET_KEY!,process.env.REFRESH_EXPIRY!)
@@ -39,7 +39,7 @@ export const loginWithFacebook_Usecase=(dependencies:any)=>{
             const createUser = await authenticationRepository.createUser(datas);
             const { status } = createUser
             if (status) {
-                console.log(status,"stat");
+             
                 
                 const accesstoken=createAccessToken(createUser.response,process.env.ACCESS_SECRET_KEY!,process.env.ACCESS_EXPIRY!)
         const refreshtoken=createRefreshToken(createUser.response,process.env.REFRESH_SECRET_KEY!,process.env.REFRESH_EXPIRY!)

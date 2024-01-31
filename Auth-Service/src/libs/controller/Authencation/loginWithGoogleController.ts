@@ -11,7 +11,7 @@ export default (dependencies: any) => {
     const {executeFunction}=loginreff
     const response=await executeFunction(data)
    
-    console.log(response,"resss");
+    
     
     if (response.status) {
       const {accesstoken,refreshtoken,user,message}=response

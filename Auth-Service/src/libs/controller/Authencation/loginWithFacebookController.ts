@@ -8,7 +8,7 @@ export default (dependencies: any) => {
     const data = { profile, email, password: "", name, isGoogle, isFacebook };
     const response = await loginWithFacebook_Usecase(dependencies).executeFunction(data);
     if (response.status) {
-      console.log(response.user,"USER FROM USECASE");
+     
       const {accesstoken,refreshtoken,user,message}=response
       const userWithOutpassword={
         _id:user._id,
