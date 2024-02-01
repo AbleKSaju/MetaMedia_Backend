@@ -7,6 +7,7 @@ import changePasswordController from './changePassword.controller'
 import loginUserController from './loginUserController'
 import loginWithFacebookController from './loginWithFacebookController'
 import chooseInterestController from './chooseInterestController'
+import logoutUserController from './logoutUserController'
 
 export default (dependencies:any)=>{
     return {
@@ -22,7 +23,8 @@ export default (dependencies:any)=>{
 
       
         forgotPasswordController:forgotPassword_Controller(dependencies),
-        changePasswordController:changePasswordController(dependencies)
+        changePasswordController:changePasswordController(dependencies),
+        logoutUserController:logoutUserController(dependencies)
 
     }
 }

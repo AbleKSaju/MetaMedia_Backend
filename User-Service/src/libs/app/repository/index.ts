@@ -1,5 +1,7 @@
-import authuserRepositery from './auth.user.repository'
+import authenticationRepository from "./auth.user.repository"
+import profileRepository from "./profile.repository"
 
 export {
-    authuserRepositery
+    authenticationRepository,
+    profileRepository
 }

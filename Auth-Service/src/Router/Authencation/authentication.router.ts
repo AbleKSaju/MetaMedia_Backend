@@ -7,12 +7,9 @@ export default (dependencies:any)=> {
 
 
 
-    const {createUserController,verifyOtpController,chooseInterestController,verifyPasswordController,loginWithGoogleController,loginWithFacebookController,changePasswordController,forgotPasswordController,loginUserController}=AuthencationController(dependencies)
+    const {createUserController,verifyOtpController,logoutUserController,chooseInterestController,verifyPasswordController,loginWithGoogleController,loginWithFacebookController,changePasswordController,forgotPasswordController,loginUserController}=AuthencationController(dependencies)
 
     // const {addProfileController} =AddProfileController(dependencies)
-
-
-
 
     router.post('/signup',validateSignup,createUserController)
     router.post('/verifyOtp',verifyOtpController)
@@ -25,6 +22,7 @@ export default (dependencies:any)=> {
 
     // router.post('/addProfile',addProfileController)
     router.post('/login',validateLogin,loginUserController)
+    router.get('/logout',logoutUserController)
     router.post('/loginWithFaceBook',loginWithFacebookController)
 
 

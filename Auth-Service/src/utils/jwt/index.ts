@@ -1,7 +1,7 @@
-import {createAccessToken,clearRefreshTokenFromCookie,createRefreshToken} from './jwt'
+import {createAccessToken,clearAccessTokenFromCookie,createRefreshToken} from './jwt'
 
 export {
     createAccessToken,
-    clearRefreshTokenFromCookie,
+    clearAccessTokenFromCookie,
     createRefreshToken
 }

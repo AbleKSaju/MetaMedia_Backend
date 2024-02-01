@@ -8,7 +8,7 @@ export default (dependencies: any) => {
   } = dependencies;
   const ChooseInterestController = async (req: Request, res: Response) => {
     console.log(req.body, "Body");
-    const email: string = "ableksaju3gmail.com"; // req.session.userData.email
+    const email: string = "ableksaju3@gmail.com"; // req.session.userData.email
     const response = await chooseInterest_Usecase(dependencies).executeFunction(req.body,email);
     if(response){
       res.json({status:response.status , message:response.message})
