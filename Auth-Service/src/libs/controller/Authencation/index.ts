@@ -7,12 +7,12 @@ import changePasswordController from './changePassword.controller'
 import loginUserController from './loginUserController'
 import loginWithFacebookController from './loginWithFacebookController'
 import chooseInterestController from './chooseInterestController'
-<<<<<<< HEAD
+
 import refreshTokenController from './refreshToken.controller'
-=======
+
 import logoutUserController from './logoutUserController'
 
->>>>>>> able
+
 export default (dependencies:any)=>{
     return {
         createUserController:create_user_controller(dependencies),
@@ -24,11 +24,11 @@ export default (dependencies:any)=>{
         chooseInterestController:chooseInterestController(dependencies),
         forgotPasswordController:forgotPassword_Controller(dependencies),
         changePasswordController:changePasswordController(dependencies),
-<<<<<<< HEAD
-        refreshTokenController:refreshTokenController(dependencies)
-=======
+
+        refreshTokenController:refreshTokenController(dependencies),
+
         logoutUserController:logoutUserController(dependencies)
->>>>>>> able
+
 
     }
 }
