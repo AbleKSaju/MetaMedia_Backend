@@ -81,6 +81,28 @@ export default {
     }
   },
 
+
+  getuserbyId:async (id:any)=>{
+
+   try {
+    const user=await schema.User.findById(id)
+    if(user){
+      return { status:true,user}
+    }else{
+
+    return {status:false}
+     
+    }
+    
+   } catch (error) {
+    console.log(error,"ERRR");
+    
+    return {status:false,error}
+   }
+
+
+  }
+
   //  verifyPassword:async(email,password:string)=>{
   //     try {
   //         const userData=await schema.User.findOne({email})

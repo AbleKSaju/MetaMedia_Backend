@@ -7,6 +7,7 @@ import { changePassword_Usecase } from "./changePasswordUsecase";
 import { loginUser_usecases } from "./loginUser_usecases";
 import { loginWithFacebook_Usecase } from "./loginWithFacebook_Usecase";
 import { chooseInterest_Usecase } from "./chooseInterestUsecase";
+import {refreshTokenUsecase} from './refreshToken_Usecases'
 export {
   createUser_Usecases,
   verifyOtp_Usecase,
@@ -17,4 +18,5 @@ export {
   loginUser_usecases,
   loginWithFacebook_Usecase,
   chooseInterest_Usecase,
+  refreshTokenUsecase
 };
