@@ -8,6 +8,7 @@ import {
   verifyEmail_Usecases,
   loginWithGoogle_Usecase,
   loginUser_usecases,
+  refreshTokenUsecase
 } from "./Authentication";
 
 import { addProfile_Usecase } from "./Profile";
@@ -23,4 +24,5 @@ export {
   changePassword_Usecase,
   loginUser_usecases,
   chooseInterest_Usecase,
+  refreshTokenUsecase
 };

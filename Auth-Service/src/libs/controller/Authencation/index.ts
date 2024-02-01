@@ -7,22 +7,19 @@ import changePasswordController from './changePassword.controller'
 import loginUserController from './loginUserController'
 import loginWithFacebookController from './loginWithFacebookController'
 import chooseInterestController from './chooseInterestController'
-
+import refreshTokenController from './refreshToken.controller'
 export default (dependencies:any)=>{
     return {
         createUserController:create_user_controller(dependencies),
         verifyOtpController:verifyOtpController(dependencies),
         verifyPasswordController:verifyPassword_Controller(dependencies),
-
         loginWithGoogleController:loginWithGoogleController(dependencies),
         loginWithFacebookController:loginWithFacebookController(dependencies),
         loginUserController:loginUserController(dependencies),
-    
         chooseInterestController:chooseInterestController(dependencies),
-
-      
         forgotPasswordController:forgotPassword_Controller(dependencies),
-        changePasswordController:changePasswordController(dependencies)
+        changePasswordController:changePasswordController(dependencies),
+        refreshTokenController:refreshTokenController(dependencies)
 
     }
 }
