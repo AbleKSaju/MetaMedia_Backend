@@ -6,17 +6,13 @@ export const loginWithFacebook_Usecase=(dependencies:any)=>{
     const {repository: { authenticationRepository }} = dependencies;
 
     const executeFunction = async(data:any)=>{        
-        const {email} = data;        
-      
+        const {email} = data;
         const response = await authenticationRepository.finduser(email);
         
-        
         if (response.status == true) {
-            
-            
+             
             if (response.user.basicInformation.isFacebook == true) {
               const { user } = response;
-             
                 //create acces token and refresh toekn here
                 const accesstoken=createAccessToken(user,process.env.ACCESS_SECRET_KEY!,process.env.ACCESS_EXPIRY!)
                 const refreshtoken=createRefreshToken(user,process.env.REFRESH_SECRET_KEY!,process.env.REFRESH_EXPIRY!)

@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 
 import { hashPassword } from "../../../helper";
 
-import {createAccessToken,createRefreshToken} from '../../../utils/jwt'
 import { validationResult } from "express-validator";
 
 export default (dependencies:any) => {
@@ -34,7 +33,7 @@ export default (dependencies:any) => {
              isGoogle:user.basicInformation.isGoogle,
              isFacebook:user.basicInformation.isFacebook,
              profile:user.profile.profileUrl || '',
-             interest:user.profile.interest || []
+             interest:user.profile.interests || []
 
            }
            req.session.refreshToken=refreshtoken

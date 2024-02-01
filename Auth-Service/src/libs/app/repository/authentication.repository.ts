@@ -60,13 +60,13 @@ export default {
     }
   },
 
-  createInterest: async (data: any, email: string) => {
+  createInterest: async (data: any, id: string) => {
     try {
-      console.log(email,"email");
+      console.log(id,"ID");
       console.log(data,"data");
       
       const createInterest = await schema.User.findOneAndUpdate(
-        { "basicInformation.email": email },
+        { _id: id },
         { $set: { "profile.interests": data } });      
       if (createInterest) {
         return { status: true, message: "Interest added" };

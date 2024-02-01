@@ -17,7 +17,7 @@ getDb(config)
 const server=http.createServer(app)
 dotenv.config()
 
- authconsumer()
+//  authconsumer()
  declare module 'express-session' {
   interface Session {
     userData:{

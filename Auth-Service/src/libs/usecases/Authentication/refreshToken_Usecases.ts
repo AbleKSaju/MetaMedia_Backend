@@ -5,7 +5,6 @@ export const refreshTokenUsecase=async(dependencies:any)=>{
     const refreshSecret:any=process.env.REFRESH_SECRET_KEY
     if(!authenticationRepository)return {status:false,message:"repositery not found"}
      
-
    const  executeFunction= async(token:string)=>{
 
     let playload:any
@@ -15,9 +14,7 @@ export const refreshTokenUsecase=async(dependencies:any)=>{
             console.log(err,'Error');
             return {status:false,message:"error in jwt sign"}
         }else{
-           
             playload=decode
-            
         }
     })
 
