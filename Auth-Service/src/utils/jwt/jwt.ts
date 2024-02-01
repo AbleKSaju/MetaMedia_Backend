@@ -23,7 +23,7 @@ export const createRefreshToken = (
   return jwt.sign({ user }, RefreshTokenscretkey, { expiresIn: Expiration });
 };
 
-export const clearRefreshTokenFromCookie = (
+export const clearAccessTokenFromCookie = (
   cookieName: string,
   res: Response
 ) => {

@@ -67,16 +67,14 @@ export default {
       
       const createInterest = await schema.User.findOneAndUpdate(
         { "basicInformation.email": email },
-        { $push: { "profile.interests": { $each: data } } },
-        { new: true }
-      );
-      console.log(createInterest,"BBBB");
-      
+        { $set: { "profile.interests": data } });      
       if (createInterest) {
         return { status: true, message: "Interest added" };
       }
       return { status: false, message: "Internal error" };
     } catch (error) {
+      console.log(error,"er");
+      
       return error;
     }
   },

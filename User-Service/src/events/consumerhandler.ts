@@ -1,8 +1,8 @@
-import {authuserRepositery} from '../libs/app/repository'
+import {authenticationRepository} from '../libs/app/repository'
 
 export const addUser=async(data:any)=>{
 
-const {createUser}=authuserRepositery
+const {createUser}=authenticationRepository
 
 await createUser(data)
 

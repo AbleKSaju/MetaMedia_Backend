@@ -1,14 +1,15 @@
-import {loginUser_usecases} from '../libs/usecases'
-import {authuserRepositery} from '../libs/app/repository'
+import {loginUser_usecases,addProfile_Usecase} from '../libs/usecases'
+import {authenticationRepository,profileRepository} from '../libs/app/repository'
 
 
 const useCase:any={
     loginUser_usecases,
-    
+    addProfile_Usecase   
 }
 
 const repository:any={
-    authuserRepositery
+    authenticationRepository,
+    profileRepository
 }
 
 

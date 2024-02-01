@@ -28,5 +28,5 @@ export const createUser_Usecases = (dependencies: any) => {
   };
   return {
     executeFunction,
-  };
+  }
 };

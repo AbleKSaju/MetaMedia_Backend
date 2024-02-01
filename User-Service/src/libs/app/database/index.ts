@@ -1,5 +1,5 @@
-import authUser from './schema'
+import User from './schema'
 
 export {
-    authUser
+    User
 }
