@@ -15,6 +15,7 @@ export const createUser_Usecases = (dependencies: any) => {
   const executeFunction = async (data: UserData) => {    
   
     const UserExist = await authenticationRepository?.userEmailExist( data?.email );
+    
     if (UserExist) {
       return { status: false, message: "User already exist" };
     }

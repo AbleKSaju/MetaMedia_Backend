@@ -19,7 +19,7 @@ spec:
           ports:
             - containerPort: 2181
 
----
+--- 
 # zookeeper-service.yaml
 apiVersion: v1
 kind: Service
