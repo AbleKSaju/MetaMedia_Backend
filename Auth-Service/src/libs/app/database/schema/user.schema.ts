@@ -45,7 +45,7 @@ const userSChema = new mongoose.Schema({
         type:String,
         enum:['online','offline']
       }
-},
+   },
 
 socialConections:{
     following: [{
@@ -64,7 +64,7 @@ socialConections:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Group', 
      }],
-},
+   },
 
 acivity:{
     posts: {
@@ -116,7 +116,6 @@ const User = mongoose.model("User", userSChema);
 export {
     User,
 };
-
 
 
 
