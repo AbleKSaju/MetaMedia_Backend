@@ -11,6 +11,8 @@ export const verifyEmail_Usecases = (dependecies: any) => {
     } else if (response?.basicInformation?.isFacebook) {
       return { status: false, message: "You signed with facebook" };
     } else if (response) {
+      console.log(response,"RES");
+      
       return { status: true, message: "Email verified" };
     } else {
       return { status: false, message: "user not exist" };
