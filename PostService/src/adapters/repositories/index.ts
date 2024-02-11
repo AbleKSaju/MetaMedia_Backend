@@ -1,6 +1,4 @@
-import { sayHelloRepo } from "./sayHelloRepo";
-
-
+import {sayHelloRepo} from './postrepositery'
 export {
     sayHelloRepo
 }

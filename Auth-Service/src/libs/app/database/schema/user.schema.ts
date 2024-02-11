@@ -46,7 +46,7 @@ const userSChema = new mongoose.Schema({
         enum:['online','offline']
       }
    },
-
+   
 socialConections:{
     following: [{
         type: mongoose.Schema.Types.ObjectId,

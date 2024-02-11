@@ -16,6 +16,8 @@ const loginusercontroller=async(req:Request,res:Response)=>{
     }
     //user
     const responce=await loginUser_usecases(dependencies).executeFunction(email,password)
+    console.log('hellloo');
+    
     //access token 
     if(!responce.status){
         res.json({message:responce?.message,status:false})
