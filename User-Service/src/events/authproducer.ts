@@ -1,4 +1,4 @@
-import {kafka} from '../config/kafkaClient'
+import {kafka} from '../../config/kafkaClient'
 const producer =kafka.producer()
 
 
@@ -26,11 +26,6 @@ export const authProducer=async(sendData:any,topic:any,type:any)=>{
             if (result && result[0] && result[0]?.error) {
                 throw new Error('Message production failed')
             }
-
-
-
-
-
         }
 
 

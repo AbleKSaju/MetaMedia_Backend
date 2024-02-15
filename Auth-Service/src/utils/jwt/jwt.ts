@@ -47,7 +47,6 @@ export const decodeRefreshToken=(token:string)=>{
         playload=decode
         console.log(playload,"PAYY");
         return {status:true,message:"error in jwt sign", data:playload}
-
     }
 })
 }

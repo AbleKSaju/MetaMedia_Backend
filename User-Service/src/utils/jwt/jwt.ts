@@ -1,17 +1,16 @@
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken";
 
-
-export const createAccessTocken  =  (
-    email:string,name:string
-) => {
- 
-    let data = {
-        email:email,
-        name:name
+export const decodeAccessToken = (token: string) => {
+  const accessSecret: any = process.env.ACCESS_SECRET_KEY;
+  let playload: any;
+  return jwt.verify(token, accessSecret, (err: any, decode: any) => {
+    if (err) {
+      return { status: false, message: `${err}jwt err` };
+    } else {
+      playload = decode;
+      return { status: true, message: "token verified", data: playload };
     }
-    let accessToken = jwt.sign(data,'secret',{expiresIn:'10m'})
-
-    return accessToken
+  });
 };
 
 // export const createRefreshTocken = (

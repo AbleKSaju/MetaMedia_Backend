@@ -1,4 +1,3 @@
-import { userProducer } from "../../../events/userproducer";
 import { uploadImageToS3 } from "../../../utils/S3/s3UploadImage";
 import { UserData } from "../../../utils/interfaces/userInterface";
 import { createAccessToken, createRefreshToken } from "../../../utils/jwt";

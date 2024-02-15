@@ -1,11 +1,12 @@
+
 import multer from "multer"
-import {Request,Response} from 'express'
+
 const storage = multer.diskStorage({
-  destination: (req:Request, file:any, cb:any) => {
-    return cb(null, "server/public/images/")
-  },
+  destination: (req, file, cb) => {
+    return cb(null, "public/profile/")
+  },  
   filename: (req, file, cb) => {
-    console.log(file,"IMAGE DETAILS");
+    console.log("img",file,"IMAGE DETAILS");
     cb(null, Date.now() + file.originalname)
   },
 })

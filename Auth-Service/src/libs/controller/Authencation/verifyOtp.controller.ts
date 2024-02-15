@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-
 import { hashPassword } from "../../../helper";
-
 import { validationResult } from "express-validator";
+import { authProducer } from "../../../events/authproducer"; 
 
 export default (dependencies:any) => {
     const {
@@ -15,8 +14,6 @@ export default (dependencies:any) => {
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-
-
     const { otp } = req.body;
     if (otp) {      
       if (otp == req.session.Otp) {        
@@ -34,7 +31,6 @@ export default (dependencies:any) => {
              isFacebook:user.basicInformation.isFacebook,
              profile:user.profile.profileUrl || '',
              interest:user.profile.interests || []
-
            }
            req.session.refreshToken=refreshtoken
            const expirationDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
@@ -44,7 +40,9 @@ export default (dependencies:any) => {
             secure:true
            })
 
-          res.status(201).json({status:true,accesstoken:accesstoken,user:userWithOutpassword,message:message})
+           await authProducer(userWithOutpassword,'authTopic','createUser')
+
+          res.status(201).json({status:true,accesstoken:accesstoken,user:userWithOutpassword,message:message,path:"signup"})
         }else{
             res.status(400).json({status:false , message:"UserData error"})
         }

@@ -1,13 +1,7 @@
-import {authenticationRepository} from '../libs/app/repository'
+// import { authenticationRepository } from "../adapters/repositories/profilerepository";
 
-export const addUser=async(data:any)=>{
+// export const createUser = async (dependencies:any,data: any) => {
+//   const { createUser } = authenticationRepository;
 
-const {createUser}=authenticationRepository
-
-await createUser(data)
-
-
-
-
-
-}
+//   await createUser(data);
+// };

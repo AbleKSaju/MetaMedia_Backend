@@ -35,4 +35,3 @@ export  const uploadImageToS3 = async (imageData: UserData['profile'], imageName
         throw error;
     }
 };
-

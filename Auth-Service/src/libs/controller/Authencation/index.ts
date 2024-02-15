@@ -1,4 +1,4 @@
-import create_user_controller from './create.user.controller'
+import create_user_controller from './register.user.controller'
 import verifyOtpController from './verifyOtp.controller'
 import verifyPassword_Controller from './verifyPassword.controller'
 import loginWithGoogleController from './loginWithGoogleController'

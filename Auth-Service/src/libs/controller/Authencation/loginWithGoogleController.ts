@@ -1,6 +1,7 @@
 
 import { Request, Response } from "express";
 import { createAccessToken } from "../../../utils/jwt";
+import { authProducer } from "../../../events/authproducer";
 
 export default (dependencies: any) => {
     const { useCase: { loginWithGoogle_Usecase }} = dependencies;
@@ -32,6 +33,7 @@ export default (dependencies: any) => {
        secure:true
       })
 
+      await authProducer(userWithOutpassword,'authTopic','createUser')
      res.status(201).json({status:true,accesstoken:accesstoken,user:userWithOutpassword,message:message})
        
       } else {

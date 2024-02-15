@@ -1,4 +1,4 @@
-import {createAccessTocken} from './jwt'
+import {decodeAccessToken} from './jwt'
 export {
-    createAccessTocken
+    decodeAccessToken
 }

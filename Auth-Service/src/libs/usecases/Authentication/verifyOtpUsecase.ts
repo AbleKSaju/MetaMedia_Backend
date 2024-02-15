@@ -1,4 +1,3 @@
-import { userProducer } from "../../../events/userproducer";
 import { createAccessToken, createRefreshToken } from "../../../utils/jwt";
 
 export const verifyOtp_Usecase = (dependencies: any) => {
