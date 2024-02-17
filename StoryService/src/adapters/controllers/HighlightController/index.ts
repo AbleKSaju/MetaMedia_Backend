@@ -1,10 +1,10 @@
-import sayHello_controller from "./sayHello_controller";
-
-
+import addNewHighlightController from "./addNewHighlightController"
+import getHighlightsController from "./getHighlightsController"
 export default (dependencies:any)=>{
  return {
 
-     sayHelloController:sayHello_controller(dependencies)
+    getHighlightsController:getHighlightsController(dependencies),
+    addNewHighlightController:addNewHighlightController(dependencies)
      
  }
 

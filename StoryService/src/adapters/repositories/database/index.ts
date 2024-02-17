@@ -1,5 +1,5 @@
-import Story from './schema'
+import StoryAndHighlight from './schema'
 
 export {
-    Story
+    StoryAndHighlight
 }

@@ -55,6 +55,25 @@ export default {
       return { status: false, message: "Not created", story: false };
     }
   },
+
+  getStories: async (userId: any) => {
+    try {
+      console.log(userId, "userId");
+
+      const response = await schema.Story.findOne({ userId: userId });
+      console.log(response, "response");
+
+      if (response) {
+        return { status: true, message: "user exist", data: response };
+      } else {
+        return { status: false, message: "user not found", user: false };
+      }
+    } catch (error) {
+      console.log(error, "ER");
+      return { error };
+    }
+  },
+
   deleteStory: async (userId:string,storyId:string)=>{
     console.log(storyId,"storyIdstoryId");
     
@@ -77,4 +96,5 @@ export default {
       return { status: false, message: "Story Crashed", story: false };
     }
   }
+
 };

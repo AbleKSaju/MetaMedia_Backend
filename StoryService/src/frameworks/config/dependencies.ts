@@ -1,11 +1,13 @@
-import { storyRepository } from '../../adapters/repositories'
-import { AddStory_useCase,getUserData_Usecase, chooseInterest_Usecase,DeleteStory_Usecase } from '../../applications/usecases'
+import { storyRepository,highlightRepository } from '../../adapters/repositories'
+import { AddStory_useCase,GetHighlightData_Usecase,DeleteStory_Usecase,addNewHighlight_Usecase,getStories_Usecase } from '../../applications/usecases'
 
 
 const useCase:any={
     AddStory_useCase,
-    getUserData_Usecase,
-    DeleteStory_Usecase
+    DeleteStory_Usecase,
+    GetHighlightData_Usecase,
+    addNewHighlight_Usecase,
+    getStories_Usecase
 
 }
 
@@ -14,7 +16,8 @@ const useCase:any={
 // }
 
 const repository:any={
-    storyRepository
+    storyRepository,
+    highlightRepository
 }
 
 export default {

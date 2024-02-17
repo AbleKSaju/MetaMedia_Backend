@@ -10,6 +10,8 @@ export const loginUser_usecases=(dependencies:any)=>
     const executeFunction=async(email:string,password:string)=>{
         //find the user
         const responce=await authenticationRepository.finduser(email)
+        console.log(responce,"userresponce");
+        
         //user email and password is valid
         if(!responce.status){
             return ({message:"Email is not valid",status:false})
@@ -20,7 +22,7 @@ export const loginUser_usecases=(dependencies:any)=>
                 //create acces and refresh token 
                 const accesstoken=createAccessToken(user,process.env.ACCESS_SECRET_KEY!,process.env.ACCESS_EXPIRY!)
                 const refreshtoken=createRefreshToken(user,process.env.REFRESH_SECRET_KEY!,process.env.REFRESH_EXPIRY!)
-                return { status:true , accesstoken:accesstoken, refreshtoken:refreshtoken,user:user,message:"user logined" }
+                return { status:true , accesstoken:accesstoken, refreshtoken:refreshtoken,user:user,message:"Login success" }
             }else{
                 return ({message:"password is not matching",status:false})
             }
