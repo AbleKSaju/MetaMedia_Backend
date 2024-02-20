@@ -31,7 +31,6 @@ const server=http.createServer(app)
   }
 }
 
-
  app.use(express.json());
  app.use(express.urlencoded({ extended: false }));
  app.use(cookieParser(process.env.COOKIEPARSERSECRET));
@@ -45,7 +44,6 @@ const server=http.createServer(app)
       credentials: true,
     })
   );
-
 
   app.use(
     session({
@@ -65,7 +63,6 @@ const server=http.createServer(app)
 //   req.session.Token = req.body.refreshToken
 //   res.status(200).json({status:true})
 // })
-
 
  app.use('/api',routes(dependencies))
 

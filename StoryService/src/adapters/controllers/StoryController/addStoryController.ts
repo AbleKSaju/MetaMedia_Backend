@@ -18,7 +18,7 @@ export default (dependencies: any) => {
       console.log(response,"RESP");
       
       if(response){
-        res.json({status:response.status , message:response.status , data:response.data})
+        res.json({status:response.status , message:response.message})
       }
     } else {
         res.json({ status: userData.status, message: userData.message });

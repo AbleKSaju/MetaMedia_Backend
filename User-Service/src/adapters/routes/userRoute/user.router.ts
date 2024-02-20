@@ -14,6 +14,5 @@ export default (dependencies:any)=>{
     router.post('/chooseInterest',chooseInterestController)
     router.post('/addProfileImage',upload.single("file"),addProfileImageController)
 
-   
     return router
 }

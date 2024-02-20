@@ -1,5 +1,5 @@
 import { storyRepository,highlightRepository } from '../../adapters/repositories'
-import { AddStory_useCase,GetHighlightData_Usecase,DeleteStory_Usecase,addNewHighlight_Usecase,getStories_Usecase } from '../../applications/usecases'
+import { AddStory_useCase,GetHighlightData_Usecase,DeleteStory_Usecase,addNewHighlight_Usecase,getStories_Usecase,DeleteHighlight_Usecase } from '../../applications/usecases'
 
 
 const useCase:any={
@@ -7,7 +7,8 @@ const useCase:any={
     DeleteStory_Usecase,
     GetHighlightData_Usecase,
     addNewHighlight_Usecase,
-    getStories_Usecase
+    getStories_Usecase,
+    DeleteHighlight_Usecase
 
 }
 

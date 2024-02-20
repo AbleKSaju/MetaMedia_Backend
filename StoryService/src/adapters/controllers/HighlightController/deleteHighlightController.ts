@@ -2,25 +2,18 @@ import { Request, Response } from "express";
 import { decodeAccessToken } from "../../../utils/jwt";
 
 export default (dependencies: any) => {
-  const {
-    useCase: { addNewHighlight_Usecase },
-  } = dependencies;
-  const AddNewHighlightController = async (req: Request, res: Response) => {
+  const { useCase: { DeleteHighlight_Usecase }} = dependencies;
+  const DeleteHighlightController = async (req: Request, res: Response) => {
     console.log(req.body, "body");
     const { accessToken } = req?.cookies;
-    const { name, selectedImages } = req.body;
+    const { name, image } = req.body;
     let userData: any = await decodeAccessToken(accessToken);
-    console.log(userData, "userData");
-    console.log( name, selectedImages ," name, selectedImages ");
+    console.log( name, image ," name, selectedImages ");
     
-
     if (userData.status) {
-      const userId =
-        userData?.data?.user?._id || userData?.data?.user?.response._id;
+      const userId = userData?.data?.user?._id || userData?.data?.user?.response._id;
 
-      const response = await addNewHighlight_Usecase(
-        dependencies
-      ).executeFunction(userId, name, selectedImages);
+      const response = await DeleteHighlight_Usecase(dependencies).executeFunction(userId, name, image);
       if (response) {
         console.log(response,"rrrr");
         
@@ -31,5 +24,5 @@ export default (dependencies: any) => {
     }
   };
 
-  return AddNewHighlightController;
+  return DeleteHighlightController;
 };

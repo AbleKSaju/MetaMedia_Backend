@@ -10,6 +10,8 @@ export default (dependencies:any)=>{
         if (userData.status) {
             const userId = userData?.data?.user?._id || userData?.data?.user?.response._id;
             const response = await GetHighlightData_Usecase(dependencies).executeFunction(userId)
+            console.log(response,"response");
+            
                 if(response){
                     res.json({status:response.status , message:response.message , data:response.data})
                   }

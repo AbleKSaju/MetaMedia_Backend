@@ -5,10 +5,11 @@ export default (dependencies:any)=>{
     const DeleteStoryController=async(req:Request,res:Response)=>{
         const {storyId,userId}:any = req.body
         const response = await DeleteStory_Usecase(dependencies).executeFunction(userId,storyId)
-        console.log(response,"RES");
+        
+        console.log(response,"responsefrom usecase");
         
         if(response){
-            res.json({status:response.status , message:response.status , data:response.data})
+            res.json({status:response.status , message:response.message })
           } else {
             res.json({ status: false, message: "Deleting Error" });
           }

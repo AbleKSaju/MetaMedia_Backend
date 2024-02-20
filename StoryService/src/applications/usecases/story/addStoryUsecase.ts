@@ -12,9 +12,9 @@ export const AddStory_useCase = (dependencies: any) => {
     console.log(response ," from useCase");
     
     if(response){
-        return {status:true,message:"Story added",data:response}
+        return {status:true,message:"Story added"}
     }else{
-        return {status:false,message:"Story Error",data:false}
+        return {status:false,message:"Story Error"}
     }    
   };
   return { executeFunction };

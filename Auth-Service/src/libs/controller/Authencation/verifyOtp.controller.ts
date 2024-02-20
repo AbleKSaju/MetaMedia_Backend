@@ -15,9 +15,13 @@ export default (dependencies:any) => {
       return res.status(400).json({ errors: errors.array() });
     }
     const { otp } = req.body;
+    console.log(otp,"otpotp");
+    
     if (otp) {      
       if (otp == req.session.Otp) {        
-        const data=req.session.userData        
+        const data=req.session.userData  
+        console.log(data,"req.session.userData");
+              
         const hashedPassword=await hashPassword(data.password)        
         data.password=hashedPassword
         const response=await verifyOtp_Usecase(dependencies).executeFunction(data)        

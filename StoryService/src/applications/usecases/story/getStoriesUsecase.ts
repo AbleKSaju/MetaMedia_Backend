@@ -6,9 +6,9 @@ export const getStories_Usecase = (dependencies: any) => {
     
     
     const response=await storyRepository.getStories(userId)
-    console.log(response,"USERDATAresss");
+    console.log(response.data,"USERDATAresssfeom usecase");
     if (response) {
-        return { status: response.status, message: response.message,data:response.data };
+        return { status: response.status, message: response.message, data: response.data };
       }
       return { status: false, message: "db crashed" };
   };

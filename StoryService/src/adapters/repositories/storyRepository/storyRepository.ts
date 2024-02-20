@@ -50,21 +50,23 @@ export default {
     );
     
     if (response) {
-      return { status: true, message: "story created", story: response };
+      return { status: true, message: "story created" };
     } else {
-      return { status: false, message: "Not created", story: false };
+      return { status: false, message: "Not created" };
     }
   },
 
   getStories: async (userId: any) => {
     try {
       console.log(userId, "userId");
-
-      const response = await schema.Story.findOne({ userId: userId });
-      console.log(response, "response");
-
+  
+      const response = await schema.Story.findOne({ userId: userId, 'content.story': { $elemMatch: { status: true } } });
+  
+      console.log(response, "responseStatus");
+  
       if (response) {
-        return { status: true, message: "user exist", data: response };
+        const filteredStories = response?.content?.story?.filter(story => story.status === true);
+        return { status: true, message: "user exist", data: filteredStories };
       } else {
         return { status: false, message: "user not found", user: false };
       }
@@ -73,6 +75,7 @@ export default {
       return { error };
     }
   },
+  
 
   deleteStory: async (userId:string,storyId:string)=>{
     console.log(storyId,"storyIdstoryId");
@@ -91,9 +94,11 @@ export default {
     console.log(response.content.story,"resss");
     
     if (response) {
-      return { status: true, message: "story Removed", story: response };
+      // const filteredStories = response?.content?.story?.filter(story => story.status === true);
+
+      return { status: true, message: "story Removed"};
     } else {
-      return { status: false, message: "Story Crashed", story: false };
+      return { status: false, message: "Story Crashed"};
     }
   }
 

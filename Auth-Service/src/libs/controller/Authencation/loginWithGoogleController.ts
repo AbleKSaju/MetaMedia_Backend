@@ -35,7 +35,6 @@ export default (dependencies: any) => {
 
       await authProducer(userWithOutpassword,'authTopic','createUser')
      res.status(201).json({status:true,accesstoken:accesstoken,user:userWithOutpassword,message:message})
-       
       } else {
         res.json({ status: response.status, message: response.message });
       }

@@ -15,7 +15,7 @@ export default (dependecies:any)=>{
     if (userData.status) {
         const userId =userData?.data?.user?._id || userData?.data?.user?.response._id;
         const response=await getStories_Usecase(dependecies).executeFunction(userId)
-        console.log(response,"response");
+        console.log(response,"responsefromcontroller");
         if(response){
             res.json({status:response.status , message:response.message , data:response.data})
           }
