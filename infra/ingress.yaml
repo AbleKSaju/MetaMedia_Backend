@@ -1,27 +1,4 @@
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: ingress-srv
-# spec:
-#   ingressClassName: nginx
-#   rules:
-#     - host: metamedia.com
-#       http:
-#         paths:
-#           - path: /api/user/?(.*)
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: user-srv
-#                 port:
-#                   number: 3000
-#           - path: /api/auth/?(.*)
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: auth-srv
-#                 port:
-#                   number: 3001
+
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
