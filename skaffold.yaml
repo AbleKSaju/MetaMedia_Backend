@@ -2,9 +2,9 @@
 apiVersion: skaffold/v2beta12
 kind: Config
 deploy:
-  kubectl:
-    manifests:
-      - ./infra/*
+ kubectl:
+  manifests:
+     - ./infra/*
 build:
   local:
     push: false
