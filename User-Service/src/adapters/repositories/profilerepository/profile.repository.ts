@@ -4,7 +4,7 @@ export default {
   addProfile: async (data: any, id: string) => {
     console.log(id, "USerID from add profile");
     const response = await schema.User.findOneAndUpdate(
-      { "basicInformation._id": id },
+      { "basicInformation.userId": id },
       {
         $set: {
           "basicInformation.userName": data.username,
@@ -30,12 +30,12 @@ export default {
   editUserProfile: async (data: any, id: string) => {
     console.log(id, "USerID from add profile");
     const response = await schema.User.findOneAndUpdate(
-      { "basicInformation._id": id },
+      { "basicInformation.userId": id },
       {
         $set: {
           "basicInformation.userName": data.username,
           "basicInformation.fullName": data.fullname,
-          "basicInformation.phoneNumber": data.mobile,
+          "basicInformation.phoneNumber": data.phoneNumber,
           "basicInformation.gender": data.gender,
           "profile.bio": data.bio,
           // 'profile.profileUrl': data.image,
@@ -57,7 +57,7 @@ export default {
   },
   addProfileImage: async (imageUrl: string, userId: string) => {
     const response = await schema.User.findOneAndUpdate(
-      { "basicInformation._id": userId },
+      { "basicInformation.userId": userId },
       {
         $set: {
           "profile.profileUrl": imageUrl,

@@ -8,7 +8,7 @@ export const createUserUsecase = (dependencies: any) => {
     console.log("ENTER TO EECUTER");
     
     const response = await userRepository.createUser(data);
-       console.log(response);
+       console.log(response,"ressp");
                                                
     if (!response.status) {
       return { message: "Email is not valid", status: false };

@@ -4,6 +4,8 @@ export default {
 
     createUser:async(data:any)=>{
         try {
+          console.log(data,"data from database");
+          
             const userData = {
                 "basicInformation.userId": data._id,
                 "basicInformation.fullName": data.name,
@@ -42,10 +44,12 @@ export default {
       },
 
     finduser:async(email:string)=>{
+      console.log(email,"email from findUser");
+      console.log(typeof(email),"email from findUser");
         try {
-            const  finduser=await schema.User.findOne({email})
+            const  finduser=await schema.User.findOne({'basicInformation.email':email})
+            console.log(finduser,"findUser");
             if(finduser){
-
                 return ({status:true,finduser})
             }else{
                 return {status:false}

@@ -1,7 +1,7 @@
 
 export const getUserData_Usecase = (dependencies: any) => {
   const { repository: {userRepository} } = dependencies;
-  const executeFunction = async ({email}:{email:string}) => {
+  const executeFunction = async (email:string) => {
     console.log("I AM EXECUTE");
     console.log(email,"EMAIL");
     

@@ -4,6 +4,8 @@ import { decodeAccessToken } from "../../../utils/jwt";
 export default (dependencies:any)=>{
     const {useCase:{editUserUsecase}}=dependencies
     const EditProfileController = async(req:Request,res:Response)=>{
+      console.log("EditProfileController");
+      
         const { accessToken } = req.cookies;
         let userData: any = await decodeAccessToken(accessToken);
         if (userData.status) {

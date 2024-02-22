@@ -7,14 +7,20 @@ export default (dependencies: any) => {
   } = dependencies;
 
   const AddProfileController = async (req: Request, res: Response) => {
+    console.log("AddProfileController");
+    
     const { accessToken } = req.cookies;
     let userData: any = await decodeAccessToken(accessToken);
+    console.log(userData,"userData");
+    
     if (userData.status) {
       const userId = userData?.data?.user?._id || userData?.data?.user?.response._id;
       const response = await addProfileUsecase(dependencies).executeFunction(
         req.body,
         userId
       );
+      console.log(response,"response from controller");
+      
       if (response) {
         console.log(response.user,"USERDdd");
         const data={

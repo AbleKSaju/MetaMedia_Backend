@@ -5,6 +5,9 @@ const storySchema = new mongoose.Schema({
   userId: {
     type: String,
   },
+  profile: {
+    type: String,
+  },
   content: {
     story: [
       {
@@ -41,12 +44,10 @@ const storySchema = new mongoose.Schema({
 // Middleware to update the status of expired stories
 const updateExpiredStories = async () => {
   console.log("I AM updateExpiredStories");
-  
   const now = new Date();
   const expiredStories = await Story.find({
     "content.story.expiresAt": { $lte: now },
   });
-
   if (expiredStories.length > 0) {
     expiredStories.forEach(async (story) => {
       story?.content?.story?.forEach((item) => {

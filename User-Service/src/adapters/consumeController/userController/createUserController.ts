@@ -5,7 +5,7 @@ export const createUserController = async (dependencies: any, data: any) => {
     const { consumeUsecase: { createUserUsecase }} = dependencies;
     console.log("ENTER TO createUserController");
     const response = await createUserUsecase(dependencies).executeFunction(data);
-    console.log(response);
+    console.log(response,"response from controler");
     
     // if (!responce.status) {
     //   res.json({ message: responce?.message, status: false });

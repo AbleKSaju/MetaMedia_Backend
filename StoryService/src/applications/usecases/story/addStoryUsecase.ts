@@ -4,7 +4,6 @@ export const AddStory_useCase = (dependencies: any) => {
     const {userId}=data;
     console.log("ENTER TO EXECUTE");
     const userData = await storyRepository.findUser(userId);
-    console.log(userData, "RES FROM USECASE");
     if(!userData.status){        
           await storyRepository.createUser(data);
     }    
