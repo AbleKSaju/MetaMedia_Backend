@@ -4,19 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/app.ts --exec ts-node"
+    "start": "nodemon --watch 'src/*/.ts' --exec 'ts-node' src/app.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.496.0",
-    "@types/bcrypt": "^5.0.2",
+    "@types/bcryptjs": "^2.4.6",
     "@types/cors": "^2.8.17",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/multer": "^1.4.11",
-    "bcrypt": "^5.1.1",
+    "@types/multer-s3": "^3.0.3",
+    "aws-sdk": "^2.1553.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -28,8 +29,10 @@
     "kafkajs": "^2.2.4",
     "mongoose": "^8.1.0",
     "multer": "^1.4.5-lts.1",
+    "multer-s3": "^3.0.1",
     "nodemon": "^3.0.3",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.5",

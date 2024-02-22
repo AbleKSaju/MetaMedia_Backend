@@ -12,7 +12,7 @@ export default (dependencies: any) => {
     const {executeFunction}=loginreff
     const response=await executeFunction(data)
    
-    
+
     
     if (response.status) {
       const {accesstoken,refreshtoken,user,message}=response
@@ -42,4 +42,3 @@ export default (dependencies: any) => {
 
   return loginWithGoogle;
 };
-
