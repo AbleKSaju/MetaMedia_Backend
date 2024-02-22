@@ -6,11 +6,11 @@ export default (dependecies:any)=>{
         const {useCase:{sayHello_usecase}}=dependecies
         const responce=await sayHello_usecase(dependecies).executeFunction()
         
-        res.send(responce)
+        res.send(responce) 
 
 
 
     }
 
     return sayHelloController
-}
+} 

@@ -1,5 +1,12 @@
 apiVersion: skaffold/v3
 kind: Config
+<<<<<<< HEAD
+deploy:
+ kubectl:
+  manifests:
+     - ./infra/*
+=======
+>>>>>>> 78355af4cc1dd2379277071fab886db01dfe6c8b
 build:
  artifacts:
   - image: raziiik/meta-user-service
