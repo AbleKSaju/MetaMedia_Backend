@@ -102,7 +102,9 @@ export default {
         const result:any = [];
         for (const userId in userStoriesMap) {
           const userStories = userStoriesMap[userId];
-          const profile:any = userStories[0]?.profile;          
+          const profile:any = userStories[0]?.profile;    
+          console.log(profile,"profileUrL");
+                
           const filteredStories:any = userStories[0]?.content?.story?.filter((story:any) => story.status == true );          
           if(filteredStories.length){
             result[userIdCounter++] = {
