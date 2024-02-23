@@ -1,4 +1,4 @@
-import GetMyAllStoriesForHighLighController from "../../controllers/StoryController/GetMyAllStoriesForHighLighController";
+import GetMyAllStoriesForHighLighController from "../../controllers/StoryController/getMyAllStoriesForHighLighController";
 import schema from "../database/schema";
 
 export default {
@@ -169,9 +169,7 @@ export default {
                 type: story.type
             };
         });
-        console.log(extractedData,"extractedData");
-        console.log(extractedData.length,"extractedData");
-        
+
         if(extractedData.length){
           return { status: true, message: "stories found", data: extractedData };
         }
