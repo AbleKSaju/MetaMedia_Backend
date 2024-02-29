@@ -27,7 +27,6 @@ export const clearAccessTokenFromCookie = (
   cookieName: string,
   res: Response
 ) => {
-  console.log("attachAccesTokenToCookie - not http only ", "development");
   res.cookie(cookieName, {
     httpOnly: false,
     secure: false,

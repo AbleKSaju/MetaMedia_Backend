@@ -22,16 +22,10 @@ export default {
     console.log(data,"dataas");
     
     const { userId,profile } = data;
-    console.log(profile,"profileUrl from repo");
-    console.log(typeof(profile),"profileUrl from repo");
-    
     const storyData = {
       userId:userId ,
-      // profile:profile ?? ""
     }
-    const response = await schema.Story.create(storyData);
-    console.log(response,"response");
-    
+    const response = await schema.Story.create(storyData);    
     if (response) {
       return { status: true, message: "User created", story: response };
     } else {
@@ -40,9 +34,7 @@ export default {
   },
 
   addStory: async (data: any) => {
-    const { userId, caption, imageUrl, profile } = data;
-    console.log(userId, caption, imageUrl,"datas");
-    
+    const { userId, caption, imageUrl, profile } = data;    
     const response = await schema.Story.findOneAndUpdate(
       { userId: userId },
       {
@@ -59,7 +51,6 @@ export default {
     );
     
     if (response) {
-       
       return { status: true, message: "story created" };
     } else {
       return { status: false, message: "Not created" };
@@ -144,7 +135,6 @@ export default {
       },
       { new: true }
     );
-    console.log(response.content.story,"resss");
     
     if (response) {
       // const filteredStories = response?.content?.story?.filter(story => story.status === true);

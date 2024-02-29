@@ -25,8 +25,6 @@ export default (dependecies: any) => {
       res.json({ message: responce?.message, status: false });
     } else {
       const { accesstoken, refreshtoken, user, message } = responce;
-      console.log(user,"USERRRR");
-      
       const userWithOutpassword = {
         _id: user._id,
         name: user.basicInformation.fullName,
@@ -43,15 +41,16 @@ export default (dependecies: any) => {
         httpOnly: true,
         secure: true,
       });
+      console.log(accesstoken, "accesstoken");
 
-      res
-        .status(201)
-        .json({
-          status: true,
-          accesstoken: accesstoken,
-          user: userWithOutpassword,
-          message: message,
-        });
+      res.status(201).json({
+        status: true,
+        sample:false,
+        accesstoken,
+        user: userWithOutpassword,
+        message: message,
+      });
+      
     }
   };
 
