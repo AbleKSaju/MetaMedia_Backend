@@ -20,4 +20,4 @@ export default (dependencies:any)=>{
 
     }
     return EditProfileController
-}
+} 
