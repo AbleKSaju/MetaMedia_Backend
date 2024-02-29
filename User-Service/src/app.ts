@@ -70,6 +70,6 @@ dotenv.config()
 
  userconsumer(dependencies)
 
- app.use('/api',routes(dependencies))
+app.use('/api',routes(dependencies))
 
 serverConfig(server,config).startServer()
