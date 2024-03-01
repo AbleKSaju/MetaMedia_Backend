@@ -1,4 +1,4 @@
-import schema from "../database/schema"
+import User from "../database/schema"
 
 
 export default {
@@ -15,7 +15,7 @@ export default {
                 "basicInformation.isGoogle": data.isGoogle,
                 "basicInformation.isFacebook": data.isFacebook,
               };
-            const response =await schema.User.create(userData)
+            const response =await User.create(userData)
             console.log(response,"rees");
               
             if (response) {
@@ -31,7 +31,7 @@ export default {
     createInterest: async (data: any, id: string) => {
         try {
             console.log(id,"iddd");
-          const createInterest = await schema.User.findOneAndUpdate(
+          const createInterest = await User.findOneAndUpdate(
             { 'basicInformation.userId': id },
             { $set: { "profile.interests": data } });   
             console.log(createInterest,"SUCCESS");
@@ -48,7 +48,7 @@ export default {
       console.log(email,"email from findUser");
       console.log(typeof(email),"email from findUser");
         try {
-            const  finduser=await schema.User.findOne({'basicInformation.email':email})
+            const  finduser=await User.findOne({'basicInformation.email':email})
             console.log(finduser,"findUser");
             if(finduser){
                 return ({status:true,finduser})
@@ -61,8 +61,7 @@ export default {
      },
      getAllUsers:async()=>{
       let usersData:any = []
-      const users=await schema.User.find()
-        console.log(users,"usersusersusers");
+      const users=await User.find()
       Promise.all(users.map(async (data:any) => {
         console.log(data,"datassssss");
         const user={
@@ -83,7 +82,7 @@ export default {
     },
     getUsersByName:async(name:string)=>{
       if (name.trim() !== '') {
-        const users= await schema.User.find({ 'basicInformation.fullName': { $regex: '^' +name , $options: 'i' } })
+        const users= await User.find({ 'basicInformation.fullName': { $regex: '^' +name , $options: 'i' } })
         if(users.length > 0){
           return { status:true,data:users}
         } else {
@@ -96,7 +95,7 @@ export default {
       }
     },
     getUserById:async(id:any)=>{
-      const user=await schema.User.findOne({'basicInformation.userId':id})
+      const user=await User.findOne({'basicInformation.userId':id})
       if(user){
         return {status:true,data:user}
       }else{
@@ -106,14 +105,17 @@ export default {
     getUsersDataById: async(ids:any)=>{
       console.log(ids,"idsids");
       const conversationUserData = Promise.all(ids.map(async (receiverId:any) => {
-        const user:any = await schema.User.findOne({'basicInformation.userId':receiverId.id})
-        const userData={
-          id:user.basicInformation.userId,
-          email:user.basicInformation.email,
-          fullName:user.basicInformation.fullName,
-          profile:user.profile.profileUrl,
-        }
+        console.log(receiverId,"receiverId.idreceiverId.id");
+        
+        const user:any = await User.findOne({'basicInformation?.userId':receiverId.id})
         console.log(user,"useruser");
+        
+        const userData={
+          id:user?.basicInformation?.userId,
+          email:user?.basicInformation?.email,
+          fullName:user?.basicInformation?.fullName,
+          profile:user?.profile?.profileUrl,
+        }
         return { user: { receiverId: userData.id, email: userData.email, fullName: userData.fullName, profile:userData.profile }, conversationId: receiverId.conversationId }
       }))
       return {status:true , data: await conversationUserData}

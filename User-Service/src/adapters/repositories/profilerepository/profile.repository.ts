@@ -1,9 +1,9 @@
-import schema from "../database/schema";
+import User from "../database/schema"
 
 export default {
   addProfile: async (data: any, id: string) => {
     console.log(id, "USerID from add profile");
-    const response = await schema.User.findOneAndUpdate(
+    const response = await User.findOneAndUpdate(
       { "basicInformation.userId": id },
       {
         $set: {
@@ -29,7 +29,7 @@ export default {
 
   editUserProfile: async (data: any, id: string) => {
     console.log(id, "USerID from add profile");
-    const response = await schema.User.findOneAndUpdate(
+    const response = await User.findOneAndUpdate(
       { "basicInformation.userId": id },
       {
         $set: {
@@ -56,7 +56,7 @@ export default {
     }
   },
   addProfileImage: async (imageUrl: string, userId: string) => {
-    const response = await schema.User.findOneAndUpdate(
+    const response = await User.findOneAndUpdate(
       { "basicInformation.userId": userId },
       {
         $set: {
@@ -78,7 +78,7 @@ export default {
 };
 // export default {
 //     addProfile:async(data:any , id:string)=>{
-//             const response = await schema.User.updateOne({_id:id},
+//             const response = await User.updateOne({_id:id},
 //                 {
 //                     $set:{
 //                         'basicInformation.username':data.username,

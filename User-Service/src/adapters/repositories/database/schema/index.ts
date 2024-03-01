@@ -1,2 +1,2 @@
 import {User} from './user.schema'
-export default {User}
+export default User

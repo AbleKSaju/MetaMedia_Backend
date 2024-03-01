@@ -2,6 +2,5 @@
 export default {
     port :3000,
     mongo:{
-        uri:'mongodb+srv://rashik:Rashik123@e-commerce.lcrkvvf.mongodb.net/meta-user-srv?retryWrites=true&w=majority'
-    }
+        uri:'mongodb://127.0.0.1:27017/Meta-userservice'    }
 }
