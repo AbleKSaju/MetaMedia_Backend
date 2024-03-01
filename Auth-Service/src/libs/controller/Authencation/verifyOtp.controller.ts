@@ -45,6 +45,9 @@ export default (dependencies:any) => {
            })
 
            await authProducer(userWithOutpassword,'authTopic','createUser')
+           await authProducer(userWithOutpassword,'search-topic','create-search-user')
+
+
 
           res.status(201).json({status:true,accesstoken:accesstoken,user:userWithOutpassword,message:message,path:"signup"})
         }else{

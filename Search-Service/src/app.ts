@@ -1,6 +1,6 @@
 import http from 'http'
 import serverConfig from './server'
-
+import {searchConsumer} from './adapters/events/kafka-search-consumer'
 import {routes} from './adapters/routers'
 import config from '../config/config'
 import expresscofig from './express'
@@ -15,7 +15,7 @@ const app=express()
 const server=http.createServer(app)
 dotenv.config()
 
-
+searchConsumer(dependencies)
    
 expresscofig(app)
 
