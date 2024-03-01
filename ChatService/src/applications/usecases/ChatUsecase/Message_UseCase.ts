@@ -6,10 +6,14 @@ export const Message_UseCase = (dependencies: any) => {
     const executeFunction = async (conversationId:string, senderId:string, message:string, receiverId:string) => {
         try {
             console.log("Ia m executeFunction");
+            console.log(conversationId, senderId, message, receiverId,"conversationId:string, senderId:string, message:string, receiverId");
+            
             if (conversationId === 'new' && receiverId) {
                 console.log("I AM NEW");
                 const newCoversation = await chatRepository.addNewConversation(senderId, receiverId);
-                const response  = await chatRepository.createMessage({conversationId:newCoversation._id, senderId, message});
+                console.log(newCoversation,"newCoversation");
+                
+                const response  = await chatRepository.createMessage({conversationId:newCoversation.data?._id, senderId, message});
                 if(response){
                     return { status: response.status, message: response.message };
                 }else{

@@ -5,7 +5,7 @@ import { upload } from '../../../utils/multer/multer'
 export default (dependencies:any)=>{
     const router=express()
 
-    const {chooseInterestController,getUserDataController,getAllUserController,getUsersDataByIdController,getUsersByNameController,getUserById_Controller}=userController(dependencies)
+    const {chooseInterestController,getUserDataController,getAllUserForChatController,getUsersDataByIdController,getUsersByNameController,getUserById_Controller}=userController(dependencies)
     const {addProfileController,editProfileController,addProfileImageController}=profileController(dependencies)
 
     router.post('/getUserData',getUserDataController)
@@ -13,7 +13,7 @@ export default (dependencies:any)=>{
     router.post('/editProfile',editProfileController)
     router.post('/chooseInterest',chooseInterestController)
     router.post('/addProfileImage',upload.single("file"),addProfileImageController)
-    router.get("/getAllUsers",getAllUserController)
+    router.get("/getAllUsersForChat",getAllUserForChatController)
     router.post('/getUsersByname',getUsersByNameController)
     router.post('/getUserById',getUserById_Controller)
     router.post('/getUsersDataById',getUsersDataByIdController)

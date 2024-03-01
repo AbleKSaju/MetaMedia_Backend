@@ -5,17 +5,23 @@ export default (dependencies: any) => {
   const {
     useCase: { AddStory_useCase },
   } = dependencies;
-  const AddStoryController = async (req: Request, res: Response) => {
-    console.log("i am AddStoryController");
-    
-    const { caption , profile } = req?.body;
+  const AddVideoController = async (req: Request, res: Response) => {
+    console.log("i am videoUrl");
+    console.log(req.body,"BODyyy");
+
+    const { imageUrl,caption,profile } = req?.body;
     const { accessToken } = req?.cookies;
+    console.log(accessToken,"accessToken");
+    
     let userData: any = await decodeAccessToken(accessToken);
+    console.log(userData,"userDatauserData");
+    
     if (userData.status) {
       const userId =userData?.data?.user?._id || userData?.data?.user?.response._id;
-      const imageUrl = req?.file?.filename;
       
-      const data = { userId, caption, imageUrl, profile };
+      const data = { userId, imageUrl, caption, profile };
+      console.log(data,"Dataaa");
+      
       const response = await AddStory_useCase(dependencies).executeFunction(data);
       
       if(response){
@@ -25,5 +31,5 @@ export default (dependencies: any) => {
         res.json({ status: userData.status, message: userData.message });
       }
   };
-  return AddStoryController;
+  return AddVideoController;
 };
