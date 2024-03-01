@@ -1,4 +1,5 @@
-import schema from '../database/schema'
+import schema from "../database/schema"
+
 
 export default {
 
@@ -59,11 +60,22 @@ export default {
         }
      },
      getAllUsers:async()=>{
+      let usersData:any = []
       const users=await schema.User.find()
+        console.log(users,"usersusersusers");
+      Promise.all(users.map(async (data:any) => {
+        console.log(data,"datassssss");
+        const user={
+          receiverId:data.basicInformation.userId,
+          email:data.basicInformation.email,
+          name:data.basicInformation.fullName,
+          profile:data.profile.profileUrl,
+        }
+        usersData.push(user)
+     }))    
       if(users){
-        return { status:true,data:users}
+        return { status:true,data:usersData}
       }else{
-  
       return {status:false}
        
       }

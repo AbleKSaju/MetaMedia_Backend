@@ -7,7 +7,7 @@ export default {
         
         const response = await schema.Conversation.create({ members: [senderId, receiverId] });
         if (response) {
-          return { status: true, message: "conversation created" };
+          return { status: true, message: "conversation created", data:response};
         } else {
           return { status: false, message: "Error occur" };
         }
@@ -24,7 +24,7 @@ export default {
           Promise.all(conversations.map(async (conversation:any) => {
              const id:string = conversation.members.find((member:string) => member !== userId);
              receiverIds.push({id:id,conversationId:conversation._id})
-          }))          
+          }))
           if (receiverIds.length) {
             return { status: true, message: "receivers Found",data:receiverIds };
           } else {
@@ -52,7 +52,6 @@ export default {
       getMessages: async (conversationId:string,senderId:string,receiverId:string) => {
         try {  
           console.log("I MA getMessages");
-          
           const checkMessages = async (conversationId:string) => {
             console.log(conversationId, 'conversationId')
             const messages = await schema.Messages.find({ conversationId });
@@ -65,7 +64,10 @@ export default {
             
             return {status:true, data: await messageUserData}
           }
+
             if (conversationId === 'new') {
+              console.log("I AM NEW");
+              
               const checkConversation:any = await schema.Conversation.find({ members: { $all: [senderId, receiverId] } });
               console.log(checkConversation,"checkConversation");
               

@@ -2,12 +2,19 @@ import AddStoryController from "./addStoryController";
 import deleteStoryController from "./deleteStoryController";
 import getStoriesController from "./getStoriesController";
 import getAllStoriesController from "./getAllStoriesController";
-import GetMyAllStoriesForHighLighController from "./getMyAllStoriesForHighLighController";;
+import GetMyAllStoriesForHighLighController from "./getMyAllStoriesForHighLighController";
+import addVideoController from "./addVideoController";
+import getSignatureController from "./getSignatureController";
+;
 
 export default (dependencies:any)=>{
 
     return{
         AddStoryController:AddStoryController(dependencies),
+
+        AddVideoController:addVideoController(dependencies),
+
+        getSignatureController:getSignatureController(dependencies),
 
         DeleteStoryController:deleteStoryController(dependencies),
 

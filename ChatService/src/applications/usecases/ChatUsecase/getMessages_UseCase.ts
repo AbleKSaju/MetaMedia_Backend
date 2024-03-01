@@ -4,6 +4,8 @@ export const getMessages_UseCase = (dependencies: any) => {
     } = dependencies;
   
     const executeFunction = async (conversationId:string,senderId:string,receiverId:string) => {
+      console.log(conversationId,senderId,receiverId,"conversationId:string,senderId:string,receiverId");
+      
       const response = await chatRepository.getMessages(conversationId,senderId,receiverId);
       console.log(response,"responseresponse");
       

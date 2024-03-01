@@ -34,7 +34,9 @@ export default {
   },
 
   addStory: async (data: any) => {
-    const { userId, caption, imageUrl, profile } = data;    
+    const { userId, caption, imageUrl, profile } = data;
+    console.log(imageUrl,"imageUrlimageUrlimageUrlimageUrl");
+    
     const response = await schema.Story.findOneAndUpdate(
       { userId: userId },
       {

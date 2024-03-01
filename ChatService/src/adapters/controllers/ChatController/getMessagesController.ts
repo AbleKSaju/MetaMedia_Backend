@@ -6,10 +6,10 @@ export default (dependencies: any) => {
     useCase: { getMessages_UseCase },
   } = dependencies;
   const getMessagesController = async (req: Request, res: Response) => {
-    console.log("I am getMessagesController");
+    console.log("I am getMessagesControlleraaaaaaa");
+    console.log(req.params,"req.params");
     const conversationId = req.params.conversationId;
     const receiverId = req.query.receiverId;
-    console.log(receiverId,"receiverId");
     const {accessToken} = req.cookies;
     let userData:any=await decodeAccessToken(accessToken)  
     if(userData.status){
