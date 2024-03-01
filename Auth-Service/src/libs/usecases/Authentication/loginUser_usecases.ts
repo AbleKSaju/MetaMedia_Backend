@@ -10,7 +10,7 @@ export const loginUser_usecases=(dependencies:any)=>
     const executeFunction=async(email:string,password:string)=>{
         //find the user
         const responce=await authenticationRepository.finduser(email)
-        console.log(responce,"userresponce");
+        console.log(responce,"userresponceDATA");
         
         //user email and password is valid
         if(!responce.status){

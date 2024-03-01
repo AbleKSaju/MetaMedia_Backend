@@ -13,9 +13,19 @@ export default {
       
 
       if (postData) {
+<<<<<<< HEAD
       const isuserLikedAlredy=  postData.likes.includes(userId)
 if(isuserLikedAlredy){
     postData.likes = postData.likes.filter(item => item !== userId);
+=======
+      const isuserLikedAlredy =  postData.likes.includes(userId)
+      
+if(isuserLikedAlredy){
+  const index = postData.likes.indexOf(userId);
+  if (index !== -1) {
+      postData.likes.splice(index, 1);
+  }
+>>>>>>> rashik
     
 }else{
     postData.likes.push(userId)

@@ -78,19 +78,13 @@ export default {
 console.log(response,"RESP");
 
     if (response) {
-      // Check if the media array is empty after removing the image
       const highlight = response.highlights.find((highlight: any) => highlight.name === name);
-      if (highlight && highlight.media.length === 0) {
-        console.log("ENTTTR");
-        
-        // If the media array is empty, remove the entire highlight object
+      if (highlight && highlight.media.length === 0) {        
         const data: any = await schema.Highlight.findOneAndUpdate(
           { userId: userId },
           { $pull: { highlights: { name: name } } }
         );
-        console.log(data, "datadata");
       }
-
     }
     if (response) {
       return { status: true, message: "Highlight deleted" };

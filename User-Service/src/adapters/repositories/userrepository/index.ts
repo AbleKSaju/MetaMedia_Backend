@@ -1,4 +1,4 @@
-import userRepository from './auth.user.repository'
+import userRepository from './userRepository'
 export {
     userRepository
 }

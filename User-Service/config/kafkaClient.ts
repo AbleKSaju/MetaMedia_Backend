@@ -1,6 +1,7 @@
 import { Kafka } from "kafkajs";
 
 export const kafka =new Kafka({
-    clientId:"auth",
+    clientId:"user",
     brokers:['localhost:9092']
 })
+ 

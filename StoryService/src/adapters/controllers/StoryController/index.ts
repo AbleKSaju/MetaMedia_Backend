@@ -2,7 +2,7 @@ import AddStoryController from "./addStoryController";
 import deleteStoryController from "./deleteStoryController";
 import getStoriesController from "./getStoriesController";
 import getAllStoriesController from "./getAllStoriesController";
-import GetMyAllStoriesForHighLighController from "./GetMyAllStoriesForHighLighController";
+import GetMyAllStoriesForHighLighController from "./getMyAllStoriesForHighLighController";;
 
 export default (dependencies:any)=>{
 

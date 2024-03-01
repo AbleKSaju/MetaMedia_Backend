@@ -121,7 +121,3 @@ const User = mongoose.model("User", userSChema);
 export {
     User,
 };
-
-
-
-

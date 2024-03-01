@@ -7,7 +7,6 @@ export default (dependencies: any) => {
   } = dependencies;
   const AddStoryController = async (req: Request, res: Response) => {
     console.log("i am AddStoryController");
-    console.log(req.body,"Body");
     
     const { caption , profile } = req?.body;
     const { accessToken } = req?.cookies;
@@ -15,11 +14,9 @@ export default (dependencies: any) => {
     if (userData.status) {
       const userId =userData?.data?.user?._id || userData?.data?.user?.response._id;
       const imageUrl = req?.file?.filename;
-      console.log(profile,"profile");
       
       const data = { userId, caption, imageUrl, profile };
       const response = await AddStory_useCase(dependencies).executeFunction(data);
-      console.log(response,"RESP");
       
       if(response){
         res.json({status:response.status , message:response.message})
