@@ -62,6 +62,8 @@ export default {
      getAllUsers:async()=>{
       let usersData:any = []
       const users=await User.find()
+      console.log(users,"usersusersusersusersusersusers");
+      
       Promise.all(users.map(async (data:any) => {
         console.log(data,"datassssss");
         const user={
@@ -72,6 +74,8 @@ export default {
         }
         usersData.push(user)
      }))    
+     console.log(usersData,"usersDatausersData");
+     
       if(users){
         return { status:true,data:usersData}
       }else{
@@ -107,7 +111,7 @@ export default {
       const conversationUserData = Promise.all(ids.map(async (receiverId:any) => {
         console.log(receiverId,"receiverId.idreceiverId.id");
         
-        const user:any = await User.findOne({'basicInformation?.userId':receiverId.id})
+        const user:any = await User.findOne({'basicInformation.userId':receiverId.id})
         console.log(user,"useruser");
         
         const userData={

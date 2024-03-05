@@ -11,7 +11,5 @@ export default (dependencies:any)=>{
         getConversations:getConversations(dependencies),
         message:message(dependencies),
         getMessages:getMessages(dependencies),
-
-
     }
 }

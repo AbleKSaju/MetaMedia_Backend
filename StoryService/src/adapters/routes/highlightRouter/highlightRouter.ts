@@ -4,7 +4,7 @@ export default (dependencies:any)=> {
     const router = express()
     const {getHighlightsController,addNewHighlightController,deleteHighlightController} = highlightController(dependencies)
 
-    router.get('/getHighlights',getHighlightsController)
+    router.get('/getHighlights/:id',getHighlightsController)
     router.post('/addNewHighlight',addNewHighlightController)
     router.post('/deleteHighlight',deleteHighlightController)
 

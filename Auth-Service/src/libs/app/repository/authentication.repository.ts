@@ -35,7 +35,6 @@ export default {
       const finduser = await schema.User.findOne({
         "basicInformation.email": email,
       });
-      console.log(finduser,"finduserfinduserfinduser");
       
       if (finduser) {
         return { status: true, user: finduser };

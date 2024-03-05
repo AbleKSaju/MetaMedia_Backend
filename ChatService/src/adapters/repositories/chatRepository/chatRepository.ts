@@ -37,8 +37,12 @@ export default {
       },
       createMessage: async ({conversationId, senderId, message}:any) => {
         try {  
-          console.log(conversationId,senderId,message);
+          console.log(conversationId,"conversationId");
+          console.log(senderId,"senderId");
+          console.log(message,"message");
           const response = await schema.Messages.create({ conversationId, senderId, message });
+          console.log(response,"responseresponseresponse");
+          
           if (response) {
             return { status: true, message: 'Message sent successfully'};
           } else {
@@ -49,14 +53,16 @@ export default {
         }
       },
 
+
       getMessages: async (conversationId:string,senderId:string,receiverId:string) => {
         try {  
           console.log("I MA getMessages");
           const checkMessages = async (conversationId:string) => {
             console.log(conversationId, 'conversationId')
             const messages = await schema.Messages.find({ conversationId });
+            console.log(messages,"messagesmessagesmessages");
+            
             const messageUserData = Promise.all(messages.map(async (message) => {
-              console.log(message,"MessaGGE");
               
                 return {  senderId: message.senderId, message: message.message,time:message.createdAt  }
             }));
@@ -66,10 +72,13 @@ export default {
           }
 
             if (conversationId === 'new') {
-              console.log("I AM NEW");
+              console.log("I AM NEW ONE");
               
               const checkConversation:any = await schema.Conversation.find({ members: { $all: [senderId, receiverId] } });
+              console.log("GOING TO CHECK");
+              
               console.log(checkConversation,"checkConversation");
+              console.log("Dyng TO CHECK");
               
               if (checkConversation.length > 0) {
                   await checkMessages(checkConversation[0]._id);

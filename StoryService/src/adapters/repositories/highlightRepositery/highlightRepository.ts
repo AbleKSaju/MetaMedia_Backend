@@ -48,9 +48,6 @@ export default {
       { new: true }
     );
 
-    console.log(response, "CREATED");
-    console.log(response?.highlights[0].media, "CREATEDData");
-
     if (response) {
       return { status: true, message: "Highlight Added" };
     } else {
@@ -58,8 +55,9 @@ export default {
     }
   },
 
-  getHighlights: async (userId: string) => {
-    const userExist = await schema.Highlight.findOne({ userId: userId });
+  getHighlights: async (userId:string) => {
+    const userExist = await schema.Highlight.findOne({userId:userId});
+    
     if (userExist) {
       return { status: true, message: "Highlights found", data: userExist };
     } else {
@@ -68,14 +66,11 @@ export default {
   },
 
   deleteHighlight: async (userId: string, name: string, image: string) => {
-    console.log(userId, name, image, "datas");
-
     const response: any = await schema.Highlight.findOneAndUpdate(
       { userId: userId, "highlights.name": name },
       { $pull: { "highlights.$.media": image } },
       { new: true } 
     );    
-console.log(response,"RESP");
 
     if (response) {
       const highlight = response.highlights.find((highlight: any) => highlight.name === name);

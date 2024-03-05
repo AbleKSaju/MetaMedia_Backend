@@ -9,7 +9,6 @@ export const Message_UseCase = (dependencies: any) => {
             console.log(conversationId, senderId, message, receiverId,"conversationId:string, senderId:string, message:string, receiverId");
             
             if (conversationId === 'new' && receiverId) {
-                console.log("I AM NEW");
                 const newCoversation = await chatRepository.addNewConversation(senderId, receiverId);
                 console.log(newCoversation,"newCoversation");
                 

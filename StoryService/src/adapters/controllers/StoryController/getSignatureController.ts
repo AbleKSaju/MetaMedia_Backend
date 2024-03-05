@@ -7,12 +7,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
   secure: true,
 });
-console.log(
-  process.env.CLOUDINARY_CLOUD_NAME,
-  process.env.CLOUDINARY_API_KEY,
-  process.env.CLOUDINARY_API_SECRET,
-  "ENV FILES"
-);
+
 
 export default (dependencies: any) => {
   const getSignatureController = (req: Request, res: Response) => {

@@ -7,7 +7,6 @@ export default (dependencies: any) => {
   } = dependencies;
   const AddStoryController = async (req: Request, res: Response) => {
     console.log("i am AddStoryController");
-    
     const { caption , profile } = req?.body;
     const { accessToken } = req?.cookies;
     let userData: any = await decodeAccessToken(accessToken);

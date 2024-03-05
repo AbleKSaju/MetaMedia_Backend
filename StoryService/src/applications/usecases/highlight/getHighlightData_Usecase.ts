@@ -1,10 +1,7 @@
 export const GetHighlightData_Usecase = (dependencies: any) => {
-    const {
-      repository: { highlightRepository },
-    } = dependencies;
+    const { repository: { highlightRepository }} = dependencies;
   
     const executeFunction = async (userId:string) => {
-    //   console.log(selectedImage, "data from useCase");
       const response = await highlightRepository.getHighlights(userId);
       console.log(response,"res from exe");
       

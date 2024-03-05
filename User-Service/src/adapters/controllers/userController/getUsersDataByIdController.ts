@@ -7,6 +7,8 @@ export default (dependecies:any)=>{
     const getUserByIdController=async (req:Request,res:Response)=>{
         console.log(req.body,"req.bodyreq.body");
         const ids=req.body.ids
+        console.log(ids,"idsidsidsids");
+        
         const response=await getUsersDataById_Usecase(dependecies).executeFunction(ids)
         console.log(response,"response form getUserByIdController");
         
