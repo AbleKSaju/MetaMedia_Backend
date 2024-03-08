@@ -31,16 +31,16 @@ export const searchConsumer = async(dependencies:any)=>{
                         blockedUsers:jsondata.data.blockedUsers
                     }
 
-                    const responce:any =await createUserConsumer(data)
+                    // const responce:any =await createUserConsumer(data)
 
-                    if(responce.status){
+                    // if(responce.status){
 
-                        console.log('',responce?.data);
-                        await consumer.disconnect()
-                    }else{
-                        console.log('this is rsoce fails',responce?.message);
-                        await consumer.disconnect()
-                    }
+                       
+                    //     await consumer.disconnect()
+                    // }else{
+                    //     console.log('this is rsoce fails',responce?.message);
+                    //     await consumer.disconnect()
+                    // }
 
                 }
 

@@ -40,7 +40,8 @@ dotenv.config()
  app.use(cookieParser(process.env.COOKIEPARSERSECRET));
  app.use(express.static('public/'))
 
-//  const allowedOrigins = ["http://localhost:5173", "http://localhost:3000"];
+
+ const allowedOrigins = ["http://localhost:5173", "http://localhost:3000"];
  app.use(
     cors({
       origin:"http://localhost:5173",

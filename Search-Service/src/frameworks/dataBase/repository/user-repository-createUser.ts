@@ -6,8 +6,6 @@ export default {
   createUser: async (data: any) => {
     console.log(data, "userdata----------- from the reposory");
 
-    
-   
     const { userId, userName, profileUrl, followers, following, blockedUsers } = data;
     const response = await elasticClient.index({
       index: "search-user",
@@ -19,8 +17,6 @@ export default {
         following,
         blockedUsers,
       },
-      refresh: true,
-      ...userMapping
     });
     console.log(response,'this is respoce ');
     
