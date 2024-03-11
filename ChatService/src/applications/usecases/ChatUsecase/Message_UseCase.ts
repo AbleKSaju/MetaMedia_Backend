@@ -3,7 +3,7 @@ export const Message_UseCase = (dependencies: any) => {
       repository: { chatRepository },
     } = dependencies;
   
-    const executeFunction = async (conversationId:string, senderId:string, message:string, receiverId:string) => {
+    const executeFunction = async (conversationId:string, senderId:string, message:string, receiverId:string,lastUpdate:any) => {
         try {
             console.log("Ia m executeFunction");
             console.log(conversationId, senderId, message, receiverId,"conversationId:string, senderId:string, message:string, receiverId");
@@ -11,8 +11,7 @@ export const Message_UseCase = (dependencies: any) => {
             if (conversationId === 'new' && receiverId) {
                 const newCoversation = await chatRepository.addNewConversation(senderId, receiverId);
                 console.log(newCoversation,"newCoversation");
-                
-                const response  = await chatRepository.createMessage({conversationId:newCoversation.data?._id, senderId, message});
+                const response  = await chatRepository.createMessage({conversationId:newCoversation.data?._id, senderId, message,lastUpdate});
                 if(response){
                     return { status: response.status, message: response.message };
                 }else{
@@ -21,7 +20,7 @@ export const Message_UseCase = (dependencies: any) => {
             }
             console.log("GOING TO USECASE RESPONSE");
             
-            const response  = await chatRepository.createMessage({conversationId, senderId, message});
+            const response  = await chatRepository.createMessage({conversationId, senderId, message,lastUpdate});
             console.log(response,"responseresponse");
             
             if(response){

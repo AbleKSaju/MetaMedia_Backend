@@ -5,18 +5,23 @@ import { upload } from '../../../utils/multer/multer'
 export default (dependencies:any)=>{
     const router=express()
 
-    const {chooseInterestController,getUserDataController,getAllUserForChatController,getUsersDataByIdController,getUsersByNameController,getUserById_Controller}=userController(dependencies)
+    const {chooseInterestController,getUserDataController,ChangeUserStatusController,followUserController,getSearchUserController,getAllUsersDataController,getAllUserForChatController,getUsersDataByIdController,getUsersByNameController,getUserById_Controller}=userController(dependencies)
     const {addProfileController,editProfileController,addProfileImageController}=profileController(dependencies)
 
     router.post('/getUserData',getUserDataController)
+    router.get('/getAllUsers',getAllUsersDataController)
+    router.get('/getSearchUser/:user',getSearchUserController)
     router.post('/addProfile',addProfileController)
     router.post('/editProfile',editProfileController)
     router.post('/chooseInterest',chooseInterestController)
     router.post('/addProfileImage',upload.single("file"),addProfileImageController)
+    router.post("/followUser",followUserController)
     router.get("/getAllUsersForChat",getAllUserForChatController)
     router.post('/getUsersByname',getUsersByNameController)
     router.post('/getUserById',getUserById_Controller)
     router.post('/getUsersDataById',getUsersDataByIdController)
+    router.post('/changeUserStatus',ChangeUserStatusController)
+
 
     return router
 }

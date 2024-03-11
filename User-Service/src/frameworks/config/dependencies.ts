@@ -1,7 +1,7 @@
 import {userRepository,profileRepository} from '../../adapters/repositories'
 import {addProfileUsecase,editUserUsecase,AddProfileImageUsecase} from '../../applications/usecases'
 import {createUserUsecase} from'../../applications/consumeUsecases'
-import { getUserData_Usecase, chooseInterest_Usecase,getAllUsers_usecasse,getUsersById_Usecase,getUsersByName_Usecase,getUsersDataById_Usecase} from '../../applications/usecases/user'
+import { getUserData_Usecase,followUser_Usecase,getSearchUser_Usecase,ChangeUserStatus_Usecase, chooseInterest_Usecase,getAllUsers_usecasse,getUsersById_Usecase,getUsersByName_Usecase,getUsersDataById_Usecase,getAllUsersData_usecase} from '../../applications/usecases'
 
 
 const useCase:any={
@@ -13,8 +13,11 @@ const useCase:any={
     getAllUsers_usecasse,
     getUsersById_Usecase,
     getUsersByName_Usecase,
-    getUsersDataById_Usecase
-    
+    getUsersDataById_Usecase,
+    getAllUsersData_usecase,
+    getSearchUser_Usecase,
+    followUser_Usecase,
+    ChangeUserStatus_Usecase
 }
 
 const consumeUsecase:any={

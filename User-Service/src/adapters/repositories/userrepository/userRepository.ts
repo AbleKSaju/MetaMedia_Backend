@@ -98,6 +98,7 @@ export default {
         return {status:false}
       }
     },
+
     getUserById:async(id:any)=>{
       const user=await User.findOne({'basicInformation.userId':id})
       if(user){
@@ -106,6 +107,36 @@ export default {
         return {status:false}
       }
     },
+
+    followUser:async(currentUserId:string , followedUserId:string)=>{
+      const user:any = await User.findOne({'basicInformation.userId':currentUserId})
+      // const story = await User.findOne({ userId: currentUserId }).populate('basicInformation.fullName').exec();
+  
+      const userAlreadyFollows = user.socialConections.following.some((connection:any) => connection.userId === followedUserId);
+      console.log(userAlreadyFollows,"userAlreadyFollowsuserAlreadyFollowsuserAlreadyFollows");
+      if(userAlreadyFollows){
+        const updatedUser = await User.findOneAndUpdate({'basicInformation.userId':currentUserId},{$pull:{'socialConections.following': { userId: followedUserId}}})
+        const updateFollowedUser = await User.findOneAndUpdate({'basicInformation.userId':followedUserId},{$pull:{'socialConections.followers': { userId: currentUserId}}})
+        console.log(updatedUser," updatedUser I MA DATA");
+        if(updatedUser && updateFollowedUser){
+          
+          return {status:true , message:"Unfollowed Success"}
+        } else {
+          return {status:false , message:"Failed"}
+        }
+      }else{
+        const userDetails:any = await User.findOne({'basicInformation.userId':followedUserId})
+        const updatedUser = await User.findOneAndUpdate({'basicInformation.userId': currentUserId},{  $push: { 'socialConections.following': { userId: followedUserId,profile: userDetails.profile.profileUrl, fullName: userDetails.basicInformation.fullName}}});      
+        const updateFollowedUser = await User.findOneAndUpdate({'basicInformation.userId': followedUserId},{  $push: { 'socialConections.followers': { userId: currentUserId,profile: user.profile.profileUrl, fullName: user.basicInformation.fullName}}});      
+        console.log(updatedUser,"updatedUserupdatedUserupdatedUserupdatedUser");
+        if(updatedUser && updateFollowedUser){
+          return {status:true , message:"Followed Success"}
+        } else {
+          return {status:false , message:"Failed"}
+        }
+      }
+    },
+    
     getUsersDataById: async(ids:any)=>{
       console.log(ids,"idsids");
       const conversationUserData = Promise.all(ids.map(async (receiverId:any) => {
@@ -123,5 +154,74 @@ export default {
         return { user: { receiverId: userData.id, email: userData.email, fullName: userData.fullName, profile:userData.profile }, conversationId: receiverId.conversationId }
       }))
       return {status:true , data: await conversationUserData}
-    }
+    },
+
+    getAllUsersData: async()=>{
+        let usersData:any=[]
+        const user:any = await User.find()
+        await user.map((data:any)=>{
+          console.log(data?.profile?.bio,"data?.profile?.biodata?.profile?.bio");
+          
+          const userData={
+            id:data?.basicInformation?.userId,
+            email:data?.basicInformation?.email,
+            mobile:data?.basicInformation?.phoneNumber,
+            fullName:data?.basicInformation?.fullName,
+            profile:data?.profile?.profileUrl,
+            bio:data?.profile?.bio,
+            blocked:data?.profile?.blocked ?? false,
+          }
+          usersData.push(userData)
+        })
+        if(usersData){
+          return { status:true, data:usersData }
+        }else{
+          return { status:false }
+        }
+      },
+
+    getSearchUsers: async(user:string)=>{
+      console.log(user,"UUUUUSSSEERRRSSSSSSS");
+      
+        let searchedUsers:any=[]
+        const usersData:any = await User.find({
+            $or: [
+              {
+                'basicInformation.fullName': { $regex: ".*" + user + ".*", $options: "i" },
+              }, {
+                'basicInformation.userName': { $regex: ".*" + user + ".*", $options: "i" },
+          },
+            ],
+        })
+        
+        await usersData.map((data:any)=>{
+          console.log(data.basicInformation.userName,"data.basicInformation.userNamedata.basicInformation.userNamedata.basicInformation.userName");
+          
+          const users={
+            id:data?.basicInformation?.userId,
+            email:data?.basicInformation?.email,
+            fullName:data?.basicInformation?.fullName,
+            userName:data.basicInformation.userName,
+            profile:data?.profile?.profileUrl,
+          }
+          searchedUsers.push(users)
+        })        
+        if(searchedUsers.length){
+          return { status:true, data:searchedUsers }
+        }else{
+          return { status:false }
+        }
+      },
+      ChangeUserStatus: async (userId: string) => {
+        const response = await User.findOneAndUpdate(
+          { 'basicInformation.userId': userId },
+          { $set: { 'basicInformation.blocked': { $not: '$basicInformation.blocked' } } },
+          { new: true } // To return the updated document
+        );    
+          if (response) {
+            return { status: true, message: "Status Changed" };
+          }else{
+            return { status: false, message: "Status Not Changed"};
+          }
+        }
 }

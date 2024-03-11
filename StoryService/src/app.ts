@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 import config from '../config/config'
 import getDb from '../config/db'
 import express ,{Request,Response}from 'express'
-const cookieParser = require('cookie-parser');
+import cookieParser from 'cookie-parser'
 import cors from 'cors'
 import {routes} from './adapters/routes'
 import dependencies from './frameworks/config/dependencies'

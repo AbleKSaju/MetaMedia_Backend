@@ -5,7 +5,6 @@ export default (dependecies:any)=>{
 
         const {useCase:{showAllPost_useCase}}=dependecies
         const responce=await showAllPost_useCase(dependecies).executeFunction()
-        
         if(responce.status){
             res.status(200).json({status:true,data:responce.data})
         }else{

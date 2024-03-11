@@ -20,6 +20,10 @@ const userSChema = new mongoose.Schema({
     lastLogin:Date,
     isGoogle:Boolean,
     isFacebook:Boolean,
+    blocked:{
+      type:Boolean,
+      default:false,
+    },
     createdAt:{
       type:Date,
       default:Date.now()
@@ -54,12 +58,32 @@ const userSChema = new mongoose.Schema({
 
 socialConections:{
     following: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', 
+      userId:{
+         type: String,
+         required: true,
+      },
+      profile:{
+         type: String,
+         required: true,
+      },
+      fullName:{
+         type: String,
+         required: true,
+      },
      }],
      followers: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+      userId:{
+         type: String,
+         required: true,
+      },
+      profile:{
+         type: String,
+         required: true,
+      },
+      fullName:{
+         type: String,
+         required: true,
+      },
      }],
      blockedUsers: [{
         type: mongoose.Schema.Types.ObjectId,

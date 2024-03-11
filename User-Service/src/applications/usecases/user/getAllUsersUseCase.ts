@@ -1,6 +1,4 @@
 
-
-
 export const getAllUsers_usecasse = (dependencies: any) => {
   const { repository: { userRepository }} = dependencies;
 

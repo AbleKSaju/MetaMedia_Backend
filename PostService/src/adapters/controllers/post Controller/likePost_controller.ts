@@ -4,7 +4,6 @@ export default (dependecies:any)=>{
 
     const {likePost_UseCase}=dependecies.useCase
     const likePostController=async(req:Request,res:Response)=>{
-
       const {postId,userId} =req.body
       const data={
         postId,
@@ -17,7 +16,6 @@ export default (dependecies:any)=>{
        }else{
         res.status(400).json({status:false})
        }
-
     }
 
     return likePostController

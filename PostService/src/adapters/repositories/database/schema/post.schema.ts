@@ -25,7 +25,10 @@ const PostSchema=new mongoose.Schema({
     description:String,
 
     mediaUrl:[],
-   
+    blocked:{
+        type:Boolean,
+        default:false
+      },
     likes:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',

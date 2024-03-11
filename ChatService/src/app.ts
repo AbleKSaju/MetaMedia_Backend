@@ -38,20 +38,16 @@ const server=http.createServer(app)
   socket.on('addUser', userId => {
     const isUserExist = users.find((user:any) => user.userId === userId);
     if (!isUserExist) {
-        const user = { userId, socketId: socket.id };
-        console.log(user,"useruseruseruseruseruseruseruser");
-        
+        const user = { userId, socketId: socket.id };        
         users.push(user);
         io.emit('getUsers', users);
     }
   });  
 
-  socket.on('sendMessage', async ({ senderId, receiverId, message, conversationId }) => {
+  socket.on('sendMessage', async ({ senderId, receiverId, message, conversationId, lastUpdate }) => {
     console.log("Enter to sendMessage");
-    console.log(users,"usersusersusersusersusersusers");
-    console.log(senderId,"senderId");
-    console.log(receiverId,"receiverId");
-    
+    console.log(lastUpdate,"lastUpdatelastUpdatelastUpdate");
+
     const receiver = users.find((user:any) => user.userId === receiverId);
     const sender = users.find((user:any) => user.userId === senderId);
     console.log('sender :>> ', sender);
@@ -63,6 +59,7 @@ const server=http.createServer(app)
           message,
           conversationId,
           receiverId,
+          lastUpdate
       });
     } else {
       io.to(sender?.socketId)?.emit('getMessage', {
@@ -70,6 +67,7 @@ const server=http.createServer(app)
           message,
           conversationId,
           receiverId,
+          lastUpdate
       });
     }
   });

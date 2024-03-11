@@ -16,10 +16,8 @@ export default (dependencies:any)=> {
     router.post('/oldPassword',verifyPasswordController)
     router.post('/forgotPassword',forgotPasswordController)
     router.post('/changePassword',changePasswordController)
-
     router.post('/loginWithGoogle',loginWithGoogleController)
     router.post('/chooseInterest',chooseInterestController)
-
     router.post('/addProfile',addProfileController)
     router.post('/login',validateLogin,loginUserController)
     router.get('/logout',logoutUserController)
