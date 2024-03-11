@@ -1,5 +1,5 @@
 import {addProfileUsecase,editUserUsecase,AddProfileImageUsecase} from './profile'
-import {chooseInterest_Usecase,getUserData_Usecase,getAllUsers_usecasse,getUsersById_Usecase,getUsersByName_Usecase,getUsersDataById_Usecase} from './user'
+import {chooseInterest_Usecase,getUserData_Usecase,getAllUsers_usecasse,getUsersById_Usecase,getUsersByName_Usecase,getUsersDataById_Usecase,SavePost_Usecase,Suggetion_Usecase} from './user'
 
 export {
     addProfileUsecase,
@@ -10,5 +10,7 @@ export {
     getAllUsers_usecasse,
     getUsersById_Usecase,
     getUsersByName_Usecase ,
-    getUsersDataById_Usecase
+    getUsersDataById_Usecase,
+    SavePost_Usecase,
+    Suggetion_Usecase
 }

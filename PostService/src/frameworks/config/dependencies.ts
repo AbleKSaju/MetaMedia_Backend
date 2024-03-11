@@ -10,7 +10,8 @@ import {
     reportPostRepo,
     deletePostRepo,
     updateComment,
-    deleteReplayRepo
+    deleteReplayRepo,
+    savePostRepo
     
 } from '../repositories'
 
@@ -28,7 +29,8 @@ import {
     reportPost_UseCase,
     deletePost_UseCase,
     updateComment_useCase,
-    deleteReplay_UseCase
+    deleteReplay_UseCase,
+    savePost_UseCase
 } from '../../applications/useCases'
 
 
@@ -47,7 +49,8 @@ const useCase:any={
     reportPost_UseCase,
     deletePost_UseCase,
     updateComment_useCase,
-    deleteReplay_UseCase
+    deleteReplay_UseCase,
+    savePost_UseCase
 }
 const repositery:any={
     sayHelloRepo,
@@ -61,7 +64,8 @@ const repositery:any={
     reportPostRepo,
     deletePostRepo,
     updateComment,
-    deleteReplayRepo
+    deleteReplayRepo,
+    savePostRepo
 }
 
 

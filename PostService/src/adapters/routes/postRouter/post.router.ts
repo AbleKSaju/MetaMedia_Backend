@@ -21,7 +21,9 @@ export default (dependencies:any)=> {
         reportPost_controller,
         deletePost_controller,
         updateComment_controller,
-        deleteReplay_controller
+        deleteReplay_controller,
+        savePost_controller
+
     } = postController(dependencies)
 
     router.get('/sayHello',verifyToken,sayHelloController)
@@ -38,6 +40,6 @@ export default (dependencies:any)=> {
     router.post('/deletePost',validateDeletePost,deletePost_controller)
     router.post('/updateCommnet',updateComment_controller)
     router.post('/deleteReplay',deleteReplay_controller)
-    //save post 
+    router.post('/savePost',savePost_controller)
     return router
 }

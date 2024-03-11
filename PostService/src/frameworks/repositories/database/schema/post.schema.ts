@@ -52,6 +52,10 @@ const PostSchema=new mongoose.Schema({
     },
     showComment:Boolean,
     showLikes:Boolean,
+    saved: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+    }], 
     createdAt:{
         type:Date,
         default:Date.now()

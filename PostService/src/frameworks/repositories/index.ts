@@ -9,7 +9,7 @@ import {addReplayToCommentRepo,deleteReplayRepo} from './addReplayToCommentRepo'
 import {deleteCommentRepo} from './deleteCommentRepo'
 import{reportPostRepo} from './reportPostRepo'
 import {deletePostRepo} from './deletePostRepo'
-
+import { savePostRepo} from './savePostRepo'
 
 
 
@@ -26,5 +26,6 @@ export {
     reportPostRepo,
     deletePostRepo,
     updateComment,
-    deleteReplayRepo
+    deleteReplayRepo,
+    savePostRepo
 }
