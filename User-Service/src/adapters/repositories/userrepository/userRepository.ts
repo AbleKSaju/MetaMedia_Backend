@@ -180,7 +180,7 @@ export default {
         }
       },
 
-    getSearchUsers: async(user:string)=>{
+    getSearchUsers: async(user:string,userId:string)=>{
       console.log(user,"UUUUUSSSEERRRSSSSSSS");
       
         let searchedUsers:any=[]
@@ -194,8 +194,15 @@ export default {
             ],
         })
         
-        await usersData.map((data:any)=>{
-          console.log(data.basicInformation.userName,"data.basicInformation.userNamedata.basicInformation.userNamedata.basicInformation.userName");
+        await usersData.map(async(data:any)=>{
+          console.log("i am usersData");
+          let isFollow = false
+          await data.socialConections.followers.map((data:any)=>{
+            console.log(data,"DATAaaa");
+            if(data.userId == userId){
+              isFollow = true
+            }
+          })
           
           const users={
             id:data?.basicInformation?.userId,
@@ -203,6 +210,7 @@ export default {
             fullName:data?.basicInformation?.fullName,
             userName:data.basicInformation.userName,
             profile:data?.profile?.profileUrl,
+            follow:isFollow
           }
           searchedUsers.push(users)
         })        
