@@ -20,7 +20,7 @@ app.use(
    })
  );
 
- const io: Server = require('socket.io')(8080, {
+ const io: Server = require('socket.io')(8081, {
   cors: { origin: 'http://localhost:5173' }
 });
 const server=http.createServer(app)
