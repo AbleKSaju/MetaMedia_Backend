@@ -34,6 +34,7 @@ declare module 'express-session' {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIEPARSERSECRET));
+
 app.use(
    cors({
      origin: "http://localhost:5173",

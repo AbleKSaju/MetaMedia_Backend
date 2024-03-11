@@ -12,6 +12,7 @@ const expresscofig = (app: Express): void => {
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser(process.env.COOKIEPARSERSECRET));
   app.use(express.static('public/'));
+ 
   app.use(
     cors({
       origin: ['http:client-srv:5173','http://metamedia.com','http://localhost:5173'],
@@ -20,7 +21,7 @@ const expresscofig = (app: Express): void => {
     })
   );
 
-  
+
   app.use(
     session({
       secret: process.env.SESSION_SECRET_KEY,

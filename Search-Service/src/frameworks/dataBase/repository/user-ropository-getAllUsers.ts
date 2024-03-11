@@ -7,9 +7,9 @@ export default {
           const response = await elasticClient.search({
             index: "search-user",
             body: {
-              query: {
-                match_all: {}
-              }
+                query: {
+                    match_all: {}
+                }
             }
           });
 

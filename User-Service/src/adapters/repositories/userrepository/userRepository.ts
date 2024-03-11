@@ -156,6 +156,7 @@ export default {
       return {status:true , data: await conversationUserData}
     },
 
+
     getAllUsersData: async()=>{
         let usersData:any=[]
         const user:any = await User.find()
@@ -223,5 +224,38 @@ export default {
           }else{
             return { status: false, message: "Status Not Changed"};
           }
+        },
+
+    savePost: async (data: any) => {
+      try {
+        const { userId, postId } = data;
+        const user: any = await User.findOne({ 'basicInformation.userId': userId });
+    
+        if (user) {
+          if (!user.acivity.saved.includes(postId)) {
+            user.acivity.saved.push(postId);
+          } else {
+            
+            const index = user.acivity.saved.indexOf(postId);
+            if (index !== -1) {
+              user.acivity.saved.splice(index, 1);
+            }
+
+          }
+    
+          const response = await user.save();
+          if (response) {
+            console.log(response);
+            return { status: true, data: response };
+          } else {
+            return { status: false, message: "Error while saving post" };
+          }
+        } else {
+          return { status: false, message: "User not found" };
         }
+      } catch (error) {
+        return { status: false, message: error };
+      }
+    }
+
 }

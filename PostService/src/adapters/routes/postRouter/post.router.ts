@@ -19,7 +19,11 @@ export default (dependencies:any)=> {
         addReplayToComment_controller,
         deleteComment_controller,
         reportPost_controller,
-        deletePost_controller
+        deletePost_controller,
+        updateComment_controller,
+        deleteReplay_controller,
+        savePost_controller
+
     } = postController(dependencies)
 
     router.get('/sayHello',verifyToken,sayHelloController)
@@ -34,7 +38,8 @@ export default (dependencies:any)=> {
     router.post('/deleteComment',validateDeleteComment,deleteComment_controller)
     router.post('/reportPost',validateReportPost,reportPost_controller)
     router.post('/deletePost',validateDeletePost,deletePost_controller)
-    //replay delete
-    //save post 
+    router.post('/updateCommnet',updateComment_controller)
+    router.post('/deleteReplay',deleteReplay_controller)
+    router.post('/savePost',savePost_controller)
     return router
 }

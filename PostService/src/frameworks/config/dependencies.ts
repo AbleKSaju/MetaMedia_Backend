@@ -8,9 +8,12 @@ import {
     addReplayToCommentRepo,
     deleteCommentRepo,
     reportPostRepo,
-    deletePostRepo
+    deletePostRepo,
+    updateComment,
+    deleteReplayRepo,
+    savePostRepo
     
-} from '../../adapters/repositories'
+} from '../repositories'
 
 import {
     sayHello_usecase,
@@ -24,9 +27,10 @@ import {
     addReplayToComment_UseCase,
     deleteComment_UseCase,
     reportPost_UseCase,
-    deletePost_UseCase
-
-
+    deletePost_UseCase,
+    updateComment_useCase,
+    deleteReplay_UseCase,
+    savePost_UseCase
 } from '../../applications/useCases'
 
 
@@ -43,7 +47,10 @@ const useCase:any={
     addReplayToComment_UseCase,
     deleteComment_UseCase,
     reportPost_UseCase,
-    deletePost_UseCase
+    deletePost_UseCase,
+    updateComment_useCase,
+    deleteReplay_UseCase,
+    savePost_UseCase
 }
 const repositery:any={
     sayHelloRepo,
@@ -55,9 +62,10 @@ const repositery:any={
     addReplayToCommentRepo,
     deleteCommentRepo,
     reportPostRepo,
-    deletePostRepo
-
-
+    deletePostRepo,
+    updateComment,
+    deleteReplayRepo,
+    savePostRepo
 }
 
 

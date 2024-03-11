@@ -7,17 +7,16 @@ export default {
       index: "search-user",
       body: {
         query: {
-          match: {
-            userName: name
-          }
+            wildcard: {
+              userName: `${name}*`
+            }
         }
-      }
+    }
     });
 
-    console.log('this is responce',response);
     
-    if (response && response.body && response.body.hits.total.value > 0) {
-      return { status: true, data: response.body.hits.hits[0]._source };
+    if (response  && response.hits.total.value > 0) {
+      return { status: true, data: response.hits.hits[0]._source };
     } else {
       return { status: false, message: "User not found" };
     }
