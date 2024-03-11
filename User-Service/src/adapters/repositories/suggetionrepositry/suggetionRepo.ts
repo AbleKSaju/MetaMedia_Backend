@@ -20,7 +20,7 @@ export default {
             const currentUser:any = await UserShema.User.findOne({ 'basicInformation.userId': userId });
 
             if (!currentUser) {
-                throw new Error('Current user not found');
+              return { status: false, message: "no user found", data: [] };
             }
 
             // Find the user with the provided userId and exclude the current user
