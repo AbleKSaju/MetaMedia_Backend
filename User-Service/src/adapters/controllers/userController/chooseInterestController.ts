@@ -10,15 +10,7 @@ export default (dependencies: any) => {
   const ChooseInterestController = async (req: Request, res: Response) => {
     
     const {accessToken} = req.cookies;
-    console.log(accessToken,"access TOKEN");
-    console.log(typeof(accessToken),"TYPW");
-        
-    // console.log(req.session.refreshToken,"TOKEN");
-
    let userData:any=await decodeAccessToken(accessToken)  
-   console.log(userData,"udata");
-   console.log(userData.data.user,"udataUSER");
-   console.log(userData.data.user?._id,"ID");
     
    if(userData.status){
     const userId=userData?.data?.user?._id || userData?.data?.user?.response._id 

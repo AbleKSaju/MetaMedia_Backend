@@ -15,7 +15,6 @@ export default (dependencies: any) => {
     if(userData.status){
         const senderId=userData?.data?.user?._id || userData?.data?.user?.response._id 
         const response = await getMessages_UseCase(dependencies).executeFunction(conversationId,senderId,receiverId)
-        console.log(response,"response from controller");
         if(response){
             res.json({status:response.status , data:response.data})
           } else {

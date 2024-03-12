@@ -3,12 +3,13 @@ import serverConfig from './server'
 import dotenv from 'dotenv'
 import config from '../config/config'
 import getDb from '../config/db'
-import express from 'express'
+import express, { NextFunction, Request, Response } from 'express'
 import cors from 'cors'
 import {routes} from './adapters/routes'
 import dependencies from './frameworks/config/dependencies'
 import { Server, Socket } from 'socket.io';
 import cookieParser from 'cookie-parser';
+import { debounceMiddleware } from './events/DebouncingMiddleware'
 const app=express()
 dotenv.config()
 getDb(config)
@@ -77,10 +78,7 @@ const server=http.createServer(app)
     io.emit('getUsers', users);
   });
 });
-
-
-  
-
+  app.use(debounceMiddleware)
  app.use('/api',routes(dependencies))
 
 serverConfig(server,config).startServer()
