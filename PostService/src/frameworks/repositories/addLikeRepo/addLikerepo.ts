@@ -5,15 +5,22 @@ export default {
     try {
       const { userId, postId } = data;
 
+
       const postData = await Post.findById(postId);
 
       if (postData) {
 
+console.log('1');
 
       const isuserLikedAlredy =  postData.likes.includes(userId)
+console.log(isuserLikedAlredy);
       
 if(isuserLikedAlredy){
+console.log('2');
+
   const index = postData.likes.indexOf(userId);
+  console.log(index,'INdex');
+  
   if (index !== -1) {
       postData.likes.splice(index, 1);
   }
@@ -22,22 +29,16 @@ if(isuserLikedAlredy){
 }else{
     postData.likes.push(userId)
 
+    
+  }
+  const responce = await postData.save();
 
-        if (isuserLikedAlredy) {
-          const index = postData.likes.indexOf(userId);
-          if (index !== -1) {
-            postData.likes.splice(index, 1);
-          }
-        } else {
-          postData.likes.push(userId);
-        }
-        const responce = await postData.save();
+       if (responce) {
+        return { status: true, data: responce };
+      } else {
+        return { status: false ,message:"no data"};
+      }
 
-        if (responce) {
-          return { status: true, data: responce };
-        } else {
-          return { status: false };
-        }}
       } else {
         return { status: false, message: "No posts found for the user" };
       }}
