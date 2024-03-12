@@ -5,8 +5,6 @@ export const addPostUseCase= (dependencies:any)=>{
         
         
         console.log('this is data',data);
-
-
         const responce= await createPostRepo.createPost(data)
 
         if(responce.status){
