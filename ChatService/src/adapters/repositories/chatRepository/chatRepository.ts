@@ -2,10 +2,16 @@ import schema from "../database/schema";
 
 export default {
     addNewConversation: async (senderId:string, receiverId:string) => {
-      try {          
-        const response = await schema.Conversation.create({ members: [senderId, receiverId] });
-        if (response) {
-          return { status: true, message: "conversation created", data:response};
+      try {     
+        let response:any
+        const data = await schema.Conversation.find({ members: [senderId, receiverId] }) 
+        console.log(data,"datadatadatadatadatadatadatadatadata");
+            if(!data.length){
+               response = await schema.Conversation.create({ members: [senderId, receiverId] });
+              console.log(response,"responseresponseresponseresponseresponseresponse");
+            }
+        if (data || response) {
+          return { status: true, message: "conversation created", data:data ?? response};
         } else {
           return { status: false, message: "Error occur" };
         }
@@ -20,7 +26,7 @@ export default {
         console.log(senderId, receiverId,"USER");
         
         const response = await schema.Conversation.findOne({ members: { $all: [senderId, receiverId] } });
-        console.log(response,"responseresponseresponseresponseresponseresponseresponseresponseresponseresponse");
+        console.log(response,"respsponse");
         
         if (response) {
           return { status: true, message: "conversation Exist"};
@@ -37,13 +43,10 @@ export default {
         try {          
           const receiverIds:any=[]
           const conversations:any = await schema.Conversation.find({ members: { $in: [userId] } });
-          Promise.all(conversations.sort((a:any,b:any)=>b.lastUpdate - a.lastUpdate).map(async (conversation:any) => {
-            console.log(conversation,"conversationconversationconversation");
-            
+          Promise.all(conversations.sort((a:any,b:any)=>b.lastUpdate - a.lastUpdate).map(async (conversation:any) => {            
              const id:string = conversation.members.find((member:string) => member !== userId);
              receiverIds.push({id:id,conversationId:conversation._id,lastUpdate:conversation.lastUpdate})
           }))
-          console.log(receiverIds,"receiverIdsreceiverIds");
           
           if (receiverIds.length) {
             return { status: true, message: "receivers Found",data:receiverIds };
@@ -55,6 +58,7 @@ export default {
           return { status: false, message: error ,data:false};
         }
       },
+
       createMessage: async ({conversationId, senderId, message}:any) => {
         try {  
           const response = await schema.Messages.create({ conversationId, senderId, message });          
@@ -74,9 +78,7 @@ export default {
         try {  
           console.log("I MA getMessages");
           const checkMessages = async (conversationId:string) => {
-            console.log(conversationId, 'conversationId')
             const messages = await schema.Messages.find({ conversationId });
-            console.log(messages,"messagesmessagesmessages");
             const messageUserData = Promise.all(messages.map(async (message) => {
                 return {  senderId: message.senderId, message: message.message,time:message.createdAt  }
             }));
@@ -85,21 +87,14 @@ export default {
           }
 
             if (conversationId === 'new') {
-              console.log("I AM NEW ONE");
-              const checkConversation:any = await schema.Conversation.find({ members: { $all: [senderId, receiverId] } });
-              console.log("GOING TO CHECK");
-              
-              console.log(checkConversation,"checkConversation");
-              console.log("Dyng TO CHECK");
+              const checkConversation:any = await schema.Conversation.find({ members: { $all: [senderId, receiverId] } });              
               
               if (checkConversation.length > 0) {
                   await checkMessages(checkConversation[0]._id);
               } else {
                   return { status: true, data: [] }
               }
-          } else {
-            console.log("going to cehck message");
-            
+          } else {            
            return await checkMessages(conversationId);
           }
         } catch (error) {
