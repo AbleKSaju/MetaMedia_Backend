@@ -46,9 +46,6 @@ const server=http.createServer(app)
   });  
 
   socket.on('sendMessage', async ({ senderId, receiverId, message, conversationId, lastUpdate }) => {
-    console.log("Enter to sendMessage");
-    console.log(lastUpdate,"lastUpdatelastUpdatelastUpdate");
-
     const receiver = users.find((user:any) => user.userId === receiverId);
     const sender = users.find((user:any) => user.userId === senderId);
     console.log('sender :>> ', sender);
