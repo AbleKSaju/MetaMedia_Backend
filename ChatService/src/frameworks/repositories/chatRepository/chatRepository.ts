@@ -8,7 +8,6 @@ export default {
         console.log(data,"datadatadatadatadatadatadatadatadata");
             if(!data.length){
                response = await schema.Conversation.create({ members: [senderId, receiverId] });
-              console.log(response,"responseresponseresponseresponseresponseresponse");
             }
         if (data || response) {
           return { status: true, message: "conversation created", data:data ?? response};

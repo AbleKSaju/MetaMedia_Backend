@@ -22,6 +22,8 @@ export const createUser_Usecases = (dependencies: any) => {
     const response = await sentOtp(data?.email);
     if (response?.status) {
       const { otp } = response;
+      console.log(otp,"otp");
+      
       return { status: true, data, otp:otp };
     } else {
       return { status: response?.status, message: response?.message };

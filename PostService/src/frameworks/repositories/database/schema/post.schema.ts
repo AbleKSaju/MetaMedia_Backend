@@ -21,7 +21,7 @@ const CommentSchema:Schema = new mongoose.Schema({
 });
 
 const PostSchema=new mongoose.Schema({
-    userId:mongoose.Schema.Types.ObjectId,
+    userId:String,
     description:String,
 
     mediaUrl:[],
@@ -69,4 +69,4 @@ const PostSchema=new mongoose.Schema({
 },{timestamps:true})
 
 
-export const Post =mongoose.model("Post",PostSchema)
+export const Post = mongoose.model("Post",PostSchema)

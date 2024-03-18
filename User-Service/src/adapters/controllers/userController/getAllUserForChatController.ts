@@ -6,7 +6,6 @@ export default (dependecies: any) => {
     console.log("getAllUserForChatController");
       
     const responce = await getAllUsers_usecasse(dependecies).executeFunction();
-    console.log(responce,"responce getAllUserForChatController");
     
     if (responce.status) {
       res.status(200).json({ status: true, data: responce.data });

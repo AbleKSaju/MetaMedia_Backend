@@ -10,15 +10,26 @@ import {userconsumer} from './events/userconsumer'
 import {routes} from './adapters/routes'
 import dependencies from './frameworks/config/dependencies'
 import session, { SessionOptions,MemoryStore,SessionData } from "express-session";
+import helmet from "helmet";
+import { sanitizeData } from './utils/sanitize/sanitizeData'
+
 const store = new MemoryStore();
 const app=express()
 getDb(config)
 
 const server=http.createServer(app)
 dotenv.config()
+// app.use(helmet({ xssFilter: true }));
 
-//  authconsumer()
- declare module 'express-session' {
+// app.use((req, res, next) => {
+//   const hasScript = sanitizeData(req.body) || sanitizeData(req.query) || sanitizeData(req.params);
+//   if (hasScript) {
+//     return res.status(400).send("Detected malicious script in request.");
+//   }
+//   next();
+// });
+
+declare module 'express-session' {
   interface Session {
     userData:{
       _id:string,

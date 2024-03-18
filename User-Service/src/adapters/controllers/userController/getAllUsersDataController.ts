@@ -6,7 +6,6 @@ export default (dependecies: any) => {
     console.log("getAllUsersDataController");
     
     const responce = await getAllUsersData_usecase(dependecies).executeFunction();
-    console.log(responce,"responce getAllUsersDataController");
     
     if (responce.status) {
       res.status(200).json({ status: true, data: responce.data });

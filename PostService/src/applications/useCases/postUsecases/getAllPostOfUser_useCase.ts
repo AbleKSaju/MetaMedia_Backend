@@ -5,6 +5,7 @@ export const getAllPostOfUser_useCase = (dependencies: any) => {
       try {
 
         const response = await getallpostofuser(userId);
+  console.log(response,"responsegetallpostofuser");
   
         if (response.status) {
           return { status: true, data: response.data };

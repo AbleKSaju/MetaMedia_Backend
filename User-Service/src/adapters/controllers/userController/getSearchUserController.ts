@@ -11,7 +11,6 @@ export default (dependecies: any) => {
     if(userData.status){
       const userId=userData?.data?.user?._id || userData?.data?.user?.response._id 
     const responce = await getSearchUser_Usecase(dependecies).executeFunction(user,userId);
-    console.log(responce,"responce getSearchUserController");
     if (responce.status) {
       res.status(200).json({ status: true, data: responce.data });
     } else {

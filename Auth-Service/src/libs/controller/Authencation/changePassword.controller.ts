@@ -6,12 +6,10 @@ export default (dependencies: any) => {
   } = dependencies;
 
   const changePasswordController = async (req: Request, res: Response) => {
-    const { password } = req.body;
-    const email: string = "ableksaju3@gmail.com"; // req.session.userData.email
-    const response = await changePassword_Usecase(dependencies).executeFunction(
-      email,
-      password
-    );
+    const { password,email,oldPassword } = req.body;
+    console.log( password,email,oldPassword ," password,email ");
+    
+    const response = await changePassword_Usecase(dependencies).executeFunction(email,password,oldPassword);
     if (response) {
       res.json({ status: response.status, message: response.message });
     } else {

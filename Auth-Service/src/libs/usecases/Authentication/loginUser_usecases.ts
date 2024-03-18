@@ -4,19 +4,23 @@ import { createAccessToken, createRefreshToken } from '../../../utils/jwt';
 
 export const loginUser_usecases=(dependencies:any)=>
 {
+    console.log("loginUser_usecases");
+    
     const {
         repository: { authenticationRepository },
       } = dependencies;
     const executeFunction=async(email:string,password:string)=>{
         //find the user
-        const responce=await authenticationRepository.finduser(email)
-        console.log(responce,"userresponceDATA");
-        
+        const response=await authenticationRepository.finduser(email)
         //user email and password is valid
-        if(!responce.status){
+        
+        if(!response.status){
             return ({message:"Email is not valid",status:false})
         }else{
-            const {user}=responce
+            if(response.user.basicInformation.blocked){                
+                return ({message:"You are Blocked by admin",status:false})
+            }
+            const {user}=response
             const validUser=await verifyHashPassword(password,user.basicInformation.password)
             if(validUser){
                 //create acces and refresh token 

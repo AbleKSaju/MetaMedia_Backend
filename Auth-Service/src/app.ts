@@ -9,6 +9,7 @@ import dependencies from './config/dependencies'
 import session, { SessionOptions,MemoryStore,SessionData } from "express-session";
 import dotenv from 'dotenv'
 import cors from 'cors'
+import { authConsumer } from './events/authConsumer'
 const cookieParser = require('cookie-parser');
 const app=express()
 const server=http.createServer(app)
@@ -57,6 +58,8 @@ app.use(
   );
   
 expresscofig(app)
+
+authConsumer(dependencies)
 
 app.use('/api',routes(dependencies))
 serverConfig(server,config).startServer()
