@@ -3,7 +3,7 @@ import { Post } from "../database";
 export default {
   showAllPost: async () => {
     try {
-      const response = await Post.find({ isDelete: { $ne: true } });
+      const response = await Post.find({ isDelete: { $ne: true } }).sort({ createdAt: -1 })
 
       if (response) {
         return { status: true, data: response };
