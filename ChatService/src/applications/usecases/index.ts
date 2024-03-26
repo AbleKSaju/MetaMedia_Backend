@@ -7,6 +7,8 @@ import {GetAllGroupsOfUser_useCase} from './ChatUsecase/getAllGroupsOfUserUsecas
 import {getGroupMessages_useCase} from './ChatUsecase/getGroupMessages_UseCase'
 import {GetGroupDataById_useCase} from './ChatUsecase/getGroupDataById_Usecase'
 import {SendGroupMessage_UseCase} from './ChatUsecase/sendGroupMessage_useCase'
+import { singleUserSendFile_Usecase } from './ChatUsecase/singleUserSendFile_Usecase'
+import { deleteMessage_UseCase } from './ChatUsecase/deleteMessage_useCase'
 export {
   Conversation_UseCase,
   getConversations_UseCase,
@@ -16,5 +18,7 @@ export {
   GetAllGroupsOfUser_useCase,
   getGroupMessages_useCase,
   GetGroupDataById_useCase,
-  SendGroupMessage_UseCase
+  SendGroupMessage_UseCase,
+  singleUserSendFile_Usecase,
+  deleteMessage_UseCase
 }

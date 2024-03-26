@@ -13,6 +13,8 @@ import {deletePost_UseCase} from './deletePost_Usecase'
 import {updateComment_useCase} from './updateComment_UseCase'
 import {deleteReplay_UseCase} from './deleteReplay_UseCase'
 import {savePost_UseCase} from './savePost_UseCase'
+import {getLikedAndCommentedPost_usecase} from './getLikedAndCommentedPost_usecase'
+import { ChangePostStatus_usecase } from './ChangePostStatusUsecase'
 export {
     sayHello_usecase,
     addPostUseCase,
@@ -28,5 +30,7 @@ export {
     deletePost_UseCase,
     updateComment_useCase,
     deleteReplay_UseCase,
-    savePost_UseCase
+    savePost_UseCase,
+    getLikedAndCommentedPost_usecase,
+    ChangePostStatus_usecase
 }

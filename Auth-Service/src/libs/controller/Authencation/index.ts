@@ -10,11 +10,13 @@ import chooseInterestController from './chooseInterestController'
 import refreshTokenController from './refreshToken.controller'
 import logoutUserController from './logoutUserController'
 import imageController from './imgController'
+import resendOtpFunction from './resendOtpFunction'
 
 export default (dependencies:any)=>{
     return {
         createUserController:create_user_controller(dependencies),
         verifyOtpController:verifyOtpController(dependencies),
+        resendOtpFunction:resendOtpFunction(dependencies),
         verifyPasswordController:verifyPassword_Controller(dependencies),
         loginWithGoogleController:loginWithGoogleController(dependencies),
         loginWithFacebookController:loginWithFacebookController(dependencies),

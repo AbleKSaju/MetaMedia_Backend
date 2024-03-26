@@ -10,9 +10,7 @@ function generateotp() {
   return otp;
 }
 const sentOtp = async (email:string) => {  
-  console.log("otp sending");
   console.log(process.env.AUTH_EMAIL,"process.env.AUTH_EMAIL");
-  console.log("otp YOO");
   
   const transporter = nodemailer.createTransport({
     service: "gmail",
@@ -26,7 +24,6 @@ const sentOtp = async (email:string) => {
   });
   
   const otp = generateotp();
-  console.log(otp,"otp");
   
   const info = await transporter.sendMail({
     from: process.env.AUTH_EMAIL,
@@ -43,11 +40,10 @@ const sentOtp = async (email:string) => {
         `,
   });
   if (info) {
-    console.log(otp,"otpotp");
     
     return {status:true,otp:otp};
   } else {
-    return {status:false,message:"Nodemailer fail error"}
+    return {status:false,message:"Nodemailer fail"}
   }
 };
 export {sentOtp};

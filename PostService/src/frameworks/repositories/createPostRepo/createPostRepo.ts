@@ -3,6 +3,7 @@ import {Post} from '../database'
 export default {
     createPost : async (data:any)=>{
         
+        const tagsArray = data.data.tags.split(',');
         const latitude = data.data.location && data.data.location.lat ? data.data.location.lat.latitude : 0;
         const longitude = data.data.location && data.data.location.lat ? data.data.location.lat.longitude : 0;
         const name = data.data.location && data.data.location.name ? data.data.location.name : '';
@@ -13,7 +14,7 @@ export default {
             mediaUrl:data.images,
             likes:[],
             comments:[],
-            tags:[],
+            tags:tagsArray,
             location:{
                 latitude: latitude,
                 longitude: longitude,

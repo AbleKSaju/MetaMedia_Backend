@@ -1,4 +1,4 @@
-import Conversation from "./conversation";
+import Conversation from "./Conversation";
 import getConversations from "./getConversations";
 import getMessages from "./getMessagesController";
 import message from "./message";
@@ -9,8 +9,10 @@ import getGroupDataByIdController from "./getGroupDataByIdController";
 import sendgroupMessageController from "./sendgroupMessageController";
 import SendVoiceMessageController from "./SendVoiceMessageController";
 import groupSendFileController from "./groupSendFileController";
-export default (dependencies:any)=>{
+import singleUserSendFileController from "./singleUserSendFileController";
+import deleteMessageController from "./deleteMessageController";
 
+export default (dependencies:any)=>{
     return{
         Conversation:Conversation(dependencies),
         getConversations:getConversations(dependencies),
@@ -22,6 +24,8 @@ export default (dependencies:any)=>{
         getGroupDataByIdController:getGroupDataByIdController(dependencies),
         sendgroupMessageController:sendgroupMessageController(dependencies),
         SendVoiceMessageController:SendVoiceMessageController(dependencies),
-        groupSendFileController:groupSendFileController(dependencies)
+        groupSendFileController:groupSendFileController(dependencies),
+        singleUserSendFileController:singleUserSendFileController(dependencies),
+        deleteMessageController:deleteMessageController(dependencies)
     }
 }

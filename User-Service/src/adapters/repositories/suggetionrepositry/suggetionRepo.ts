@@ -16,7 +16,7 @@ export default {
             const depth = 2;
             const limit = 10;
             const visited = new Set();
-            const suggestions = new Map(); // Map to store user suggestions and their scores
+            const suggestions = new Map();
 
             async function dfs(currentUserId: any, currentDepth: any, score: any, followedUsers: Set<string>) {
                 console.log("Visiting user:", currentUserId, "Depth:", currentDepth, "Score:", score);

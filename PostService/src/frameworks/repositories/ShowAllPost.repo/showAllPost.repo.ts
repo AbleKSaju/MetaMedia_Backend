@@ -4,7 +4,7 @@ export default {
   showAllPost: async () => {
     try {
       const response = await Post.find({ isDelete: { $ne: true } }).sort({ createdAt: -1 })
-
+        console.log(response,"I AM ALL POSTSSS");
       if (response) {
         return { status: true, data: response };
       } else {

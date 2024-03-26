@@ -20,9 +20,9 @@ const userSChema = new mongoose.Schema({
     lastLogin:Date,
     isGoogle:Boolean,
     isFacebook:Boolean,
-    blocked:{
-      type:Boolean,
-      default:false,
+    blocked: {
+      type: Boolean,
+      default: false
     },
     createdAt:{
       type:Date,
@@ -86,8 +86,18 @@ socialConections:{
       },
      }],
      blockedUsers: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User', 
+      userId:{
+         type: String,
+         required: true,
+      },
+      profile:{
+         type: String,
+         required: true,
+      },
+      fullName:{
+         type: String,
+         required: true,
+      },
      }],
      groups: [{
         type: mongoose.Schema.Types.ObjectId,

@@ -4,9 +4,7 @@ export default (dependencies:any)=>{
     const {useCase:{getUserData_Usecase}}=dependencies
 
     const getUserDataController=async(req:Request,res:Response)=>{
-        const {email}=req.body
-        console.log(req.body,"BODy");
-        
+        const {email}=req.body        
         console.log(email,"EMAIL");
         
         const response = await getUserData_Usecase(dependencies)?.executeFunction(email)

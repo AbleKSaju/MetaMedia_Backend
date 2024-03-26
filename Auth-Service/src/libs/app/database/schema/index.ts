@@ -1,5 +1,5 @@
-import {User} from './user.schema'
+import {Auth} from './auth.schema'
 
 export default {
-    User
+    Auth
 }

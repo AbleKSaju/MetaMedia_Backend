@@ -9,16 +9,14 @@ export default (dependencies:any) => {
     }=dependencies
 
   const verifyOtpController = async (req: Request, res: Response) => {
-
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
     const { otp } = req.body;
-    console.log(otp,"otpotp");
     
-    if (otp) {      
-      if (otp == req.session.Otp) {        
+    if (otp) {    
+      if (otp == req.session.Otp) {     
         const data=req.session.userData  
         console.log(data,"req.session.userData");
               
@@ -47,14 +45,13 @@ export default (dependencies:any) => {
            await authProducer(userWithOutpassword,'authTopic','createUser')
            await authProducer(userWithOutpassword,'search-topic','create-search-user')
 
-
-
           res.status(201).json({status:true,accesstoken:accesstoken,user:userWithOutpassword,message:message,path:"signup"})
         }else{
-            res.status(400).json({status:false , message:"UserData error"})
+            res.json({status:false , message:"UserData error"})
         }
       } else {
-        res.status(400).json({status:false , message:"Wrong otp"})
+        console.log("I AM ELSEEEEEE");
+        res.json({status:false , message:"Wrong otp"})
       }
     }else{
         res.status(404).json({status:false , message:"Otp not found"})

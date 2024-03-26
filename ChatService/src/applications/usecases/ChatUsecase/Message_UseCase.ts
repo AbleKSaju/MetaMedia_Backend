@@ -10,7 +10,6 @@ export const Message_UseCase = (dependencies: any) => {
             
             if (conversationId === 'new' && receiverId) {
                 const newCoversation = await chatRepository.addNewConversation(senderId, receiverId);
-                console.log(newCoversation,"newCoversation");
                 const response  = await chatRepository.createMessage({conversationId:newCoversation.data?._id, senderId, message,lastUpdate});
                 if(response){
                     return { status: response.status, message: response.message };
@@ -21,7 +20,6 @@ export const Message_UseCase = (dependencies: any) => {
             console.log("GOING TO USECASE RESPONSE");
             
             const response  = await chatRepository.createMessage({conversationId, senderId, message,lastUpdate});
-            console.log(response,"responseresponse");
             
             if(response){
                 return { status: response.status, message: response.message };

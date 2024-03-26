@@ -5,9 +5,7 @@ export default (dependecies: any) => {
   const followUserController = async (req: Request, res: Response) => {  
     console.log("I am followUserController");
     const {currentUserId , followedUserId} = req.body
-    console.log(currentUserId , followedUserId,"useruseruseruseruseruseruseruseruseruseruseruser");
     const response = await followUser_Usecase(dependecies).executeFunction(currentUserId , followedUserId);
-    console.log(response,"response getSearchUserController");
     
     if (response.status) {
       res.status(200).json({ status: true, message:response.message });

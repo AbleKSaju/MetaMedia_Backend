@@ -10,10 +10,8 @@ import {deleteCommentRepo} from './deleteCommentRepo'
 import{reportPostRepo} from './reportPostRepo'
 import {deletePostRepo} from './deletePostRepo'
 import { savePostRepo} from './savePostRepo'
-
-
-
-
+import { getLikedAndCommentedPost} from './getLikedAndCommentedPostRepo'
+import {ChangePostStatus} from './ChangePostStatus'
 
 export {
     sayHelloRepo,
@@ -28,5 +26,7 @@ export {
     deletePostRepo,
     updateComment,
     deleteReplayRepo,
-    savePostRepo
+    savePostRepo,
+    getLikedAndCommentedPost,
+    ChangePostStatus
 }

@@ -13,6 +13,8 @@ import deletePost_controller from "./deletePost_controller";
 import updateComment_controller from "./updateComment_controller";
 import deleteReplay_controller from "./deleteReplay_controller";
 import savePost_controller from "./savePost_controller";
+import getLikedAndCommentedPost_controller from "./getLikedAndCommentedPost_controller";
+import changePostStatus_controller from "./changePostStatus_controller";
 export default (dependencies:any)=>{
  return {
 
@@ -30,7 +32,9 @@ export default (dependencies:any)=>{
      deletePost_controller:deletePost_controller(dependencies),
      updateComment_controller:updateComment_controller(dependencies),
      deleteReplay_controller:deleteReplay_controller(dependencies),
-     savePost_controller:savePost_controller(dependencies)
+     savePost_controller:savePost_controller(dependencies),
+     getLikedAndCommentedPost_controller:getLikedAndCommentedPost_controller(dependencies),
+     changePostStatus_controller:changePostStatus_controller(dependencies)
 
  }
 

@@ -6,7 +6,6 @@ export default (dependencies: any) => {
   const MessageControler = async (req: Request, res: Response) => {
     console.log("I am MessageControler");
     
-    
     const { conversationId, senderId, message, receiverId,lastUpdate } = req.body;
     console.log(conversationId,senderId, message, receiverId,lastUpdate,"senderId, message, receiverId");
         if (!senderId || !message) return {status:false, message:'Please fill all required fields'}

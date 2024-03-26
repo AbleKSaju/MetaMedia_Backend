@@ -5,7 +5,7 @@ export default {
   addProfile: async (data: any, id: string) => {
     console.log(id,"USerID from add profile");
     
-    const response = await schema.User.findOneAndUpdate(
+    const response = await schema.Auth.findOneAndUpdate(
       { _id: id },
       {
         $set: {

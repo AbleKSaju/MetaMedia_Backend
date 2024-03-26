@@ -4,10 +4,7 @@ import { upload } from '../../../utils/multer/multer'
 
 export default (dependencies:any)=>{
     const router=express()
-
-
-    const {chooseInterestController,getUserDataController,ChangeUserStatusController,followUserController,getSearchUserController,getAllUsersDataController,getAllUserForChatController,getUsersDataByIdController,getUsersByNameController,getUserById_Controller,savePostController,suggetionController}=userController(dependencies)
-
+    const {chooseInterestController,getUserDataController,BlockAndUnblockUserController,ChangeUserStatusController,followUserController,getSearchUserController,getAllUsersDataController,getAllUserForChatController,getUsersDataByIdController,getUsersByNameController,getUserById_Controller,savePostController,suggetionController}=userController(dependencies)
     const {addProfileController,editProfileController,addProfileImageController}=profileController(dependencies)
 
     router.post('/getUserData',getUserDataController)
@@ -22,13 +19,10 @@ export default (dependencies:any)=>{
     router.post('/getUsersByname',getUsersByNameController)
     router.post('/getUserById',getUserById_Controller)
     router.post('/getUsersDataById',getUsersDataByIdController)
-
     router.post('/changeUserStatus',ChangeUserStatusController)
-
-
     router.post('/savePost',savePostController)
     router.get('/suggetions',suggetionController)
-
+    router.post('/BlockAndUnblockUser',BlockAndUnblockUserController)
 
     return router
 }

@@ -6,15 +6,10 @@
       const getConversation = async (req: Request, res: Response) => {
         console.log("I am ConversationController");
         const {accessToken} = req.cookies;
-      let userData:any=await decodeAccessToken(accessToken)  
-      console.log(userData.data.user,"HHUHUHU");
-      
+      let userData:any=await decodeAccessToken(accessToken)        
       if(userData.status){
-        const userId=userData?.data?.user?._id || userData?.data?.user?.response._id 
-        console.log(userId,'THIS IS  ID');
-        
+        const userId=userData?.data?.user?._id || userData?.data?.user?.response._id         
         const response = await getConversations_UseCase(dependencies).executeFunction(userId)
-        console.log(response,'THIS IS RESPONCE');
         
         if(response.status){
             res.json({status:response.status , message:response.message, data:response.data})

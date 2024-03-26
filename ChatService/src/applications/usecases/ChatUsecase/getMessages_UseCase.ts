@@ -5,7 +5,6 @@ export const getMessages_UseCase = (dependencies: any) => {
       console.log(conversationId,senderId,receiverId,"conversationId:string,senderId:string,receiverId");
       
       const response = await chatRepository.getMessages(conversationId,senderId,receiverId);
-      console.log(response,"responseresponse");
       
       if (response) {
         return { status: response.status, data:response.data };

@@ -11,8 +11,9 @@ import {
     deletePostRepo,
     updateComment,
     deleteReplayRepo,
-    savePostRepo
-    
+    savePostRepo,   
+    getLikedAndCommentedPost ,
+    ChangePostStatus
 } from '../repositories'
 
 import {
@@ -30,7 +31,9 @@ import {
     deletePost_UseCase,
     updateComment_useCase,
     deleteReplay_UseCase,
-    savePost_UseCase
+    savePost_UseCase,
+    getLikedAndCommentedPost_usecase,
+    ChangePostStatus_usecase
 } from '../../applications/useCases'
 
 
@@ -50,12 +53,15 @@ const useCase:any={
     deletePost_UseCase,
     updateComment_useCase,
     deleteReplay_UseCase,
-    savePost_UseCase
+    savePost_UseCase,
+    getLikedAndCommentedPost_usecase,
+    ChangePostStatus_usecase
 }
 const repositery:any={
     sayHelloRepo,
     createPostRepo,
     getAllPostOfUser,
+    getLikedAndCommentedPost,
     showAllPostRepo,
     addLikerepo,
     addComment,
@@ -65,7 +71,8 @@ const repositery:any={
     deletePostRepo,
     updateComment,
     deleteReplayRepo,
-    savePostRepo
+    savePostRepo,
+    ChangePostStatus
 }
 
 

@@ -10,6 +10,10 @@ import {userconsumer} from './events/userconsumer'
 import {routes} from './adapters/routes'
 import dependencies from './frameworks/config/dependencies'
 import session, { SessionOptions,MemoryStore,SessionData } from "express-session";
+import helmet from "helmet";
+import { body } from 'express-validator'
+import { sanitizeData } from './utils/sanitize/sanitizeData'
+
 const store = new MemoryStore();
 const app=express()
 getDb(config)
@@ -17,8 +21,19 @@ getDb(config)
 const server=http.createServer(app)
 dotenv.config()
 
-//  authconsumer()
- declare module 'express-session' {
+// app.use(body().trim().escape());
+
+// app.use(helmet({ xssFilter: true }));
+
+// app.use((req, res, next) => {
+//   const hasScript = sanitizeData(req.body) || sanitizeData(req.query) || sanitizeData(req.params);
+//   if (hasScript) {
+//     return res.status(400).send("Detected malicious script in request.");
+//   }
+//   next();
+// });
+
+declare module 'express-session' {
   interface Session {
     userData:{
       _id:string,
@@ -68,6 +83,18 @@ dotenv.config()
 //   req.session.Token = req.body.refreshToken
 //   res.status(200).json({status:true})
 // })
+app.all('*', (req, res, next: any) => {
+    const err: any = new Error(`Can't find ${req.originalUrl} on the server!`);
+    err.status = 'fail';
+    err.statusCode = 404;
+    next(err);
+});
+
+app.use((error: any, req: Request, res: Response, next: any) => {
+    error.statusCode = error.statusCode || 500;
+    error.status = error.status || 'error';
+    res.status(error.statusCode).json({ status: error.statusCode, message: error.message });
+});
 
  userconsumer(dependencies)
 

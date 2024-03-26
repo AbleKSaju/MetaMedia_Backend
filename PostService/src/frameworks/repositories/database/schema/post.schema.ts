@@ -21,7 +21,7 @@ const CommentSchema:Schema = new mongoose.Schema({
 });
 
 const PostSchema=new mongoose.Schema({
-    userId:mongoose.Schema.Types.ObjectId,
+    userId:String,
     description:String,
 
     mediaUrl:[],
@@ -32,10 +32,7 @@ const PostSchema=new mongoose.Schema({
     }],
     comments:[CommentSchema],
     shareCount:Number,
-    tags:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-    }],
+    tags:[],
     location: {
         latitude: Number,
         longitude: Number,
@@ -63,10 +60,12 @@ const PostSchema=new mongoose.Schema({
     isDelete:{
         type:Boolean,
         default:false
+    },
+    blocked:{
+        type:Boolean,
+        default: false
     }
-
-
 },{timestamps:true})
 
 
-export const Post =mongoose.model("Post",PostSchema)
+export const Post = mongoose.model("Post",PostSchema)

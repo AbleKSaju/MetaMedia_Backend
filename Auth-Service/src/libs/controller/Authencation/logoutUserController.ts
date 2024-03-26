@@ -6,9 +6,7 @@ export default (dependencies: any) => {
     console.log(req.cookies,"cookie");
     try {
     clearAccessTokenFromCookie("accessToken",res)
-    res.clearCookie("accessToken");
-    console.log("SUCC");
-    
+    res.clearCookie("accessToken");    
       res.json({ status: true, message: "Logout success" });
     } catch (err) {
         console.log(err,"er");
