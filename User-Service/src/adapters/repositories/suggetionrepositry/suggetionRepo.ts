@@ -19,7 +19,7 @@ export default {
             const suggestions = new Map();
 
             async function dfs(currentUserId: any, currentDepth: any, score: any, followedUsers: Set<string>) {
-                console.log("Visiting user:", currentUserId, "Depth:", currentDepth, "Score:", score);
+               
 
                 if (currentDepth > depth || visited.has(currentUserId)) {
                     return;
@@ -27,15 +27,14 @@ export default {
 
                 visited.add(currentUserId);
                 const user: any = await User.findOne({ 'basicInformation.userId': currentUserId });
-                console.log("User:", user);
+              
 
                 if (!user) {
-                    console.log("User not found:", currentUserId);
+                    
                     return;
                 }
 
-                console.log("Processing user:", user.basicInformation.fullName);
-
+               
                 if (currentDepth !== 0 && !followedUsers.has(user.basicInformation.userId.toString())) {
                     // Update score or any other criteria you want to consider
                     if (!suggestions.has(user.basicInformation?.userId?.toString())) {
@@ -52,16 +51,15 @@ export default {
                 const following: any = await getUsersByIds(user.socialConections.following.map((entry: any) => entry.userId));
                 const followers: any = await getUsersByIds(user.socialConections.followers.map((entry: any) => entry.userId));
 
-                console.log("Following:", following);
-                console.log("Followers:", followers);
+                
 
                 for (const followee of following) {
-                    console.log("Exploring followee:", followee.basicInformation.userId.toString());
+                   
                     await dfs(followee.basicInformation.userId.toString(), currentDepth + 1, 1, followedUsers); // Increase score for direct connections
                 }
 
                 for (const follower of followers) {
-                    console.log("Exploring follower:", follower.basicInformation.userId.toString());
+                    
                     await dfs(follower.basicInformation.userId.toString(), currentDepth + 1, 0.5, followedUsers); // Decrease score for followers
                 }
             }
@@ -79,7 +77,7 @@ export default {
             const filteredSuggestions = sortedSuggestions.filter(suggestion => suggestion.user._id.toString() !== userId);
 
             const result = filteredSuggestions.map(suggestion => suggestion.user);
-            console.log(result, 'HHHHHHH');
+           
 
             return { status: true, data: result };
         } catch (error) {

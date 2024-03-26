@@ -53,7 +53,23 @@ const userSChema = new mongoose.Schema({
       status:{
         type:String,
         enum:['online','offline']
-      }
+      },
+   
+},
+
+pushNotificationTokens: {
+   token: String,  
+   platform: String,
+   vapidPublicKey:String,
+   vapidPrivetKey:String,
+   status:{
+      type:Boolean,
+      default:false
+   },
+   denied:{
+      type:Boolean,
+      default:false
+   }
 },
 
 socialConections:{

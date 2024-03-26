@@ -11,7 +11,8 @@ import ChangeUserStatusController from "./ChangeUserStatusController";
 import BlockAndUnblockUserController from "./BlockAndUnblockUserController";
 import savePostController from "./savePostController";
 import suggetionController from "./suggetionController";
-
+import generatevapidKeysController from "./generatevapidKeysController";
+import SubcribeToAwsSNSController from "./SubcribeToAwsSNSController";
 export default (dependencies:any)=>{
    return{
     chooseInterestController:chooseInterestController(dependencies),
@@ -26,6 +27,10 @@ export default (dependencies:any)=>{
     followUserController:followUserController(dependencies),
     ChangeUserStatusController:ChangeUserStatusController(dependencies),
     savePostController:savePostController(dependencies),
-    suggetionController:suggetionController(dependencies)
+    suggetionController:suggetionController(dependencies),
+    generatevapidKeysController:generatevapidKeysController(dependencies),
+    SubcribeToAwsSNSController:SubcribeToAwsSNSController(dependencies)
+
+
    }
 }

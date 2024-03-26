@@ -1,4 +1,5 @@
-import { chatRepository } from "./chatRepository";
+import { chatRepository,NotifaicationRepo } from "./chatRepository";
 export {
-    chatRepository
+    chatRepository,
+    NotifaicationRepo
 }

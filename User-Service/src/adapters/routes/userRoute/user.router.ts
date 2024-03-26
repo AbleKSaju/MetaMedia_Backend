@@ -4,7 +4,12 @@ import { upload } from '../../../utils/multer/multer'
 
 export default (dependencies:any)=>{
     const router=express()
-    const {chooseInterestController,getUserDataController,BlockAndUnblockUserController,ChangeUserStatusController,followUserController,getSearchUserController,getAllUsersDataController,getAllUserForChatController,getUsersDataByIdController,getUsersByNameController,getUserById_Controller,savePostController,suggetionController}=userController(dependencies)
+
+
+
+    const {chooseInterestController,getUserDataController,ChangeUserStatusController,followUserController,getSearchUserController,getAllUsersDataController,getAllUserForChatController,getUsersDataByIdController,getUsersByNameController,getUserById_Controller,savePostController,suggetionController,generatevapidKeysController,SubcribeToAwsSNSController,BlockAndUnblockUserController}=userController(dependencies)
+
+
     const {addProfileController,editProfileController,addProfileImageController}=profileController(dependencies)
 
     router.post('/getUserData',getUserDataController)
@@ -22,7 +27,12 @@ export default (dependencies:any)=>{
     router.post('/changeUserStatus',ChangeUserStatusController)
     router.post('/savePost',savePostController)
     router.get('/suggetions',suggetionController)
+
     router.post('/BlockAndUnblockUser',BlockAndUnblockUserController)
+
+
+    router.post("/vapidKeys",generatevapidKeysController)
+    router.post("/subscribe",SubcribeToAwsSNSController)
 
     return router
 }
