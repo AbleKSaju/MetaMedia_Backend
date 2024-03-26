@@ -1,5 +1,5 @@
 import mongoose, { Schema } from 'mongoose'
-
+//for comment schema
 const CommentSchema:Schema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -58,7 +58,7 @@ const PostSchema=new mongoose.Schema({
     }], 
     createdAt:{
         type:Date,
-        default:Date.now()
+        default:Date.now
     },
     isDelete:{
         type:Boolean,

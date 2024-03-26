@@ -1,5 +1,14 @@
 import User from "../database/schema"
+import webpush from 'web-push'
+import { subscribeToSNS ,publishToSNS} from "./aws";
 
+
+async function generateVAPIDKeys() {
+  const vapidKeys = await webpush.generateVAPIDKeys();
+  console.log(vapidKeys,'THISIS VAPID KEYSS');
+  
+  return vapidKeys;
+}
 
 export default {
 
@@ -264,6 +273,80 @@ export default {
       } catch (error) {
         return { status: false, message: error };
       }
+    },
+    generateVAPIDKeysForUser: async (data: any) => {
+      try {
+        const { userId } = data;
+    
+        // Find user by userId
+        const userData:any = await User.findOne({ 'basicInformation.userId': userId });
+        if (!userData) {
+          return { status: false, message: "User is not found" };
+        }
+    
+        // Generate VAPID keys
+        const { publicKey, privateKey } = await generateVAPIDKeys();
+    
+        console.log(publicKey, privateKey);
+        
+        userData.pushNotificationTokens = {
+          vapidPrivetKey: privateKey,
+          vapidPublicKey: publicKey,
+         
+         
+        };
+      
+    
+       
+        const updatedUser = await userData.save();
+        console.log(updatedUser,'THS IS UPDATED USER');
+        
+        if (updatedUser) {
+        
+          
+          return { status: true, data: publicKey };
+        } else {
+          return { status: false, message: "Something went wrong" };
+        }
+      } catch (error) {
+        return { status: false, message: `Error: ${error}` };
+      }
+    },
+    
+    subscribeSNS:async(data:any)=>{
+ 
+      const {deviceInfo,vapidPublicKey,userId}=data
+
+try {
+  
+  const userData=await User.findOne({'basicInformation.userId': userId})
+
+  if(!userData){
+    return {status:false,message:"userData not found"}
+  }
+
+  console.log(deviceInfo,'DIIIVES INFOOOO');
+  
+const res= await subscribeToSNS(deviceInfo,vapidPublicKey,userId)
+if(!res){
+  return {status:false,message:"Subscription failed"}
+}
+
+const topicArn="arn:aws:sns:us-east-1:211125388781:meta-media"
+const message=`Hai ${userData.basicInformation?.fullName} `
+const deviceType=deviceInfo.deviceType
+const fistpubish =await publishToSNS(topicArn,message,userId,deviceType)
+
+return {status:true,data:[]}
+
+} catch (error) {
+  console.log(error,'EROOR');
+  
+  return {status:false,message:`Error :${error}`}
+}
+
+
+
     }
 
 }

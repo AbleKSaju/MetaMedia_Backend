@@ -7,7 +7,7 @@
         console.log("I am ConversationController");
         const {accessToken} = req.cookies;
       let userData:any=await decodeAccessToken(accessToken)  
-      console.log(userData.data.user,"HHUHUHU");
+      
       
       if(userData.status){
         const userId=userData?.data?.user?._id || userData?.data?.user?.response._id 

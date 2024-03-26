@@ -1,4 +1,4 @@
-import { chatRepository } from '../../adapters/repositories'
+import { chatRepository,NotifaicationRepo } from '../../adapters/repositories'
 import { Conversation_UseCase, getConversations_UseCase, Message_UseCase,getMessages_UseCase ,CreateNewgroup_Usecase,GetAllGroupsOfUser_useCase,getGroupMessages_useCase,GetGroupDataById_useCase,SendGroupMessage_UseCase} from '../../applications/usecases'
 
 const useCase:any={
@@ -14,7 +14,8 @@ const useCase:any={
 }
 
 const repository:any={
-  chatRepository
+  chatRepository,
+  NotifaicationRepo
 }
 
 export default {

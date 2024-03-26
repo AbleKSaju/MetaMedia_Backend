@@ -152,6 +152,12 @@ export default {
 
     try {
       const updatedMembers = [...members, admin];
+const GroupExist=await schema.GroupChat.find({name:title})
+if(GroupExist){
+   return {status:false,message:"Group in this name aleady exist"}
+}
+
+
       const Group = new schema.GroupChat({
         name: title,
         description: description,
@@ -163,13 +169,17 @@ export default {
       const response: any = await schema.GroupChat.create(Group);
 
       if (response) {
-        members.forEach((member: any) => {
-          io.to(member).emit(`${response.name}`, {
-            groupId: response._id,
-            groupName: title,
-            groupDescription: description,
+
+      
+          io.to(response._id).emit(`GroupChat`, {
+            group_id: response._id,
+            sender_id: admin,
+            content: `Group "${title}" created by ${adminName}`,
+            type: "text",
+            timestamp: new Date(),
+            metadata: {},
           });
-        });
+        
 
         const groupMessage = new schema.GroupMessage({
           group_id: response._id,
@@ -256,15 +266,22 @@ export default {
         type
         })
 
-        groupData.members.forEach((member: any) => {
-          io.to(member).emit(`${groupData.name}`, {
+        io.to(groupData._id).emit(`GroupChat`, {
               group_id,
               sender_id,
               content,
               type,
               metadata
-          });
-      });
+        });
+      //   groupData.members.forEach((member: any) => {
+      //     io.to(member).emit(`${groupData._id}`, {
+      //         group_id,
+      //         sender_id,
+      //         content,
+      //         type,
+      //         metadata
+      //     });
+      // });
     
 
         

@@ -18,7 +18,6 @@ export default (dependencies: any) => {
         type,
         metadata
        }
-
         const response = await SendGroupMessage_UseCase(dependencies).executeFunction(data)
         if(response.status){
             res.json({status:response.status , data:response.data})

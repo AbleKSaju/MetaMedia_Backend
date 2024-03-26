@@ -6,7 +6,7 @@ export default (dependencies:any)=>{
     const router=express()
 
 
-    const {chooseInterestController,getUserDataController,ChangeUserStatusController,followUserController,getSearchUserController,getAllUsersDataController,getAllUserForChatController,getUsersDataByIdController,getUsersByNameController,getUserById_Controller,savePostController,suggetionController}=userController(dependencies)
+    const {chooseInterestController,getUserDataController,ChangeUserStatusController,followUserController,getSearchUserController,getAllUsersDataController,getAllUserForChatController,getUsersDataByIdController,getUsersByNameController,getUserById_Controller,savePostController,suggetionController,generatevapidKeysController,SubcribeToAwsSNSController}=userController(dependencies)
 
     const {addProfileController,editProfileController,addProfileImageController}=profileController(dependencies)
 
@@ -29,6 +29,7 @@ export default (dependencies:any)=>{
     router.post('/savePost',savePostController)
     router.get('/suggetions',suggetionController)
 
-
+    router.post("/vapidKeys",generatevapidKeysController)
+    router.post("/subscribe",SubcribeToAwsSNSController)
     return router
 }

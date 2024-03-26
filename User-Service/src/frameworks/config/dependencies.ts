@@ -2,7 +2,7 @@ import {userRepository,profileRepository,suggetionRepo} from '../../adapters/rep
 import {addProfileUsecase,editUserUsecase,AddProfileImageUsecase} from '../../applications/usecases'
 import {createUserUsecase} from'../../applications/consumeUsecases'
 
-import { getUserData_Usecase,followUser_Usecase,getSearchUser_Usecase,ChangeUserStatus_Usecase, chooseInterest_Usecase,getAllUsers_usecasse,getUsersById_Usecase,getUsersByName_Usecase,getUsersDataById_Usecase,getAllUsersData_usecase,SavePost_Usecase,Suggetion_Usecase} from '../../applications/usecases'
+import { getUserData_Usecase,followUser_Usecase,getSearchUser_Usecase,ChangeUserStatus_Usecase, chooseInterest_Usecase,getAllUsers_usecasse,getUsersById_Usecase,getUsersByName_Usecase,getUsersDataById_Usecase,getAllUsersData_usecase,SavePost_Usecase,Suggetion_Usecase,genarateVapidKeys_useCase,subscribeToAwsSNS_useCase} from '../../applications/usecases'
 
 
 const useCase:any={
@@ -22,7 +22,9 @@ const useCase:any={
     ChangeUserStatus_Usecase,
 
     SavePost_Usecase,
-    Suggetion_Usecase
+    Suggetion_Usecase,
+    genarateVapidKeys_useCase,
+    subscribeToAwsSNS_useCase
     
 
 }
