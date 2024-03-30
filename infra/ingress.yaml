@@ -9,6 +9,7 @@ spec:
     - host: metamedia.com
       http:
         paths:
+         
           - path: /api/user/?(.*)
             pathType: Prefix
             backend:
@@ -23,3 +24,38 @@ spec:
                 name: auth-srv
                 port:
                   number: 3001
+          - path: /api/post/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: post-srv
+                port:
+                  number: 3002
+          - path: /api/story/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: story-srv
+                port: 
+                  number: 3003
+          - path: /api/highlight/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: story-srv
+                port: 
+                  number: 3003
+          - path: /api/chat/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: chat-srv
+                port: 
+                  number: 3005
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: client-srv
+                port:
+                  number: 5173

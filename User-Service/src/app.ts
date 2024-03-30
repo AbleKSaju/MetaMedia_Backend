@@ -83,18 +83,18 @@ declare module 'express-session' {
 //   req.session.Token = req.body.refreshToken
 //   res.status(200).json({status:true})
 // })
-app.all('*', (req, res, next: any) => {
-    const err: any = new Error(`Can't find ${req.originalUrl} on the server!`);
-    err.status = 'fail';
-    err.statusCode = 404;
-    next(err);
-});
+// app.all('*', (req, res, next: any) => {
+//     const err: any = new Error(`Can't find ${req.originalUrl} on the server!`);
+//     err.status = 'fail';
+//     err.statusCode = 404;
+//     next(err);
+// });
 
-app.use((error: any, req: Request, res: Response, next: any) => {
-    error.statusCode = error.statusCode || 500;
-    error.status = error.status || 'error';
-    res.status(error.statusCode).json({ status: error.statusCode, message: error.message });
-});
+// app.use((error: any, req: Request, res: Response, next: any) => {
+//     error.statusCode = error.statusCode || 500;
+//     error.status = error.status || 'error';
+//     res.status(error.statusCode).json({ status: error.statusCode, message: error.message });
+// });
 
  userconsumer(dependencies)
 

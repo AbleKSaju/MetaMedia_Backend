@@ -1,5 +1,7 @@
 import { kafka } from "../../config/kafkaClient";
 const producer = kafka.producer();
+const DEFAULT_PARTITION = 0;
+const DEFAULT_OFFSET = -1;
 
 export const userProducer = async (sendData: any, topic: any, type: any) => {
   try {
@@ -12,6 +14,8 @@ export const userProducer = async (sendData: any, topic: any, type: any) => {
       const messagepayload = {
         type: type,
         data: sendData,
+        partition: DEFAULT_PARTITION,
+        offset: DEFAULT_OFFSET
       };
       console.log(topic,"topictopictopictopic");
       
@@ -20,6 +24,8 @@ export const userProducer = async (sendData: any, topic: any, type: any) => {
         messages: [{ value: JSON.stringify(messagepayload) }],
       });
 
+      console.log(result,'-----------------');
+      
       if (result && result[0] && result[0]?.error) {
         throw new Error("Message production failed");
       }

@@ -9,6 +9,7 @@ import {GetGroupDataById_useCase} from './ChatUsecase/getGroupDataById_Usecase'
 import {SendGroupMessage_UseCase} from './ChatUsecase/sendGroupMessage_useCase'
 import { singleUserSendFile_Usecase } from './ChatUsecase/singleUserSendFile_Usecase'
 import { deleteMessage_UseCase } from './ChatUsecase/deleteMessage_useCase'
+import {CallNotification_usecase,CommentNotification_usecase,FollowNotification_usecase,LikeNotification_usecase,MessageNotification_usecase,GetNotificationOfUser_useCase} from './NotificationUseCase'
 export {
   Conversation_UseCase,
   getConversations_UseCase,
@@ -20,5 +21,11 @@ export {
   GetGroupDataById_useCase,
   SendGroupMessage_UseCase,
   singleUserSendFile_Usecase,
-  deleteMessage_UseCase
+  deleteMessage_UseCase,
+  CallNotification_usecase,
+  CommentNotification_usecase,
+  FollowNotification_usecase,
+  LikeNotification_usecase,
+  MessageNotification_usecase,
+  GetNotificationOfUser_useCase
 }
