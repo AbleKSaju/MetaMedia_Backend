@@ -185,7 +185,7 @@ export default {
       );
       console.log(updatedUser, "updatedUserupdatedUserupdatedUserupdatedUser");
       if (updatedUser && updateFollowedUser) {
-        return { status: true, message: "Followed Success" };
+        return { status: true, message: "Followed Success" ,name:user.basicInformation.fullName};
       } else {
         return { status: false, message: "Failed" };
       }
@@ -316,6 +316,7 @@ return {status:false,message:`Error :${error}`}
         profile: data?.profile?.profileUrl,
         bio: data?.profile?.bio,
         blocked: data?.basicInformation?.blocked,
+        createdAt:data.basicInformation.createdAt
       };
       usersData.push(userData);
     });

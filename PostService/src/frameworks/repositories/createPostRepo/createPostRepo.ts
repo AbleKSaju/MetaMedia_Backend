@@ -4,9 +4,25 @@ export default {
     createPost : async (data:any)=>{
         
         const tagsArray = data.data.tags.split(',');
-        const latitude = data.data.location && data.data.location.lat ? data.data.location.lat.latitude : 0;
-        const longitude = data.data.location && data.data.location.lat ? data.data.location.lat.longitude : 0;
-        const name = data.data.location && data.data.location.name ? data.data.location.name : '';
+    const location=JSON.parse(data.data.location)
+    console.log(location,'%%%%%%%%%%%%%%%%%%%%%%%%%');
+     let latitude:any
+     let longitude:any
+     let name:any
+     if (location && location.latData) {
+         latitude = location.latData.latitude 
+         longitude = location.latData.longitude 
+          name = location.latData.name 
+    
+       
+    } else {
+        latitude=0
+        latitude=0
+        name=''
+    }
+
+
+console.log(latitude,'------',longitude,'-----',name,'------');
 
         const postData={
             userId:data.data.userId,

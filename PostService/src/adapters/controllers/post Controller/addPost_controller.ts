@@ -5,13 +5,17 @@ export default (dependencies: any) => {
     const addPostController = async (req: Request, res: Response) => {
       try {
         const { body, files } = req;
+        console.log(body,'434343434434343434344343');
+       
+       
+       
         if (!files || !Array.isArray(files)) {
           return res.status(400).json({ message: "No files uploaded" });
         }
         const images: string[] = files.map((file: Express.Multer.File) => file.filename);
         const data = {
           images,
-          data: body,
+          data: body
         };
   
         const response = await addPostUseCase(dependencies).executeFunction(data);

@@ -10,6 +10,7 @@ import { Server, Socket } from 'socket.io';
 import { debounceMiddleware } from './events/DebouncingMiddleware'
 import expressConfig from './express'
 import socketConfig from './socket'
+import { chatConsumer } from './events/KafkaConsumer'
 const app=express()
 expressConfig(app)
 dotenv.config()
@@ -20,7 +21,7 @@ export const io: Server = require('socket.io')(8081, {
 socketConfig()
 const server=http.createServer(app)
 
-
+ chatConsumer(dependencies)
 app.use(debounceMiddleware)
 app.use('/api',routes(dependencies))
 

@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { postProducer } from "../../../events/kafkaProducer";
 export default (dependecies: any) => {
   const { addComment_UseCase } = dependecies.useCase;
   const addCommentController = async (req: Request, res: Response) => {
@@ -12,6 +13,16 @@ export default (dependecies: any) => {
 
     const responce = await addComment_UseCase(dependecies).executeFunction(data);
     if (responce.status) {
+      const data={
+        sender_id:userId,
+        receiver_id:responce.data.userId,
+        postId:responce.data._id,
+        notificationType:"comment",
+        postImage:responce.data.mediaUrl[0],
+        comment:content,
+
+      }
+      await postProducer(data,'Notification',"CommentPostNotification")
       res.status(200).json({ status: true, data: responce.data });
     } else {
       res.status(400).json({ status: false });

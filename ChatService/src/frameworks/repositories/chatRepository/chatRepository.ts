@@ -145,14 +145,21 @@ export default {
   },
 
   CreateNewgroup: async (data: any) => {
-    const { title, description, members, admin, image, adminName } = data;
+    console.log(data,'THIS IS SDATAAA_________');
+    
+    const { title, description, membersData, admin, image, adminName } = data;
 
     try {
-      const updatedMembers = [...members, admin];
-const GroupExist=await schema.GroupChat.find({name:title})
+      const updatedMembers:any=[...membersData,admin]
+      
+     
+const GroupExist=await schema.GroupChat.findOne({name:title})
 if(GroupExist){
    return {status:false,message:"Group in this name aleady exist"}
 }
+
+
+console.log(updatedMembers,'--------LLLLLLLLL_____');
 
 
       const Group = new schema.GroupChat({
@@ -272,35 +279,15 @@ if(GroupExist){
         type
         })
 
-        io.to(groupData._id).emit(`GroupChat`, {
-              group_id,
-              sender_id,
-              content,
-              type,
-              metadata
-        });
-      //   groupData.members.forEach((member: any) => {
-      //     io.to(member).emit(`${groupData._id}`, {
-      //         group_id,
-      //         sender_id,
-      //         content,
-      //         type,
-      //         metadata
-      //     });
-      // });
-    
-
-
-      groupData.members.forEach((member: any) => {
-        io.to(member).emit(`${groupData.name}`, {
+        const emitData={
           group_id,
           sender_id,
           content,
           type,
-          metadata,
-        });
-      });
+          metadata
+        }
 
+        
       const responce = await GroupMessageData.save();
       if (responce) {
         return { status: true, data: responce };

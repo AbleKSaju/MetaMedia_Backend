@@ -82,7 +82,11 @@ declare module 'express-session' {
 //   console.log(req.body,"bodyssss");
 //   req.session.Token = req.body.refreshToken
 //   res.status(200).json({status:true})
+<<<<<<< HEAD
 // // })
+=======
+// })
+>>>>>>> rashik
 // app.all('*', (req, res, next: any) => {
 //     const err: any = new Error(`Can't find ${req.originalUrl} on the server!`);
 //     err.status = 'fail';

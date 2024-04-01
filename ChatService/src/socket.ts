@@ -2,6 +2,7 @@
 let users:any = [];
 import {io} from './app'
 import { Server, Socket } from 'socket.io';
+import dependencies from './frameworks/config/dependencies';
 const socketConfig=()=>{
 
   let users:any = [];
@@ -74,7 +75,64 @@ const socketConfig=()=>{
    socket.on("peer:nego:done", ({ to, ans }) => {
      io.to(to).emit("peer:nego:final", { from: socket.id, ans });
    });
+
+
+   socket.on("joinGroup", (data) => {
+    try {
+        const { group_id, userId } = data;
+        socket.join(group_id);
+        console.log('Connected to the group', group_id, 'by user', userId);
+        socket.to(group_id).emit("joinGroupResponse", { message: "Successfully joined the group" });
+    } catch (error) {
+        console.error('Error occurred while joining group:', error);
+       
+    }
+});
+
+socket.on("GroupMessage",async(data:any)=>{
+  const {group_id,sender_id,content,type,metadata,lastUpdate}=data
+  const datas={
+    group_id,
+    sender_id,
+    content,
+    type,
+    metadata,
+    lastUpdate
+  }
+  const {SendGroupMessage_UseCase}=dependencies.useCase
+const response=await SendGroupMessage_UseCase(dependencies).executeFunction(data)
+if(response.status){
+  console.log('TEXT MESAGE CREATEDD??????????');
+  const emitpayload=response.data
+  io.to(group_id).emit("responseGroupMessage",emitpayload)
+}
+
+})
+
+socket.on('GroupfileMessage',(data:any)=>{
+  io.to(data.group_id).emit("GroupfileResponceMessage",data)
+})
+
+socket.on("GroupVideoCallRequest",(data:any)=>{
+
+const emitdata={
+  roomId:data.roomId
+}
+  io.to(data.group_id).emit("GroupVideoCallResponse",emitdata)
+})
+
+
+socket.on("GroupAudioCallRequest",(data:any)=>{
+
+  const emitdata={
+    roomId:data.roomId
+  }
+    io.to(data.group_id).emit("GroupAudioCallResponse",emitdata)
+  })
+
  });
+
+ 
  
 }
 

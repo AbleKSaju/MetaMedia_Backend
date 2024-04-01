@@ -7,19 +7,19 @@ export default (dependencies: any) => {
       
      const {title,description,members,admin,adminName} =req.body
      const image=req?.file?.filename
-     console.log(image,'THIS IS IMAGES FILE NAME');
-     
+     console.log(members,'THIS IS IMAGES FILE NAME',JSON.parse(members),'ppppppp');
+      const membersData=JSON.parse(members)
      const data={
         title,
         description,
-        members,
+        membersData,
         admin,
         image,
         adminName
      }
 
       const response = await CreateNewgroup_Usecase(dependencies).executeFunction(data)
-     
+      console.log(response,'THIS IS IMAGE REsponcee-----');
       if(response.status){
           res.json({status:true , data:response.data})
         } else {

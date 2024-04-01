@@ -1,4 +1,5 @@
 import {Request,Response} from 'express'
+import { postProducer } from '../../../events/kafkaProducer'
 
 export default (dependecies:any)=>{
 
@@ -12,6 +13,14 @@ export default (dependecies:any)=>{
 
        const responce= await likePost_UseCase(dependecies).executeFunction(data)
        if(responce.status){
+        const data={
+          sender_id:userId,
+          receiver_id:responce.data.userId,
+          notificationType:"like",
+          postId:responce.data._id,
+          postImage:responce.data.mediaUrl[0]
+        }
+        await postProducer(data,'Notification',"likePostNotification")
         res.status(200).json({status:true,data:responce.data})
        }else{
         res.status(400).json({status:false})

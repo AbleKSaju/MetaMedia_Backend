@@ -1,0 +1,36 @@
+# post-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: post-deployment
+  labels:
+    app: post
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: post
+  template:
+    metadata:
+      labels:
+        app: post
+    spec:
+      containers:
+        - name: meta-post-service
+          image: raziiik/meta-post-service:latest
+        
+
+---
+# post-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name:  meta-post-service
+spec:
+  selector:
+    app: post
+  ports:
+    - name: post
+      protocol: TCP
+      port: 3002
+      targetPort: 3002
