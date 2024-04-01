@@ -1,5 +1,4 @@
-import GetMyAllStoriesForHighLighController from "../../controllers/StoryController/getMyAllStoriesForHighLighController";
-import schema from "../database/schema";
+import schema from '../database/schema'
 
 export default {
   findUser: async (userId: any) => {

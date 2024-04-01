@@ -53,6 +53,8 @@ const updateExpiredStories = async () => {
       story?.content?.story?.forEach((item) => {
         if (item.expiresAt <= now) {
           item.status = false;
+        }else{
+          item.status = true;
         }
       });
       await story.save();

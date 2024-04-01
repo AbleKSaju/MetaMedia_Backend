@@ -1,8 +1,8 @@
 import express from 'express'
-import { highlightController } from '../../controllers'
+import { HighlightController } from '../../controllers'
 export default (dependencies:any)=> {
     const router = express()
-    const {getHighlightsController,addNewHighlightController,deleteHighlightController} = highlightController(dependencies)
+    const {getHighlightsController,addNewHighlightController,deleteHighlightController} = HighlightController(dependencies)
 
     router.get('/getHighlights/:id',getHighlightsController)
     router.post('/addNewHighlight',addNewHighlightController)

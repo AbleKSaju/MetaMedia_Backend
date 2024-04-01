@@ -13,6 +13,4 @@ const highLightSchema = new mongoose.Schema({
 
 const Highlight = mongoose.model("highlight", highLightSchema);
 
-export {
-    Highlight,
-};
+export {Highlight};
