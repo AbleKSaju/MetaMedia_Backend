@@ -9,7 +9,7 @@ import { BlockAndUnblockUser_Usecase } from "./BlockAndUnblockUser_Usecase";
 import { getAllUsersData_usecase } from "./getAllUsersData_usecase";
 import { getSearchUser_Usecase } from "./getSearchUserUsecase";
 import { followUser_Usecase } from "./followUserUsecase";
-import { ChangeUserStatus_Usecase } from "./ChangeUserStatus_Usecase";
+import { ChangeUserStatus_Usecase } from "./changeUserStatus_Usecase";
 import { SavePost_Usecase } from "./savePostUsecases";
 import { Suggetion_Usecase } from "./suggetionUsecase";
 import {genarateVapidKeys_useCase} from './GenarateValidKeys_useCase'

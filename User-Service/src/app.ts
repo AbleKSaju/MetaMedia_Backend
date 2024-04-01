@@ -1,18 +1,18 @@
 import http from 'http'
 import serverConfig from './server'
 import dotenv from 'dotenv'
-import config from '../config/config'
-import getDb from '../config/db'
+import config from '../Config/config'
+import getDb from '../Config/db'
 import express ,{Request,Response}from 'express'
 const cookieParser = require('cookie-parser');
 import cors from 'cors'
-import {userconsumer} from './events/userconsumer'
-import {routes} from './adapters/routes'
+import {userconsumer} from './Events/userconsumer'
+import {routes} from './Adapters/Routes'
 import dependencies from './frameworks/config/dependencies'
 import session, { SessionOptions,MemoryStore,SessionData } from "express-session";
 import helmet from "helmet";
 import { body } from 'express-validator'
-import { sanitizeData } from './utils/sanitize/sanitizeData'
+import { sanitizeData } from './Utils/Sanitize/sanitizeData'
 
 const store = new MemoryStore();
 const app=express()
@@ -82,19 +82,19 @@ declare module 'express-session' {
 //   console.log(req.body,"bodyssss");
 //   req.session.Token = req.body.refreshToken
 //   res.status(200).json({status:true})
-// })
-app.all('*', (req, res, next: any) => {
-    const err: any = new Error(`Can't find ${req.originalUrl} on the server!`);
-    err.status = 'fail';
-    err.statusCode = 404;
-    next(err);
-});
+// // })
+// app.all('*', (req, res, next: any) => {
+//     const err: any = new Error(`Can't find ${req.originalUrl} on the server!`);
+//     err.status = 'fail';
+//     err.statusCode = 404;
+//     next(err);
+// });
 
-app.use((error: any, req: Request, res: Response, next: any) => {
-    error.statusCode = error.statusCode || 500;
-    error.status = error.status || 'error';
-    res.status(error.statusCode).json({ status: error.statusCode, message: error.message });
-});
+// app.use((error: any, req: Request, res: Response, next: any) => {
+//     error.statusCode = error.statusCode || 500;
+//     error.status = error.status || 'error';
+//     res.status(error.statusCode).json({ status: error.statusCode, message: error.message });
+// });
 
  userconsumer(dependencies)
 
