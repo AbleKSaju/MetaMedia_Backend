@@ -15,7 +15,7 @@ const expresscofig = (app: Express): void => {
  
   app.use(
     cors({
-      origin: ['http:client-srv:5173','http://metamedia.com','http://localhost:5173'],
+      origin: ['http:client-srv:5173','http://meta-media.in','http://localhost:5173'],
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       credentials: true,
     })

@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name:  meta-chat-service
+  name: meta-chat-service
 spec:
   selector:
     app: chat

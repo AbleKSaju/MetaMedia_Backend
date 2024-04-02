@@ -1,4 +1,4 @@
-import { uploadImageToS3 } from "../../../utils/S3/s3UploadImage";
+
 import { createAccessToken, createRefreshToken } from "../../../utils/jwt";
 
 export const loginWithFacebook_Usecase=(dependencies:any)=>{

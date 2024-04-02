@@ -16,7 +16,7 @@ expressConfig(app)
 dotenv.config()
 getDb(config)
 export const io: Server = require('socket.io')(8081, {
-  cors: { origin: 'http://localhost:5173' }
+  cors: { origin: 'http://meta-media.in' }
 });
 socketConfig()
 const server=http.createServer(app)

@@ -1,4 +1,4 @@
-import { uploadImageToS3 } from "../../../utils/S3/s3UploadImage";
+
 import { UserData } from "../../../utils/interfaces/userInterface";
 import { createAccessToken, createRefreshToken } from "../../../utils/jwt";
 
@@ -30,11 +30,11 @@ export const loginWithGoogle_Usecase = async (dependencies: any) => {
     } else {
       const { profile, email, name, isGoogle, isFacebook } = data;
       const imageName = `${email}_${Date.now()}.jpg`;
-      const s3ImageUrl = await uploadImageToS3(profile, imageName);
+      
       const datas = {
         email,
         name,
-        profile: s3ImageUrl,
+        profile: '',
         password: "",
         isGoogle,
         isFacebook,

@@ -38,7 +38,7 @@ app.use(cookieParser(process.env.COOKIEPARSERSECRET));
 
 app.use(
    cors({
-     origin: "http://localhost:5173",
+     origin: "http://meta-media.in",
      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
      credentials: true,
    })

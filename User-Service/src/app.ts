@@ -1,18 +1,18 @@
 import http from 'http'
 import serverConfig from './server'
 import dotenv from 'dotenv'
-import config from '../Config/config'
-import getDb from '../Config/db'
+import config from '../config/config'
+import getDb from '../config/db'
 import express ,{Request,Response}from 'express'
 const cookieParser = require('cookie-parser');
 import cors from 'cors'
-import {userconsumer} from './Events/userconsumer'
-import {routes} from './Adapters/Routes'
+import {userconsumer} from './events/userconsumer'
+import {routes} from './adapters/routes'
 import dependencies from './frameworks/config/dependencies'
 import session, { SessionOptions,MemoryStore,SessionData } from "express-session";
 import helmet from "helmet";
 import { body } from 'express-validator'
-import { sanitizeData } from './Utils/Sanitize/sanitizeData'
+import { sanitizeData } from './utils/sanitize/sanitizeData'
 
 const store = new MemoryStore();
 const app=express()
@@ -59,7 +59,7 @@ declare module 'express-session' {
  const allowedOrigins = ["http://localhost:5173", "http://localhost:3000"];
  app.use(
     cors({
-      origin:"http://localhost:5173",
+      origin:"http://meta-media.in",
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       credentials: true,
     })
@@ -82,11 +82,6 @@ declare module 'express-session' {
 //   console.log(req.body,"bodyssss");
 //   req.session.Token = req.body.refreshToken
 //   res.status(200).json({status:true})
-<<<<<<< HEAD
-// // })
-=======
-// })
->>>>>>> rashik
 // app.all('*', (req, res, next: any) => {
 //     const err: any = new Error(`Can't find ${req.originalUrl} on the server!`);
 //     err.status = 'fail';

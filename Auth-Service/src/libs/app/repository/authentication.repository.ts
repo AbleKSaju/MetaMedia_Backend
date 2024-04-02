@@ -24,8 +24,14 @@ export default {
       "basicInformation.isGoogle": data.isGoogle,
       "basicInformation.isFacebook": data.isFacebook,
     };
+    console.log(userData,'THIS IS USR DTAA ');
+    
     const response = await schema.Auth.create(userData);
+    console.log(response,'RESSSS');
+    
     if (response) {
+      console.log('true6666666');
+      
       return { status: true, message: "user created sucessfull", response };
     } else {
       return { status: false, message: "user cretion failed" };

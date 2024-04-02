@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name:  meta-story-service
+  name: meta-story-service
 spec:
   selector:
     app: story

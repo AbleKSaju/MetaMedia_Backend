@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name:  meta-post-service
+  name: meta-post-service
 spec:
   selector:
     app: post
