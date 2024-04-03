@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { decodeAccessToken } from "../../../utils/jwt/jwt";
+import { decodeAccessToken } from "../../../Utils/jwt/jwt";
 
 export default (dependencies: any) => {
   const {

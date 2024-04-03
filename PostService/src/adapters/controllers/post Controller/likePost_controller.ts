@@ -1,5 +1,5 @@
 import {Request,Response} from 'express'
-import { postProducer } from '../../../events/kafkaProducer'
+import { postProducer } from '../../../Events/kafkaProducer'
 
 export default (dependecies:any)=>{
 

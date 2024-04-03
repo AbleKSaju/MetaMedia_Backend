@@ -3,7 +3,7 @@ import express from 'express'
 import {postController} from '../../controllers'
 import { upload } from '../../multer/multerSetUp'
 const verifyToken=require ('metamedia_auth')
-import {validateComment,validateDeleteComment,validateReportPost,validateDeletePost} from '../../validation'
+import {validateComment,validateDeleteComment,validateReportPost,validateDeletePost} from '../../Validation'
 export default (dependencies:any)=> {
 
     const router = express()

@@ -1,5 +1,5 @@
-import { highlightRepository } from "./highlightRepositery";
-import { storyRepository } from "./storyRepository";
+import { highlightRepository } from "./HighlightRepositery";
+import { storyRepository } from "./StoryRepository";
 
 export {
     storyRepository,

@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import dependencies from "../../../frameworks/config/dependencies";
-import { decodeAccessToken } from "../../../utils/jwt";
+import dependencies from "../../../Frameworks/Config/dependencies";
+import { decodeAccessToken } from "../../../Utils/Jwt";
 
 export default (dependencies:any)=>{
     const {useCase: { GetHighlightData_Usecase } } = dependencies

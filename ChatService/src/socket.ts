@@ -28,7 +28,7 @@ const socketConfig=()=>{
      console.log('sender :>> ', sender);
      console.log('receiver :>> ', receiver);
      if (receiver) {
-       io.to(receiver?.socketId).to(sender.socketId).emit('getMessage', {senderId,message,conversationId,receiverId,socketType,lastUpdate});
+       io.to(receiver?.socketId).to(sender?.socketId).emit('getMessage', {senderId,message,conversationId,receiverId,socketType,lastUpdate});
      } else {
        io.to(sender?.socketId)?.emit('getMessage', {senderId,message,conversationId,receiverId,socketType,lastUpdate});
      }

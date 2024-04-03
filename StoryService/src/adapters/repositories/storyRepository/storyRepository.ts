@@ -1,4 +1,4 @@
-import schema from '../database/schema'
+import schema from '../Database/schema'
 
 export default {
   findUser: async (userId: any) => {

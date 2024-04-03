@@ -8,7 +8,7 @@ export const createAccessToken = (
 ) => {
 
   const token = jwt.sign({ user }, AccessTokensecretkey, {
-    expiresIn: Expiration,
+    expiresIn: '15s',
   });
   return token;
 };
@@ -19,7 +19,7 @@ export const createRefreshToken = (
   Expiration: string
 ) => {
 
-  return jwt.sign({ user }, RefreshTokenscretkey, { expiresIn: Expiration });
+  return jwt.sign({ user }, RefreshTokenscretkey, { expiresIn: '30d' });
 };
 
 export const clearAccessTokenFromCookie = (

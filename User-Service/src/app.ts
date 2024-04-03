@@ -8,11 +8,12 @@ const cookieParser = require('cookie-parser');
 import cors from 'cors'
 import {userconsumer} from './Events/userconsumer'
 import {routes} from './Adapters/Routes'
-import dependencies from './frameworks/config/dependencies'
+import dependencies from './Frameworks/config/dependencies'
 import session, { SessionOptions,MemoryStore,SessionData } from "express-session";
 import helmet from "helmet";
 import { body } from 'express-validator'
 import { sanitizeData } from './Utils/Sanitize/sanitizeData'
+import errorMiddleware from './Utils/Middleware/errorMiddleware'
 
 const store = new MemoryStore();
 const app=express()
@@ -82,11 +83,6 @@ declare module 'express-session' {
 //   console.log(req.body,"bodyssss");
 //   req.session.Token = req.body.refreshToken
 //   res.status(200).json({status:true})
-<<<<<<< HEAD
-// // })
-=======
-// })
->>>>>>> rashik
 // app.all('*', (req, res, next: any) => {
 //     const err: any = new Error(`Can't find ${req.originalUrl} on the server!`);
 //     err.status = 'fail';
@@ -99,7 +95,7 @@ declare module 'express-session' {
 //     error.status = error.status || 'error';
 //     res.status(error.statusCode).json({ status: error.statusCode, message: error.message });
 // });
-
+app.use(errorMiddleware)
  userconsumer(dependencies)
 
 app.use('/api',routes(dependencies))

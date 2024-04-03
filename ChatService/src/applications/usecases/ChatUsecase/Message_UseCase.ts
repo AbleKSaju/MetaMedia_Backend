@@ -14,7 +14,6 @@ export const Message_UseCase = (dependencies: any) => {
                     return { status: response.status, message: response.message };
                 }
             }
-            console.log("GOING TO USECASE RESPONSE");
             const response  = await chatRepository.createMessage({conversationId, senderId, message,lastUpdate});
             if(response){
                 return { status: response.status, message: response.message };

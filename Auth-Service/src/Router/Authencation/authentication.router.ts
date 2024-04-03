@@ -21,7 +21,7 @@ export default (dependencies:any)=> {
     router.post('/login',validateLogin,loginUserController)
     router.get('/logout',logoutUserController)
     router.post('/loginWithFaceBook',loginWithFacebookController)
-    router.get('/refresh',refreshTokenController)
+    router.post('/refresh',refreshTokenController)
     router.get('/img',imageController)
 
     return router

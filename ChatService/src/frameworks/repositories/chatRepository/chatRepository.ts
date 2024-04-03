@@ -35,7 +35,6 @@ export default {
       const response = await schema.Conversation.findOne({
         members: { $all: [senderId, receiverId] },
       });
-      console.log(response, "respsponse");
 
       if (response) {
         return { status: true, message: "conversation Exist" };
@@ -43,7 +42,6 @@ export default {
         return { status: false, message: "conversation not Exist" };
       }
     } catch (error) {
-      console.log(error, "ER");
       return { error };
     }
   },
@@ -80,16 +78,17 @@ export default {
     }
   },
 
-  createMessage: async ({ conversationId, senderId, message }: any) => {
+  createMessage: async ({ conversationId, senderId, message,lastUpdate }: any) => {
     try {
       const response = await schema.Messages.create({
         conversationId,
         senderId,
         message,
+        lastUpdate
       });
       if (response) {
         await schema.Conversation.findByIdAndUpdate(conversationId, {
-          lastUpdate: Date.now(),
+          lastUpdate:lastUpdate,
         });
         return { status: true, message: "Message sent successfully" };
       } else {

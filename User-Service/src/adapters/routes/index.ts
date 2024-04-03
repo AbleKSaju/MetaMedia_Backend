@@ -1,4 +1,4 @@
-import userRouter from "./userRoute/user.router";
+import userRouter from "./UserRoute/user.router";
 import express from 'express'
 
 

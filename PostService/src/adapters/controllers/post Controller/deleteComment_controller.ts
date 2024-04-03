@@ -1,5 +1,5 @@
 import {Request,Response} from 'express'
-import { validateDeleteComment } from '../../validation';
+import { validateDeleteComment } from '../../Validation';
 const { check, validationResult } = require('express-validator');
 export default (dependecies:any)=>{
     const deleteCommentController=async(req:Request,res:Response)=>{

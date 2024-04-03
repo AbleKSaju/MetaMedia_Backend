@@ -6,8 +6,8 @@ import getDb from '../config/db'
 import express ,{Request,Response}from 'express'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
-import {routes} from './adapters/routes'
-import dependencies from './frameworks/config/dependencies'
+import {routes} from './Adapters/Routes'
+import dependencies from './Frameworks/Config/dependencies'
 import session, { SessionOptions,MemoryStore,SessionData } from "express-session";
 const store = new MemoryStore();
 const app=express()

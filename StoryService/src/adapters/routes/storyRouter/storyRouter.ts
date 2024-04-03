@@ -1,7 +1,7 @@
 
 import express from 'express'
-import { upload } from '../../../utils/multer/multer'
-import storyController from '../../controllers/storyController'
+import { upload } from '../../../Utils/Multer/multer'
+import storyController from '../../Controllers/StoryController'
 export default (dependencies:any)=> {
     const router = express()
     const {AddStoryController,DeleteStoryController,getSignatureController,AddVideoController,getStoriesController,getAllStoriesController,GetMyAllStoriesForHighLighController} = storyController(dependencies)

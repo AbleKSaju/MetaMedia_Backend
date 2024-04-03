@@ -13,7 +13,7 @@ export const chatConsumer = async (dependencies: any) => {
     await consumer.subscribe({ topic: "Notification", fromBeginning: true });
 
     await consumer.run({
-      eachMessage: async ({ message }) => {
+      eachMessage: async ({ message }:any) => {
         const bynerydata: any = message.value;
         const jsonstring: string = bynerydata?.toString();
         const jsondata = JSON.parse(jsonstring);

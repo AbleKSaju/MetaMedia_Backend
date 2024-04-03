@@ -9,7 +9,6 @@ export default (dependecies: any) => {
 
   const loginusercontroller = async (req: Request, res: Response) => {
     const { email, password } = req.body;
-    console.log("loginusercontrollerloginusercontroller");
     
     //check any validation errro
     const errors = validationResult(req);
@@ -20,9 +19,7 @@ export default (dependecies: any) => {
     const response = await loginUser_usecases(dependecies).executeFunction(
       email,
       password
-    );
-    console.log(response,"respons");
-    
+    );    
     //access token
     if (!response.status) {
       res.json({ message: response?.message, status: false });

@@ -1,6 +1,6 @@
 import express from "express";
-import highlightRouter from "./highlightRouter/highlightRouter";
-import storyRouter from "./storyRouter/storyRouter";
+import highlightRouter from "./HighlightRouter/highlightRouter";
+import storyRouter from "./StoryRouter/storyRouter";
 
 export const routes=(dependencies:any)=>{
     

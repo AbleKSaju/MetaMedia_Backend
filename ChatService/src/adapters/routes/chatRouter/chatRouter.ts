@@ -1,6 +1,6 @@
 import express from 'express'
 import { ChatController, } from '../../controllers'
-import { upload } from '../../../utils/multer/multer'
+import { upload } from '../../../Utils/multer/multer'
 export default (dependencies:any)=> {
     const router = express()
     const {Conversation,getConversations,deleteMessageController,message,getMessages,createNewGroupController,getAllGroupOfUserController,singleUserSendFileController,getGroupMessagesController,getGroupDataByIdController,sendgroupMessageController,SendVoiceMessageController,groupSendFileController,GetNotificationOfAUserController} = ChatController(dependencies)

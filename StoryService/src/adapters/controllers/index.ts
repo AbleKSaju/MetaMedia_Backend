@@ -1,5 +1,5 @@
-import StoryController from "./storyController";
-import HighlightController from "./highlightController";
+import StoryController from "./StoryController";
+import HighlightController from "./HighlightController";
 
 export {
     StoryController,

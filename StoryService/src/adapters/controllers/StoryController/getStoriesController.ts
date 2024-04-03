@@ -1,5 +1,5 @@
 import {Request,Response} from 'express'
-import { decodeAccessToken } from '../../../utils/jwt';
+import { decodeAccessToken } from '../../../Utils/Jwt';
 
 export default (dependencies:any)=>{
     const {useCase:{getStories_Usecase}}=dependencies
