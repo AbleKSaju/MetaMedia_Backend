@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { decodeAccessToken } from "../../../utils/jwt";
+import { decodeDataFromHeaders } from "../../../Utils/Jwt/decodeUserDataFromHeaders";
 
 export default (dependencies: any) => {
   console.log("EnTer");  
@@ -9,17 +9,16 @@ export default (dependencies: any) => {
   } = dependencies;
   const ChooseInterestController = async (req: Request, res: Response) => {
     
-    const {accessToken} = req.cookies;
-   let userData:any=await decodeAccessToken(accessToken)  
+    const userId = await decodeDataFromHeaders(req.headers)    
+    console.log(userId,"userIduserIduserId");
     
-   if(userData.status){
-    const userId=userData?.data?.user?._id || userData?.data?.user?.response._id 
+      if(userId){
      const response = await chooseInterest_Usecase(dependencies).executeFunction(req.body,userId);
      if(response){
        res.json({status:response.status , message:response.message})
      }
    }else{
-    res.json({status:userData.status , message:userData.message})
+    res.json({status:userId.status , message:userId.message})
    }
     const email: string = "ableksaju3@gmail.com"; // req.session.userData.email
   };

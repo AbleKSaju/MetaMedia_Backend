@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { decodeAccessToken } from "../../../Utils/jwt/jwt";
+import { decodeDataFromHeaders } from "../../../Utils/jwt/jwt";
 
 export default (dependencies: any) => {
   const {
@@ -9,10 +9,8 @@ export default (dependencies: any) => {
     console.log(req.params,"req.params");
     const conversationId = req.params.conversationId;
     const receiverId = req.query.receiverId;
-    const {accessToken} = req.cookies;
-    let userData:any=await decodeAccessToken(accessToken)  
-    if(userData.status){
-        const senderId=userData?.data?.user?._id || userData?.data?.user?.response._id 
+    const senderId = await decodeDataFromHeaders(req.headers)    
+    if(senderId){
         const response = await getMessages_UseCase(dependencies).executeFunction(conversationId,senderId,receiverId)
         if(response){
             res.json({status:response.status , data:response.data})

@@ -3,9 +3,11 @@ export const getSearchUser_Usecase = (dependencies: any) => {
   
     const executeFunction = async (user:string,userId:string) => {    
     
-      const responce= await userRepository.getSearchUsers(user,userId)
-      if(responce.status){
-          return {status:true,data:responce.data}
+      const response= await userRepository.getSearchUsers(user,userId)
+      console.log(response,"responceresponceresponceresponceresponce");
+      
+      if(response.status){
+          return {status:true,data:response.data}
       }else{
           return {status:false}
       }

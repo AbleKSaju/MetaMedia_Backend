@@ -1,33 +1,22 @@
 import { Request, Response } from "express";
-import { decodeAccessToken } from "../../../Utils/Jwt";
+import { decodeDataFromHeaders } from "../../../Utils/Jwt";
 
 export default (dependencies: any) => {
   const {
     useCase: { addNewHighlight_Usecase },
   } = dependencies;
   const AddNewHighlightController = async (req: Request, res: Response) => {
-    console.log(req.body, "body");
-    const { accessToken } = req?.cookies;
     const { name, selectedImages } = req.body;
-    let userData: any = await decodeAccessToken(accessToken);
-    console.log(userData, "userData");
-    console.log( name, selectedImages ," name, selectedImages ");
-    
-
-    if (userData.status) {
-      const userId =
-        userData?.data?.user?._id || userData?.data?.user?.response._id;
-
+    const userId = await decodeDataFromHeaders(req.headers)    
+    if(userId){
       const response = await addNewHighlight_Usecase(
         dependencies
       ).executeFunction(userId, name, selectedImages);
-      if (response) {
-        console.log(response,"rrrr");
-        
+      if (response) {        
         res.json({ status: response.status, message: response.message });
       }
     } else {
-      res.json({ status: userData.status, message: userData.message });
+      res.json({ status: userId.status, message: userId.message });
     }
   };
 

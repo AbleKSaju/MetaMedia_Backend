@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { decodeAccessToken } from "../../../Utils/jwt/jwt";
 
 export default (dependencies: any) => {
     const { useCase: { GetAllGroupsOfUser_useCase }} = dependencies;

@@ -18,6 +18,8 @@ export default (dependecies: any) => {
         postImage: responce.data.mediaUrl[0],
         comment: content,
       };
+      console.log(data,"datadata");
+      
       await postProducer(data, "Notification", "CommentPostNotification");
       res.status(200).json({ status: true, data: responce.data });
     } else {

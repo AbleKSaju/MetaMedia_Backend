@@ -1,24 +1,27 @@
-import { Request, Response } from "express";
-import { decodeAccessToken } from "../../../utils/jwt";
+import { NextFunction, Request, Response } from "express";
+import { decodeDataFromHeaders } from "../../../Utils/Jwt/decodeUserDataFromHeaders";
 
 export default (dependecies: any) => {
   const { getSearchUser_Usecase } = dependecies.useCase;
-  const getSearchUserController = async (req: Request, res: Response) => {  
-    const {user} = req.params
-    console.log(user,"useruseruseruseruseruseruseruseruseruseruseruser");
-    const {accessToken} = req.cookies;
-    let userData:any=await decodeAccessToken(accessToken)  
-    if(userData.status){
-      const userId=userData?.data?.user?._id || userData?.data?.user?.response._id 
-    const responce = await getSearchUser_Usecase(dependecies).executeFunction(user,userId);
-    if (responce.status) {
-      res.status(200).json({ status: true, data: responce.data });
-    } else {
-      res.status(400).json({ status: false });
+  const getSearchUserController = async (req: Request, res: Response, next:NextFunction) => {  
+    try {
+      const {user} = req.params
+      const userId = await decodeDataFromHeaders(req.headers)    
+      if(userId){
+      const response = await getSearchUser_Usecase(dependecies).executeFunction(user,userId);
+      console.log(response,"responceresponce");
+      if (response.status) {
+        res.status(200).json({ status: true, data: response.data });
+      } else {
+        res.status(400).json({ status: false });
+      }
+    }else{
+      res.status(400).json({ status: false, message:"User not found" });
+    } 
+    } catch (error) {
+      console.log(error,"EEEEEE");
+      next(error)
     }
-  }else{
-    res.status(400).json({ status: false, message:"User not found" });
-  }
   };
   return getSearchUserController;
 };

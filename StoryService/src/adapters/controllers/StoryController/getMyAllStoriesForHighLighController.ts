@@ -1,13 +1,11 @@
 import { Request, Response } from "express";
-import { decodeAccessToken } from "../../../Utils/Jwt";
+import {  decodeDataFromHeaders } from "../../../Utils/Jwt";
 
 export default (dependencies:any)=>{
     const {useCase:{getMyAllStoriesForHighlight_Usecase}}=dependencies
     const GetMyAllStoriesForHighLighController=async(req:Request,res:Response)=>{
-      const { accessToken } = req?.cookies;
-      let userData: any = await decodeAccessToken(accessToken);
-      if (userData.status) {
-          const userId =userData?.data?.user?._id || userData?.data?.user?.response._id;
+      const userId = await decodeDataFromHeaders(req.headers)    
+      if(userId){
         const response=await getMyAllStoriesForHighlight_Usecase(dependencies).executeFunction(userId)
         console.log(response,"response by cont");
         

@@ -1,4 +1,4 @@
-import {decodeAccessToken} from './jwt'
+import { decodeAccessToken } from "./jwt";
 export {
     decodeAccessToken
 }

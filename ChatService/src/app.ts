@@ -6,7 +6,7 @@ import getDb from '../config/db'
 import express, { NextFunction, Request, Response } from 'express'
 import {routes} from './adapters/routes'
 import dependencies from './frameworks/config/dependencies'
-import { Server, Socket } from 'socket.io';
+import { Server } from 'socket.io';
 import { debounceMiddleware } from './events/DebouncingMiddleware'
 import expressConfig from './express'
 import socketConfig from './socket'
@@ -20,8 +20,7 @@ export const io: Server = require('socket.io')(8081, {
 });
 socketConfig()
 const server=http.createServer(app)
-
- chatConsumer(dependencies)
+chatConsumer(dependencies)
 app.use(debounceMiddleware)
 app.use('/api',routes(dependencies))
 

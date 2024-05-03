@@ -1,18 +1,13 @@
 import { Request, Response } from "express";
-import { decodeAccessToken } from "../../../Utils/Jwt";
+import { decodeDataFromHeaders } from "../../../Utils/Jwt";
 
 export default (dependencies: any) => {
   const { useCase: { DeleteHighlight_Usecase }} = dependencies;
   const DeleteHighlightController = async (req: Request, res: Response) => {
     console.log(req.body, "body");
-    const { accessToken } = req?.cookies;
     const { name, image } = req.body;
-    let userData: any = await decodeAccessToken(accessToken);
-    console.log( name, image ," name, selectedImages ");
-    
-    if (userData.status) {
-      const userId = userData?.data?.user?._id || userData?.data?.user?.response._id;
-
+    const userId = await decodeDataFromHeaders(req.headers)    
+    if(userId){
       const response = await DeleteHighlight_Usecase(dependencies).executeFunction(userId, name, image);
       if (response) {
         console.log(response,"rrrr");
@@ -20,7 +15,7 @@ export default (dependencies: any) => {
         res.json({ status: response.status, message: response.message });
       }
     } else {
-      res.json({ status: userData.status, message: userData.message });
+      res.json({ status: userId.status, message: userId.message });
     }
   };
 

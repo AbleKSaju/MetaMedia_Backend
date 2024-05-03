@@ -1,4 +1,4 @@
-import {decodeAccessToken} from './jwt'
+import {decodeDataFromHeaders} from './jwt'
 export {
-    decodeAccessToken
+    decodeDataFromHeaders
 }

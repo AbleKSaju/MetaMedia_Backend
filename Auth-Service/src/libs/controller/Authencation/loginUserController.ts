@@ -9,6 +9,7 @@ export default (dependecies: any) => {
 
   const loginusercontroller = async (req: Request, res: Response) => {
     const { email, password } = req.body;
+    console.log("loginusercontroller");
     
     //check any validation errro
     const errors = validationResult(req);
@@ -24,6 +25,7 @@ export default (dependecies: any) => {
     if (!response.status) {
       res.json({ message: response?.message, status: false });
     }else if(response.admin){
+      
       const { accesstoken, refreshtoken, user, message,admin } = response;
       const adminWithOutpassword = {
         _id: user._id,
@@ -32,6 +34,7 @@ export default (dependecies: any) => {
         admin: admin,
       };
       req.session.refreshToken = refreshtoken;
+      
       const expirationDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
       res.cookie("accessToken", accesstoken, {
         expires: expirationDate,
@@ -60,12 +63,14 @@ export default (dependecies: any) => {
         interest: user.profile.interests || [],
       };
       req.session.refreshToken = refreshtoken;
+      console.log(req.session.refreshToken ,"req.session.refreshToken ");
       const expirationDate = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
       res.cookie("accessToken", accesstoken, {
         expires: expirationDate,
         httpOnly: true,
         secure: true,
       });
+console.log(userWithOutpassword,"userWithOutpassword");
 
       res.status(201).json({
         status: true,

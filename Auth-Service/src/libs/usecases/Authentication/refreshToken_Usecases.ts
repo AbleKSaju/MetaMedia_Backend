@@ -19,11 +19,12 @@ export const refreshTokenUsecase = async (dependencies: any) => {
         playload = decode;
       }
     });
+console.log(playload,"playloadplayload");
 
     if (!playload.user)
       return { status: false, message: "play load is not found" };
 
-    const user = await authenticationRepository.getuserbyId(playload.user._id);
+    const user = await authenticationRepository.getuserbyId(playload.user._id || playload.user.response._id);
 console.log(user,"uuuuu");
 
     if (!user) return { status: false, message: "user is not " };

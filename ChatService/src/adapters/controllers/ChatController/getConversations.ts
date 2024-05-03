@@ -1,16 +1,12 @@
   import { Request, Response } from "express";
-  import { decodeAccessToken } from "../../../Utils/jwt/jwt";
+  import { decodeDataFromHeaders } from "../../../Utils/jwt/jwt";
 
   export default (dependencies: any) => {
       const { useCase: { getConversations_UseCase }} = dependencies;
       const getConversation = async (req: Request, res: Response) => {
         console.log("I am ConversationController");
-        const {accessToken} = req.cookies;
-
-      let userData:any=await decodeAccessToken(accessToken)        
-
-      if(userData.status){
-        const userId=userData?.data?.user?._id || userData?.data?.user?.response._id         
+        const userId = await decodeDataFromHeaders(req.headers)    
+    if(userId){       
         const response = await getConversations_UseCase(dependencies).executeFunction(userId)
         
         if(response.status){

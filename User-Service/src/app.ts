@@ -95,9 +95,9 @@ declare module 'express-session' {
 //     error.status = error.status || 'error';
 //     res.status(error.statusCode).json({ status: error.statusCode, message: error.message });
 // });
-app.use(errorMiddleware)
- userconsumer(dependencies)
+userconsumer(dependencies)
 
 app.use('/api',routes(dependencies))
+app.use(errorMiddleware)
 
 serverConfig(server,config).startServer()

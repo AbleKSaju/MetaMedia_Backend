@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { decodeAccessToken } from "../../../utils/jwt/jwt";
+import { decodeDataFromHeaders } from "../../../Utils/Jwt/decodeUserDataFromHeaders";
 
 export default (dependencies: any) => {
   const {
@@ -8,13 +8,8 @@ export default (dependencies: any) => {
 
   const AddProfileController = async (req: Request, res: Response) => {
     console.log("AddProfileController");
-    
-    const { accessToken } = req.cookies;
-    let userData: any = await decodeAccessToken(accessToken);
-    console.log(userData,"userData");
-    
-    if (userData.status) {
-      const userId = userData?.data?.user?._id || userData?.data?.user?.response._id;
+        const userId = await decodeDataFromHeaders(req.headers)    
+    if(userId){
       const response = await addProfileUsecase(dependencies).executeFunction(
         req.body,
         userId
@@ -41,7 +36,7 @@ export default (dependencies: any) => {
         res.json({ status: response.status, message: response.message , user:data });
       }
     } else {
-      res.json({ status: userData.status, message: userData.message });
+      res.json({ status: false, message: "user Not found" });
     }
   };
   return AddProfileController;

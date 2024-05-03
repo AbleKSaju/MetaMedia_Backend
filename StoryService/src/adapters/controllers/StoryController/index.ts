@@ -5,6 +5,7 @@ import getAllStoriesController from "./getAllStoriesController";
 import GetMyAllStoriesForHighLighController from "./getMyAllStoriesForHighLighController";
 import addVideoController from "./addVideoController";
 import getSignatureController from "./getSignatureController";
+import getTheNumberOfStoriesController from "./getTheNumberOfStoriesController";
 ;
 
 export default (dependencies:any)=>{
@@ -22,6 +23,8 @@ export default (dependencies:any)=>{
 
         getAllStoriesController:getAllStoriesController(dependencies),
 
-        GetMyAllStoriesForHighLighController:GetMyAllStoriesForHighLighController(dependencies)
+        GetMyAllStoriesForHighLighController:GetMyAllStoriesForHighLighController(dependencies),
+
+        getTheNumberOfStoriesController:getTheNumberOfStoriesController(dependencies)
     }
 }

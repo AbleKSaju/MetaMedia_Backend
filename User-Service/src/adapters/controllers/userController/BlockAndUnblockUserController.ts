@@ -1,13 +1,11 @@
 import { Request, Response } from "express";
-import { decodeAccessToken } from "../../../utils/jwt";
+import { decodeDataFromHeaders } from "../../../Utils/Jwt/decodeUserDataFromHeaders";
 
 export default (dependencies: any) => {
     const BlockAndUnblockUserController = async (req: Request, res: Response) => {
       const { useCase: { BlockAndUnblockUser_Usecase }} = dependencies;
-    const {accessToken} = req.cookies;
-    let userData:any=await decodeAccessToken(accessToken)  
-    if(userData.status){
-      const myId=userData?.data?.user?._id || userData?.data?.user?.response._id 
+      const myId = await decodeDataFromHeaders(req.headers)    
+      if(myId){
     const  {userId}  = req.body;
       const response = await BlockAndUnblockUser_Usecase(dependencies).executeFunction(myId,userId);
       if (response) {

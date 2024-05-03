@@ -65,5 +65,4 @@ const server=http.createServer(app)
 // })
 
  app.use('/api',routes(dependencies))
-
 serverConfig(server,config).startServer()

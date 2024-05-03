@@ -6,6 +6,7 @@ export default {
       console.log(userId, "userId");
 
       const response = await schema.Story.findOne({userId:userId });
+      console.log(response,"responseresponseresponse");
       if (response) {
         return { status: true, message: "user exist", user: response };
       } else {
@@ -18,13 +19,13 @@ export default {
   },
 
   createUser: async (data: any) => {
-    console.log(data,"dataas");
-    
     const { userId,profile } = data;
     const storyData = {
       userId:userId ,
     }
     const response = await schema.Story.create(storyData);    
+    console.log(response,"ma.Story.create(storyD");
+    
     if (response) {
       return { status: true, message: "User created", story: response };
     } else {
@@ -50,6 +51,7 @@ export default {
       },
       { new: true }
     );
+    console.log(response,"responseresponseresponse");
     
     if (response) {
       return { status: true, message: "story created" };
@@ -59,9 +61,7 @@ export default {
   },
 
   getStories: async (userId: any) => {
-    
     try {  
-      
       const response:any = await schema.Story.findOne({ userId: userId, 'content.story': { $elemMatch: { status: true } } });  
       if (response) {
         const filteredStories = response?.content?.story?.filter((story:any) => story.status === true);        
@@ -72,6 +72,17 @@ export default {
       }
     } catch (error) {
       console.log(error, "ER");
+      return { error };
+    }
+  },
+
+  getTheNumberOfStories: async () => {
+    try {  
+      const response:any = await schema.Story.find({'content.story': { $elemMatch: { status: true } } }).countDocuments();  
+      console.log(response,"responseresponseresponseresponseresponse");
+        // const filteredStories = response?.content?.story?.filter((story:any) => story.status === true); 
+        return { status: true, message: "Stories found", data: response };
+    } catch (error) {
       return { error };
     }
   },
