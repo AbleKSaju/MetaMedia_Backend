@@ -14,9 +14,6 @@ const useCase:any={
     getTheNumberOfStories_Usecase
 }
 
-// const consumeUsecase:any={
-//     createUserUsecase
-// }
 
 const repository:any={
     storyRepository,

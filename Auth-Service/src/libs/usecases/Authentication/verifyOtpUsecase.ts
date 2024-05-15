@@ -6,7 +6,6 @@ export const verifyOtp_Usecase = (dependencies: any) => {
   } = dependencies;
   const executeFunction = async (data: any) => {
     const user = await authenticationRepository.createUser(data);
-console.log(user,"useruseruser");
 
     if (user.status) {
       

@@ -4,8 +4,6 @@ export const changePassword_Usecase = (dependencies: any) => {
   const {  repository: { authenticationRepository }} = dependencies;
   const executeFunction = async (email: string, password: string,oldPassword:string) => {
     const hashedPassword = await hashPassword(password);
-    console.log(hashedPassword);
-
     const response = await authenticationRepository.changePassword(email,hashedPassword,oldPassword);
     if (response) {
       return { status: response.status, message: response.message };

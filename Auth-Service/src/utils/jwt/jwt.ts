@@ -40,11 +40,9 @@ export const decodeRefreshToken=(token:string)=>{
   let playload:any
   return jwt.verify(token,refreshSecret,(err:any,decode:any)=>{
     if(err){
-        console.log(err,'Error');
         return {status:false,message:"error in jwt sign"}
     }else{
         playload=decode
-        console.log(playload,"PAYY");
         return {status:true,message:"error in jwt sign", data:playload}
     }
 })

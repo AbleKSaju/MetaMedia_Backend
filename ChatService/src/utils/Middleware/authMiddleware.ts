@@ -10,7 +10,6 @@ dotenv.config()
             try{
                 const token = req.headers.authorization.split(' ')[1];
                 const decode:any = jwt.verify(token, process.env.ACCESS_SECRET_KEY!)
-                console.log(decode,"decodedecode");
                 if (req.headers) {
                     req.headers.decodedTokenData = decode;
                 }else{

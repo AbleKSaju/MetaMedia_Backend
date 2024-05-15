@@ -3,16 +3,12 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 dotenv.config()
     const authMiddleware=(req: Request,res: Response,next: NextFunction)=>{
-        console.log("AUTH MIDDLEWARE")
-        console.log("I");
         
         if(!req.headers.authorization){
             res.status(401).json('Authorization header required');
         }else{
             try{
-                const token = req.headers.authorization.split(' ')[1];
-                console.log(token,"tokentokentoken");
-                
+                const token = req.headers.authorization.split(' ')[1];                
                 const decode:any = jwt.verify(token, process.env.ACCESS_SECRET_KEY!)
                 if (req.headers || !decode) {
                     req.headers.decodedTokenData = decode;

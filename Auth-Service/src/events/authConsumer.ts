@@ -17,8 +17,6 @@ export const authConsumer = async (dependencies: any) => {
         const jsonstring: string = bynerydata?.toString();
         const jsondata = JSON.parse(jsonstring);
         const messagetype = jsondata?.type;
-        console.log(messagetype,"messagetype");
-        console.log(jsondata.data,"jsondatajsondatajsondata");
         
         if(messagetype == 'changeStatus'){
             await changeUserStatusController(dependencies,jsondata.data)

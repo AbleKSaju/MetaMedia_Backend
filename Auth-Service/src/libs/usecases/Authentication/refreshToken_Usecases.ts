@@ -13,19 +13,16 @@ export const refreshTokenUsecase = async (dependencies: any) => {
 
     jwt.verify(token, refreshSecret, (err: any, decode: any) => {
       if (err) {
-        console.log(err, "Error");
         return { status: false, message: "error in jwt sign" };
       } else {
         playload = decode;
       }
     });
-console.log(playload,"playloadplayload");
 
     if (!playload.user)
       return { status: false, message: "play load is not found" };
 
     const user = await authenticationRepository.getuserbyId(playload.user._id || playload.user.response._id);
-console.log(user,"uuuuu");
 
     if (!user) return { status: false, message: "user is not " };
 

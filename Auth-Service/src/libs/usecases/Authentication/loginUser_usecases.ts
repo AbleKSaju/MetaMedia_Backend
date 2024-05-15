@@ -4,7 +4,6 @@ import { createAccessToken, createRefreshToken } from '../../../utils/jwt';
 
 export const loginUser_usecases=(dependencies:any)=>
 {
-    console.log("loginUser_usecases");
     
     const {
         repository: { authenticationRepository },

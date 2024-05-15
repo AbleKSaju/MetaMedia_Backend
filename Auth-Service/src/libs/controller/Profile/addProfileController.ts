@@ -2,15 +2,11 @@ import { Request, Response } from "express";
 import { decodeRefreshToken } from "../../../utils/jwt/jwt";
 
 export default (dependencies: any) => {
-  console.log("ENTER");
-
   const {
     useCase: { addProfile_Usecase },
   } = dependencies;
 
   const AddProfileController = async (req: Request, res: Response) => {
-    console.log(req.body, "Body");
-
     let userData:any=await decodeRefreshToken(req.session.refreshToken)   
     if(userData.status){
     const userId=userData?.data?.user?._id || userData?.data?.user?.response._id 
